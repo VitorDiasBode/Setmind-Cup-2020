@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Colectables/Air_Shard/Air_Shard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Colectables/Earth_Shard/Earth_Shard.tscn" type="PackedScene" id=6]
+
+[node name="Test_Level" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Level" type="StaticBody2D" parent="."]
+position = Vector2( 10, 512 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
+polygon = PoolVector2Array( 0, 0, 792, 0, 792, 64, 0, 64 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( -2, -400 )
+polygon = PoolVector2Array( -10, -256, 86, -256, 86, -192, -10, -192 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 66, 432 )
+
+[node name="UI" parent="." instance=ExtResource( 2 )]
+
+[node name="NPC" parent="." instance=ExtResource( 3 )]
+position = Vector2( 746, 464 )
+speech = "dfa dfa fdsffffffda          dfadfd dfadfadf dsfadfadsf dfadfdsfadfadf adfadfa"
+
+[node name="Air_Shard" parent="." instance=ExtResource( 4 )]
+position = Vector2( 532, 448 )
+
+[node name="Earth_Shard" parent="." instance=ExtResource( 6 )]
+position = Vector2( 264, 448 )

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Audio/Audio.gd" type="Script" id=2]
+
+[node name="Audios" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Music_Level" type="AudioStreamPlayer2D" parent="."]
