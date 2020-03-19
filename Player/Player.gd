@@ -9,12 +9,16 @@ var jump_strength = 900
 var look_direction = 1
 
 
-var extra_jump = 1
-var build_wall = 1
+var air_skill = 1
+
+var earth_skill = 0
 var load_wall = load( "res://Colectables/Earth_Shard/Earth_Wall.tscn" )
 
-var push_objects_skill = 0
-var burn_skill = 0
+var water_skill = 0
+var load_water_jet = load( "res://Colectables/Water_Shard/Water_Jet.tscn" )
+
+var fire_skill = 45
+var load_fire_ball = load( "res://Colectables/Fire_Shard/Fire_Ball.tscn" )
 
 func _ready():
 	Audio.change_music()
@@ -48,9 +52,9 @@ func _physics_process(delta):
 		Se não estiver no chão, pressionar a tecla para cima e ainda tiver
 		pulos extra disponíveis, perde um pulo extra e recebe o impulso
 		"""
-		if Input.is_action_just_pressed("ui_up") and extra_jump > 0:
+		if Input.is_action_just_pressed("ui_up") and air_skill > 0:
 			movement.y = -jump_strength
-			extra_jump -= 1
+			air_skill -= 1
 		else:
 			movement.y += GRAVITY
 	
@@ -62,12 +66,29 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("earth_skill"):
-		if build_wall > 0:
-			build_wall -= 1
+		if earth_skill > 0:
+			earth_skill -= 1
 			var wall = load_wall.instance()
+			get_parent().add_child(wall)
 			wall.global_position.x = global_position.x + ( look_direction * 84 )
 			wall.global_position.y = global_position.y
-			get_parent().add_child(wall)
+			
+	elif event.is_action_pressed("water_skill"):
+		if water_skill > 0:
+			water_skill -= 1
+			var water_jet = load_water_jet.instance()
+			get_parent().add_child(water_jet)
+			water_jet.growth_scale = water_jet.growth_scale * look_direction
+			water_jet.global_position.x = global_position.x + ( look_direction * 84 )
+			water_jet.global_position.y = global_position.y
+	elif event.is_action_pressed("fire_skill"):
+		if fire_skill > 0:
+			fire_skill -= 1
+			var fire_ball = load_fire_ball.instance()
+			get_parent().add_child(fire_ball)
+			fire_ball.direction.x = look_direction
+			fire_ball.global_position.x = global_position.x + ( look_direction * 84 )
+			fire_ball.global_position.y = global_position.y
 			
 			
 			

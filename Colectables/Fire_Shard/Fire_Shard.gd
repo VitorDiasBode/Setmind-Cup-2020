@@ -1,6 +1,6 @@
 extends Area2D 
 
-func _on_Air_Shard_body_entered(body):
+func _on_Fire_Shard_body_entered(body):
 	if body.is_in_group("Player"):
-		body.air_skill += 1
+		body.fire_skill += 1
 		queue_free()
