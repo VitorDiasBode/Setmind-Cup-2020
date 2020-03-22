@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Setmind Cup 2020"
-run/main_scene="res://Test_Level.tscn"
+run/main_scene="res://Levels/Test_Level.tscn"
 config/icon="res://icon.png"
 
 [autoload]

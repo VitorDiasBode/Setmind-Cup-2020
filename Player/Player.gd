@@ -9,7 +9,7 @@ var jump_strength = 900
 var look_direction = 1
 
 
-var air_skill = 1
+var air_skill = 0
 
 var earth_skill = 0
 var load_wall = load( "res://Colectables/Earth_Shard/Earth_Wall.tscn" )
@@ -17,7 +17,7 @@ var load_wall = load( "res://Colectables/Earth_Shard/Earth_Wall.tscn" )
 var water_skill = 0
 var load_water_jet = load( "res://Colectables/Water_Shard/Water_Jet.tscn" )
 
-var fire_skill = 45
+var fire_skill = 0
 var load_fire_ball = load( "res://Colectables/Fire_Shard/Fire_Ball.tscn" )
 
 func _ready():

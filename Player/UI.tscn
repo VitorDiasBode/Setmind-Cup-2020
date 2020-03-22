@@ -43,29 +43,34 @@ __meta__ = {
 }
 
 [node name="Messages" type="Control" parent="."]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 0.023
+anchor_bottom = 0.053
+margin_right = -7.552
+margin_bottom = -7.8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="Messages"]
+visible = false
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_top = 11.2
-anchor_right = 25.6
-anchor_bottom = 14.4
-margin_top = -40.0
-margin_bottom = 24.0
+anchor_right = 63.5
+anchor_bottom = 19.0
+margin_top = 99.2
+margin_right = 7.99994
+margin_bottom = 139.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Text_Area" type="Label" parent="Messages/Panel"]
 margin_left = 8.0
-margin_top = 8.0
+margin_top = 24.0
 margin_right = 1016.0
-margin_bottom = 184.0
+margin_bottom = 200.0
+autowrap = true
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

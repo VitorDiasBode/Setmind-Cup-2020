@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Colectables/Earth_Shard/Earth_Shard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenery/Vine/Vine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Colectables/Air_Shard/Air_Shard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Colectables/Fire_Shard/Fire_Shard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenery/Pushable_Box/Pushable_Box .tscn" type="PackedScene" id=5]
+[ext_resource path="res://Colectables/Water_Shard/Water_Shard.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=9]
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="Level" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( 8, 0 )
+polygon = PoolVector2Array( -8, 504, -8, 552, 1016, 552, 1016, 504 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( 264, -280 )
+polygon = PoolVector2Array( 288, 512, 288, 552, 752, 552, 752, 512 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( -317.055, -768 )
+scale = Vector2( 0.556818, 1 )
+polygon = PoolVector2Array( 536, 512, 536, 552, 712, 552, 712, 512 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( -144, -304 )
+scale = Vector2( 0.556818, 1 )
+polygon = PoolVector2Array( 536, 512, 536, 552, 712, 552, 712, 512 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( 90.9455, -536 )
+scale = Vector2( 0.556818, 1 )
+polygon = PoolVector2Array( 536, 512, 536, 552, 712, 552, 712, 512 )
+
+[node name="Vine" parent="." instance=ExtResource( 2 )]
+position = Vector2( 600, 392 )
+vine_height = 120.0
+
+[node name="Air_Shard" parent="." instance=ExtResource( 3 )]
+position = Vector2( 434.945, -56 )
+
+[node name="Air_Shard2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 128, 464 )
+
+[node name="Earth_Shard2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 328, 472 )
+
+[node name="Fire_Shard" parent="." instance=ExtResource( 4 )]
+position = Vector2( 26.9455, -288 )
+
+[node name="Water_Shard" parent="." instance=ExtResource( 6 )]
+position = Vector2( 960, 208 )
+
+[node name="Pushable_Box " parent="." instance=ExtResource( 5 )]
+position = Vector2( 856, 184 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, 440 )
+
+[node name="NPC" parent="." instance=ExtResource( 8 )]
+position = Vector2( 200, 456 )
+speech = "Olá minha jovem, seja bem-vinda ao <local>. Meu nome é <nome> e vou lhe ensinar a usar o Fragmento da Terra."
+
+[node name="UI" parent="." instance=ExtResource( 9 )]

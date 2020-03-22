@@ -17,11 +17,12 @@ func _input(event):
 			$Menu_Options.show()
 
 func show_text(text:String):
+	print(text)
 	$Messages/Panel/Text_Area.text = ""
 	$Messages/Panel.show()
 	
 	for character in text:
-		yield(get_tree().create_timer(0.09), "timeout")
+		yield(get_tree().create_timer(0.02), "timeout")
 		$Messages/Panel/Text_Area.text += character
 
 func hide_text():
