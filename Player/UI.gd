@@ -26,3 +26,6 @@ func show_text(text:String):
 
 func hide_text():
 	$Messages/Panel.hide()
+
+func restart_level():
+	get_tree().reload_current_scene()

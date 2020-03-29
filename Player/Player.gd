@@ -43,7 +43,6 @@ func _physics_process(delta):
 	"""
 	movement.x = speed*direction.x
 	movement.y += GRAVITY
-	print(is_on_floor())
 	if Input.is_action_just_pressed("ui_up"):
 		if is_on_floor():
 			movement.y = -jump_strength

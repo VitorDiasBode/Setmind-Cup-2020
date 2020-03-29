@@ -69,4 +69,13 @@ margin_bottom = 184.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Fade" type="ColorRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Menu_Options/Button_Restart" to="." method="_on_Button_Restart_pressed"]
