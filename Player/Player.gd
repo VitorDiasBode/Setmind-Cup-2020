@@ -42,21 +42,18 @@ func _physics_process(delta):
 	a força da gravidade.
 	"""
 	movement.x = speed*direction.x
-	if is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
+	movement.y += GRAVITY
+	print(is_on_floor())
+	if Input.is_action_just_pressed("ui_up"):
+		if is_on_floor():
 			movement.y = -jump_strength
-		else:
-			movement.y = 0
-	else:
-		""" 
-		Se não estiver no chão, pressionar a tecla para cima e ainda tiver
-		pulos extra disponíveis, perde um pulo extra e recebe o impulso
-		"""
-		if Input.is_action_just_pressed("ui_up") and air_skill > 0:
+		elif air_skill > 0:
+			"""
+			Se estiver pressinar a tecla de pulo, nao estiver no chao e
+			air_skill for maior do que zero, pule e subtraia de air_skill
+			"""
 			movement.y = -jump_strength
 			air_skill -= 1
-		else:
-			movement.y += GRAVITY
 	
 	"""
 	Chama a função move_and_slide e passa como parametro qual o movimento
