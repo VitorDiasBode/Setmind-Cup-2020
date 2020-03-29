@@ -20,3 +20,7 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -80 )
 current = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.192157, 0.482353, 0.113725, 1 )
+polygon = PoolVector2Array( -32, -64, 32, -64, 32, 64, -32, 64 )
