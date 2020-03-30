@@ -44,7 +44,7 @@ func _physics_process(delta):
 	movement.x = speed*direction.x
 	movement.y += GRAVITY
 	if Input.is_action_just_pressed("ui_up"):
-		if is_on_floor():
+		if is_on_floor() or is_on_wall():
 			movement.y = -jump_strength
 		elif air_skill > 0:
 			"""
@@ -53,6 +53,7 @@ func _physics_process(delta):
 			"""
 			movement.y = -jump_strength
 			air_skill -= 1
+		
 	
 	"""
 	Chama a função move_and_slide e passa como parametro qual o movimento

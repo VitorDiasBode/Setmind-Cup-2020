@@ -6,6 +6,8 @@ func _ready():
 
 func _on_Button_Restart_pressed():
 	get_tree().reload_current_scene()
+	get_tree().paused = false
+	$Menu_Options.hide()
 
 func _input(event):
 	if event.is_action_pressed("ui_select"):
