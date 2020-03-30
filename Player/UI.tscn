@@ -43,7 +43,6 @@ __meta__ = {
 }
 
 [node name="Messages" type="Control" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -51,6 +50,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="Messages"]
+visible = false
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_top = 11.2
 anchor_right = 25.6
@@ -70,6 +70,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Timer" type="Timer" parent="Messages"]
+one_shot = true
+
 [node name="Fade" type="ColorRect" parent="."]
 visible = false
 margin_right = 1024.0
@@ -79,3 +82,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="Menu_Options/Button_Restart" to="." method="_on_Button_Restart_pressed"]
+[connection signal="timeout" from="Messages/Timer" to="." method="_on_Timer_timeout"]

@@ -5,15 +5,11 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Spider/Spider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256, 0, 0, 0, 0, 0, 256, 136, 0, 0, 0, 0, 0, 136, 0, 0, 0, 0, 0, 0 )
-}
-
-[sub_resource type="Curve2D" id=2]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 56, 144, 0, 0, 0, 0, 136, -40, 0, 0, 0, 0, -32, 96, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, -24, -40, 0, 0, 0, 0, 56, 144 )
 }
 
 [node name="Test_Level" type="Node2D"]
@@ -46,6 +42,6 @@ position = Vector2( 64, 448 )
 position = Vector2( 144, 304 )
 curve = SubResource( 1 )
 
-[node name="Spider2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 488, 296 )
-curve = SubResource( 2 )
+[node name="NPC" parent="." instance=ExtResource( 6 )]
+position = Vector2( 560, 464 )
+speech = "eu adoro café"

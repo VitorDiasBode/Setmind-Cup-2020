@@ -43,7 +43,7 @@ rotation = 4.71239
 scale = Vector2( 6, 6 )
 frames = SubResource( 2 )
 animation = "Walk"
-frame = 1
+frame = 6
 speed_scale = 2.0
 playing = true
 
@@ -85,6 +85,9 @@ margin_top = 78.9995
 margin_right = 204.0
 margin_bottom = 115.999
 text = "Responder"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="Area_Vision" to="." method="_on_Area_Vision_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
 [connection signal="pressed" from="Answer/Button" to="." method="_on_Button_pressed"]
