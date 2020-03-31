@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Enemies/Spider_Boss/SpiderBoss.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Spider_Boss/Animation/SpiderBossWalk01.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Enemies/Spider_Boss/Animation/SpiderBossWalk06.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/Spider_Boss/Animation/SpiderBossAttack03.png" type="Texture" id=8]
 [ext_resource path="res://Enemies/Spider_Boss/Animation/SpiderBossWalk03.png" type="Texture" id=9]
-[ext_resource path="res://Effects/SpiderLight.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/Spider_Boss/Animation/SpiderBossWalk04.png" type="Texture" id=11]
 [ext_resource path="res://Enemies/Spider_Boss/Animation/SpiderBossAttack01.png" type="Texture" id=12]
 
@@ -42,16 +41,9 @@ shape = SubResource( 1 )
 rotation = 4.71239
 scale = Vector2( 6, 6 )
 frames = SubResource( 2 )
-animation = "Walk"
-frame = 6
+animation = "Attack"
+frame = 1
 speed_scale = 2.0
-playing = true
-
-[node name="Light2D" type="Light2D" parent="."]
-visible = false
-texture = ExtResource( 10 )
-texture_scale = 5.0
-energy = 2.0
 
 [node name="Area_Vision" type="Area2D" parent="."]
 
@@ -61,6 +53,7 @@ shape = SubResource( 3 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Answer" type="ColorRect" parent="."]
+visible = false
 margin_left = -405.998
 margin_top = -67.0015
 margin_right = -149.998

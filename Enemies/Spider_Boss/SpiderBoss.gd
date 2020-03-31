@@ -20,8 +20,8 @@ func _physics_process(delta):
 		rotation = global_position.angle_to_point( player.global_position )
 		dir = global_position.direction_to( player.global_position )
 		move_and_slide(dir*speed)
-		var count_collision = get_slide_count()
-		if count_collision > 0:
+	
+		if get_slide_count() > 0:
 			var collision = get_slide_collision(0)
 			if collision.collider.is_in_group("Player"):
 				UI.restart_level()
@@ -43,14 +43,12 @@ func _on_AudioStreamPlayer2D_finished():
 func _on_Button_pressed():
 	$Answer.hide()
 	if int($Answer/LineEdit.text) == 96:
-		$Answer.hide()
 		$AudioStreamPlayer2D.stream = conversation["correct"]
 		$AudioStreamPlayer2D.stream.loop = false
 		$AudioStreamPlayer2D.play(1.0)
 		state = "no attack"
 		
 	else:
-		$Answer.hide()
 		$AudioStreamPlayer2D.stream = conversation["wrong"]
 		$AudioStreamPlayer2D.stream.loop = false
 		$AudioStreamPlayer2D.play(1.0)
