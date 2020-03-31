@@ -48,7 +48,7 @@ func _physics_process(delta):
 			movement.y = -jump_strength
 		elif air_skill > 0:
 			"""
-			Se estiver pressinar a tecla de pulo, nao estiver no chao e
+			Se pressionar a tecla de pulo, nao estiver no chao e
 			air_skill for maior do que zero, pule e subtraia de air_skill
 			"""
 			movement.y = -jump_strength
@@ -60,6 +60,7 @@ func _physics_process(delta):
 	que deve ser seguido e de que lado está o chão.
 	"""
 	movement = move_and_slide(movement, Vector2.UP)
+	set_animation()
 
 func _input(event):
 	if event.is_action_pressed("earth_skill"):
@@ -86,7 +87,13 @@ func _input(event):
 			fire_ball.direction.x = look_direction
 			fire_ball.global_position.x = global_position.x + ( look_direction * 84 )
 			fire_ball.global_position.y = global_position.y
-			
-			
-			
-			
+	
+func set_animation():
+	if movement.x > 0:
+		$AnimatedSprite.play( "walk" )
+		$AnimatedSprite.flip_h = false
+	elif movement.x < 0:
+		$AnimatedSprite.play( "walk" )
+		$AnimatedSprite.flip_h = true
+	else:
+		$AnimatedSprite.play( "idle" )

@@ -52,18 +52,20 @@ shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[node name="Answer" type="ColorRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Answer" type="ColorRect" parent="CanvasLayer"]
 visible = false
-margin_left = -405.998
-margin_top = -67.0015
-margin_right = -149.998
-margin_bottom = 65.9985
+margin_left = 400.0
+margin_top = 24.0
+margin_right = 656.0
+margin_bottom = 157.0
 color = Color( 0, 0.00392157, 0.141176, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit" type="LineEdit" parent="Answer"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Answer"]
 margin_left = 18.0
 margin_top = 21.0
 margin_right = 237.0
@@ -72,7 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Answer"]
+[node name="Button" type="Button" parent="CanvasLayer/Answer"]
 margin_left = 62.9996
 margin_top = 78.9995
 margin_right = 204.0
@@ -83,4 +85,4 @@ __meta__ = {
 }
 [connection signal="body_entered" from="Area_Vision" to="." method="_on_Area_Vision_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
-[connection signal="pressed" from="Answer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Answer/Button" to="." method="_on_Button_pressed"]

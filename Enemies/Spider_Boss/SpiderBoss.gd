@@ -12,7 +12,8 @@ var conversation = {
 	}
 
 func _ready():
-	player = get_tree().get_nodes_in_group("Player")[0]
+	if get_tree().get_nodes_in_group("Player").size() > 0:
+		player = get_tree().get_nodes_in_group("Player")[0]
 	
 
 func _physics_process(delta):
@@ -36,13 +37,13 @@ func _on_Area_Vision_body_entered(body):
 
 func _on_AudioStreamPlayer2D_finished():
 	if state == "idle":
-		$Answer.show()
+		$CanvasLayer/Answer.show()
 		state = "waiting_answer"
 
 
 func _on_Button_pressed():
-	$Answer.hide()
-	if int($Answer/LineEdit.text) == 96:
+	$CanvasLayer/Answer.hide()
+	if int($CanvasLayer/Answer/LineEdit.text) == 96:
 		$AudioStreamPlayer2D.stream = conversation["correct"]
 		$AudioStreamPlayer2D.stream.loop = false
 		$AudioStreamPlayer2D.play(1.0)
