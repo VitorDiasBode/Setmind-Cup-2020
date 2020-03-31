@@ -6,3 +6,4 @@
 script = ExtResource( 2 )
 
 [node name="Music_Level" type="AudioStreamPlayer2D" parent="."]
+[connection signal="finished" from="Music_Level" to="." method="_on_Music_Level_finished"]

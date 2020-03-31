@@ -39,6 +39,7 @@ func _on_AudioStreamPlayer2D_finished():
 	if state == "idle":
 		$CanvasLayer/Answer.show()
 		state = "waiting_answer"
+	
 
 
 func _on_Button_pressed():
