@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/Rat/Rat.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://NPC/RatLord/RatLord.tscn" type="PackedScene" id=3]
+
+[node name="RatTest" type="Node"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 129.543, 512.621 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -1.54324, -0.621155, 854.457, -0.620972, 854.457, -128.621, 902.457, -128.621, 902.457, 71.379, -129.543, 71.3788, -129.543, -128.621, -1.54324, -128.621 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color( 0.219608, 0.215686, 0.215686, 1 )
+polygon = PoolVector2Array( -1.54324, -0.621155, 854.457, -0.620972, 854.457, -128.621, 902.457, -128.621, 902.457, 71.379, -129.543, 71.3788, -129.543, -128.621, -1.54324, -128.621 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Rat" parent="." instance=ExtResource( 1 )]
+position = Vector2( 824, 512.621 )
+walk_range = 132.957
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 440 )
+
+[node name="RatLord" parent="." instance=ExtResource( 3 )]
+position = Vector2( 592, 512.621 )
