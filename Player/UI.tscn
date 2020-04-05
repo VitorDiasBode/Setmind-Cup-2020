@@ -66,11 +66,13 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 1016.0
 margin_bottom = 184.0
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Timer" type="Timer" parent="Messages"]
+wait_time = 0.2
 one_shot = true
 
 [node name="Fade" type="ColorRect" parent="."]

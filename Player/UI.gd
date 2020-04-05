@@ -35,5 +35,5 @@ func restart_level():
 func _on_Timer_timeout():
 	$Messages/Panel/Text_Area.visible_characters += 1
 	if $Messages/Panel/Text_Area.visible_characters != $Messages/Panel/Text_Area.text.length():
-		$Messages/Timer.start(0.1)
+		$Messages/Timer.start(0.02)
 	pass # Replace with function body.

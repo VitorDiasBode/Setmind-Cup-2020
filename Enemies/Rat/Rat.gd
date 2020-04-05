@@ -50,4 +50,5 @@ func apply_damage(damage):
 	var new_splatter = splatter.instance()
 	get_parent().add_child(new_splatter)
 	new_splatter.global_position = global_position
+	get_tree().call_group("RatLord","rat_killed")
 	queue_free()
