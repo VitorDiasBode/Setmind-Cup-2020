@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://NPC/RatLord/Animation/RatLordSprites.png" type="Texture" id=1]
+[ext_resource path="res://NPC/RatLord/RatLord.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 64, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 64, 24, 32 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 17.3556, 22.6355 )
+
+[node name="RatLord" type="Area2D" groups=[
+"RatLord",
+]]
+script = ExtResource( 2 )
+speech = "Olá meu amigo! Vejo que você é amigo do povo Rato. Você usou o princípio da não agressão, não atacou ninguém do meu povo e manteve a paz no meu Cantão. Como recompensa, você recebeu livre passagem em minhas terras, siga esta passagem secreta para ir por um caminho mais seguro, longe das armadilhas."
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -27.9569 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 4 )
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -21.7373 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="." to="." method="_on_RatLord_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_RatLord_body_exited"]

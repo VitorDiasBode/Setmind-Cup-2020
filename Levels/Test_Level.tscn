@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenery/Vine/Vine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenery/Pushable_Box/Pushable_Box .tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Spider/Spider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256, 0, 0, 0, 0, 0, 256, 136, 0, 0, 0, 0, 0, 136, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="Test_Level" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Level" type="StaticBody2D" parent="."]
+position = Vector2( 0, 512 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
+polygon = PoolVector2Array( 0, 0, 792, 0, 792, 64, 0, 64 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Level"]
+position = Vector2( 8, 64 )
+polygon = PoolVector2Array( -8, -256, 88, -256, 88, -192, -8, -192 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 728, 424 )
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="Pushable_Box " parent="." instance=ExtResource( 2 )]
+position = Vector2( 40, 272 )
+
+[node name="Vine" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 448 )
+vine_height = 64.0
+
+[node name="Spider" parent="." instance=ExtResource( 5 )]
+position = Vector2( 144, 304 )
+curve = SubResource( 1 )
+
+[node name="NPC" parent="." instance=ExtResource( 6 )]
+position = Vector2( 560, 464 )
+speech = "eu adoro café"

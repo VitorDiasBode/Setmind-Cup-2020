@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Earth_Wall" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color( 0.270588, 0.137255, 0, 1 )
+polygon = PoolVector2Array( -40, 32, 40, 32, 40, -32, -40, -32 )
