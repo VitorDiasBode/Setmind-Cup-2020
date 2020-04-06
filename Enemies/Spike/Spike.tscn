@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Enemies/Spike/Spike.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Spike/Spike.gd" type="Script" id=2]
+
+[node name="Spike" type="TextureRect"]
+margin_right = 256.0
+margin_bottom = 32.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
