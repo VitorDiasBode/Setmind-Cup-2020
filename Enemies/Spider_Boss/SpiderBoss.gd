@@ -4,7 +4,7 @@ var speed = 250
 var dir = Vector2()
 var movement = Vector2()
 var player
-var state = "attack"
+var state = "idle"
 
 var knocked = false
 

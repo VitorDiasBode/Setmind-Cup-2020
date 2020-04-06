@@ -529,7 +529,7 @@ polygon = PoolVector2Array( 1824, 1792, 1824, 992, 3264, 992, 3264, 928, 3392, 9
 [node name="Rat" parent="Rats" instance=ExtResource( 8 )]
 position = Vector2( 544, 224 )
 speed = 100.0
-walk_range = 130.379
+walk_range = 123.086
 
 [node name="Rat2" parent="Rats" instance=ExtResource( 8 )]
 position = Vector2( 288, 2176 )
@@ -651,4 +651,4 @@ speech = "Ouça jovem: Cuidado ao atravessar o Cantão do Povo Rato. Eles possue
 position = Vector2( 4352, 800 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -960, -64 )
+position = Vector2( -896, -42 )

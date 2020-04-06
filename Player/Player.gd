@@ -27,7 +27,7 @@ func _ready():
 	Audio.change_music()
 
 func _physics_process(delta):
-#	print(condition)
+
 	if knocked == false:
 		"""
 		Defini para qual direção o jogador deve se mover
@@ -61,6 +61,7 @@ func _physics_process(delta):
 		""" Caso a condicao do Player seja 'Poisoned' os controles serão invertidos"""
 		if poisoned == true:
 			movement.x *= -1
+			look_direction *= -1
 		
 	
 	"""
@@ -111,7 +112,6 @@ func set_animation():
 func poison():
 	poisoned = true
 	$AnimationPlayer.play("poison")
-	$PoisonTimer.stop()
 	$PoisonTimer.start(15.0)
 	
 
