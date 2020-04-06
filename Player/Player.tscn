@@ -14,7 +14,7 @@
 [ext_resource path="res://Player/Animation/player_03.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 64 )
+extents = Vector2( 32, 47.2286 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -56,6 +56,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 16.6874 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

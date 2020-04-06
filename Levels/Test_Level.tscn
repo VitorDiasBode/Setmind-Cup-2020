@@ -50,7 +50,6 @@ position = Vector2( 35.25, 213.1 )
 
 [node name="Vine" parent="." instance=ExtResource( 1 )]
 position = Vector2( 64, 448 )
-vine_height = 64.0
 
 [node name="Spider" parent="." instance=ExtResource( 5 )]
 position = Vector2( 144, 304 )

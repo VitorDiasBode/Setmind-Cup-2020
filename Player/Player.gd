@@ -111,23 +111,20 @@ func set_animation():
 func poison():
 	poisoned = true
 	$AnimationPlayer.play("poison")
-	print("start")
 	$PoisonTimer.stop()
-	$PoisonTimer.start(5.0)
+	$PoisonTimer.start(15.0)
 	
 
 func _on_PoisonTimer_timeout():
 	poisoned = false
-	print("end")
 	$AnimationPlayer.seek(0.0, true)
 	$AnimationPlayer.stop()
 
-
-func knock_back(knock_origin, knock_strength):
+func knock_back(knock_origin, knock_strength, knock_duration):
 	movement = (global_position - knock_origin).normalized() * knock_strength.x
 	movement.y = knock_strength.y
 	knocked = true
-	yield( get_tree().create_timer(0.5), "timeout")
+	yield( get_tree().create_timer(knock_duration), "timeout")
 	knocked = false
 	
 

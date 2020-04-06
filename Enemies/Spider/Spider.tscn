@@ -19,14 +19,14 @@ _data = {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Walk",
 "speed": 5.0
 } ]
 
@@ -43,6 +43,7 @@ script = ExtResource( 5 )
 rotation = 1.5708
 frames = SubResource( 2 )
 animation = "Walk"
+frame = 3
 speed_scale = 1.5
 playing = true
 

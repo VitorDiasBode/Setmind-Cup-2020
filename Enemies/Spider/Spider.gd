@@ -12,5 +12,5 @@ func _on_AreaAttack_body_entered(body):
 	if body.is_in_group("Player"):
 		$PathFollow2D/AnimatedSprite.play("Attack")
 		body.poison()
-		body.knock_back(global_position, Vector2(500, -900))
+		body.knock_back($PathFollow2D/AnimatedSprite.global_position, Vector2(500, -900), 0.5)
 	pass # Replace with function body.

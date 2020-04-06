@@ -12,4 +12,7 @@ func _on_Spell_area_entered(area):
 		queue_free()
 
 func _on_Spell_body_entered(body):
+	if body.is_in_group("Enemy"):
+		body.knock_back(global_position, Vector2(500, 500), 0.8)
 	queue_free()
+	
