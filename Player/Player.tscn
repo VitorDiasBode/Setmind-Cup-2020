@@ -1,0 +1,78 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/Animation/player_01.png" type="Texture" id=2]
+[ext_resource path="res://Player/Animation/player_07.png" type="Texture" id=3]
+[ext_resource path="res://Player/Animation/player_10.png" type="Texture" id=4]
+[ext_resource path="res://Player/Animation/player_06.png" type="Texture" id=5]
+[ext_resource path="res://Player/Animation/player_04.png" type="Texture" id=6]
+[ext_resource path="res://Player/Animation/player_08.png" type="Texture" id=7]
+[ext_resource path="res://Player/Animation/player_00.png" type="Texture" id=8]
+[ext_resource path="res://Player/Animation/player_05.png" type="Texture" id=9]
+[ext_resource path="res://Player/Animation/player_09.png" type="Texture" id=10]
+[ext_resource path="res://Player/Animation/player_02.png" type="Texture" id=11]
+[ext_resource path="res://Player/Animation/player_03.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 44.4815 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "poison"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.00392157, 1, 0.14902, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -64.0, 64.0 ],
+"_edit_vertical_guides_": [ -32.0, 32.0 ]
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 17.9124 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -80 )
+current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 7.29761, 18.5758 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+animation = "idle"
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/poison = SubResource( 3 )
+
+[node name="PoisonTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]

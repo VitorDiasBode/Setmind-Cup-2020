@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dungeon_Music.wav-d6f20f9d750a782ccf9609a7d8b6ebd4.sample"
+
+[deps]
+
+source_file="res://Audio/Dungeon_Music.wav"
+dest_files=[ "res://.import/Dungeon_Music.wav-d6f20f9d750a782ccf9609a7d8b6ebd4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
