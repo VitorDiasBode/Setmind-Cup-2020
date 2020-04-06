@@ -1,13 +1,16 @@
 extends KinematicBody2D
 
-const GRAVITY = 35
+var gravity = 35
 
 var speed = 350
 var direction = Vector2()
 var movement = Vector2()
 var jump_strength = 900
 var look_direction = 1
+var floor_normal = Vector2.UP
 
+var poisoned = false
+var knocked = false
 
 var air_skill = 1
 
@@ -24,41 +27,47 @@ func _ready():
 	Audio.change_music()
 
 func _physics_process(delta):
-	"""
-	Defini para qual direção o jogador deve se mover
-	"""
-	if Input.is_action_pressed("ui_left"):
-		direction.x = -1
-		look_direction = -1
-	elif Input.is_action_pressed("ui_right"):
-		direction.x = 1
-		look_direction = 1
-	else:
-		direction.x = 0
-	
-	"""
-	Constroi uma projeção de movimento horizontal, que usa a direção 
-	de movimento e a velocidade, e vertical que usa a força do pulo e
-	a força da gravidade.
-	"""
-	movement.x = speed*direction.x
-	movement.y += GRAVITY
-	if Input.is_action_just_pressed("ui_up"):
-		if is_on_floor() or is_on_wall():
-			movement.y = -jump_strength
-		elif air_skill > 0:
-			"""
-			Se pressionar a tecla de pulo, nao estiver no chao e
-			air_skill for maior do que zero, pule e subtraia de air_skill
-			"""
-			movement.y = -jump_strength
-			air_skill -= 1
+#	print(condition)
+	if knocked == false:
+		"""
+		Defini para qual direção o jogador deve se mover
+		"""
+		if Input.is_action_pressed("ui_left"):
+			direction.x = -1
+			look_direction = -1
+		elif Input.is_action_pressed("ui_right"):
+			direction.x = 1
+			look_direction = 1
+		else:
+			direction.x = 0
+		
+		"""
+		Constroi uma projeção de movimento horizontal, que usa a direção 
+		de movimento e a velocidade, e vertical que usa a força do pulo e
+		a força da gravidade.
+		"""
+		movement.x = speed*direction.x
+		if Input.is_action_just_pressed("ui_up"):
+			if is_on_floor() or is_on_wall():
+				movement.y = -jump_strength
+			elif air_skill > 0:
+				"""
+				Se pressionar a tecla de pulo, nao estiver no chao e
+				air_skill for maior do que zero, pule e subtraia de air_skill
+				"""
+				movement.y = -jump_strength
+				air_skill -= 1
+		 
+		""" Caso a condicao do Player seja 'Poisoned' os controles serão invertidos"""
+		if poisoned == true:
+			movement.x *= -1
 		
 	
 	"""
 	Chama a função move_and_slide e passa como parametro qual o movimento
 	que deve ser seguido e de que lado está o chão.
 	"""
+	movement.y += gravity
 	movement = move_and_slide(movement, Vector2.UP)
 	set_animation()
 
@@ -89,11 +98,37 @@ func _input(event):
 			fire_ball.global_position.y = global_position.y
 	
 func set_animation():
-	if movement.x > 0:
-		$AnimatedSprite.play( "walk" )
-		$AnimatedSprite.flip_h = false
-	elif movement.x < 0:
-		$AnimatedSprite.play( "walk" )
-		$AnimatedSprite.flip_h = true
-	else:
-		$AnimatedSprite.play( "idle" )
+	if knocked == false:
+		if movement.x > 0:
+			$AnimatedSprite.play( "walk" )
+			$AnimatedSprite.flip_h = false
+		elif movement.x < 0:
+			$AnimatedSprite.play( "walk" )
+			$AnimatedSprite.flip_h = true
+		else:
+			$AnimatedSprite.play( "idle" )
+
+func poison():
+	poisoned = true
+	$AnimationPlayer.play("poison")
+	print("start")
+	$PoisonTimer.stop()
+	$PoisonTimer.start(5.0)
+	
+
+func _on_PoisonTimer_timeout():
+	poisoned = false
+	print("end")
+	$AnimationPlayer.seek(0.0, true)
+	$AnimationPlayer.stop()
+
+
+func knock_back(knock_origin, knock_strength):
+	movement = (global_position - knock_origin).normalized() * knock_strength.x
+	movement.y = knock_strength.y
+	knocked = true
+	yield( get_tree().create_timer(0.5), "timeout")
+	knocked = false
+	
+
+

@@ -12,29 +12,29 @@
 [ext_resource path="res://Enemies/Spider/Animation/MinionSpiderAttack01.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/Spider/Animation/MinionSpiderWalk02.png" type="Texture" id=11]
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256, 0, 0, 0, 0, 0, 256, 256, 0, 0, 0, 0, 0, 256, 0, 0, 0, 0, 0, 0 )
 }
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "Attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "Attack",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 20.4622, 18.0066 )
 
 [node name="Spider" type="Path2D"]
-curve = SubResource( 3 )
+curve = SubResource( 1 )
 script = ExtResource( 5 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
@@ -43,12 +43,11 @@ script = ExtResource( 5 )
 rotation = 1.5708
 frames = SubResource( 2 )
 animation = "Walk"
-frame = 3
 speed_scale = 1.5
 playing = true
 
 [node name="AreaAttack" type="Area2D" parent="PathFollow2D/AnimatedSprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/AnimatedSprite/AreaAttack"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 [connection signal="body_entered" from="PathFollow2D/AnimatedSprite/AreaAttack" to="." method="_on_AreaAttack_body_entered"]

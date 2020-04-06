@@ -8,10 +8,9 @@ func _ready():
 func _physics_process(delta):
 	$PathFollow2D.offset += move_speed*delta
 
-
-
 func _on_AreaAttack_body_entered(body):
 	if body.is_in_group("Player"):
 		$PathFollow2D/AnimatedSprite.play("Attack")
-		UI.restart_level()
+		body.poison()
+		body.knock_back(global_position, Vector2(500, -900))
 	pass # Replace with function body.
