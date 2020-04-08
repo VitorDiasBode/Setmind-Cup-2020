@@ -1,0 +1,1193 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://NPC/GenericNPC/GenericNPC.tscn" type="PackedScene" id=2]
+[ext_resource path="res://NPC/FallshadeSubject/Subject.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Fallshade/Bricks.png" type="Texture" id=4]
+[ext_resource path="res://Levels/Fallshade/WallsStone.png" type="Texture" id=5]
+[ext_resource path="res://Levels/Fallshade/background_glacial_mountains_lightened.png" type="Texture" id=6]
+[ext_resource path="res://Levels/Fallshade/Houses/Doors.png" type="Texture" id=7]
+[ext_resource path="res://NPC/SunGuardian/SunGuardian.png" type="Texture" id=8]
+[ext_resource path="res://Levels/Fallshade/Trees.png" type="Texture" id=9]
+[ext_resource path="res://Scenery/Wall/Wall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Levels/Fallshade/Houses/Destroyed.png" type="Texture" id=11]
+[ext_resource path="res://Levels/Fallshade/Houses/PoorHouse2.png" type="Texture" id=12]
+[ext_resource path="res://NPC/Master/Master.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Levels/Fallshade/Gates/Gate.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Levels/Fallshade/WoodBlocks.png" type="Texture" id=16]
+[ext_resource path="res://Levels/Fallshade/BreakObjects.gd" type="Script" id=17]
+[ext_resource path="res://Levels/Fallshade/Board.png" type="Texture" id=18]
+[ext_resource path="res://Levels/Fallshade/Houses/PoorHouse3.png" type="Texture" id=19]
+[ext_resource path="res://Levels/Fallshade/Houses/PoorHouse1.png" type="Texture" id=20]
+[ext_resource path="res://Levels/Fallshade/Box.png" type="Texture" id=21]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC1.png" type="Texture" id=22]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC2.png" type="Texture" id=23]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC3.png" type="Texture" id=24]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC5.png" type="Texture" id=25]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC9.png" type="Texture" id=26]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC8.png" type="Texture" id=27]
+[ext_resource path="res://NPC/FallshadePoorPeople/NPC4.png" type="Texture" id=28]
+[ext_resource path="res://NPC/FallshadePoorPeople/NP7.png" type="Texture" id=29]
+[ext_resource path="res://Levels/Fallshade/Sun.png" type="Texture" id=30]
+[ext_resource path="res://Levels/Fallshade/Houses/RichHouse.png" type="Texture" id=31]
+[ext_resource path="res://NPC/FallshadePoorPeople/NP6.png" type="Texture" id=32]
+[ext_resource path="res://Levels/Fallshade_Level.gd" type="Script" id=33]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Position2D
+
+
+onready var player = get_tree().get_nodes_in_group(\"Player\")[0]
+
+func _process(delta):
+	if player.global_position.x < global_position.x:
+		$GenericNPC/Sprite.flip_h = false
+	else:
+		$GenericNPC/Sprite.flip_h = true
+"
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 208, 96.2 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 96, 96.2 )
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends StaticBody2D
+
+var open = false
+
+func _physics_process(delta: float) -> void:
+	if open:
+		$CollisionPolygon2D.disabled = open
+
+func open_passage():
+	$AnimationPlayer.play(\"Fade\")
+	open = true
+"
+
+[sub_resource type="Animation" id=8]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+
+func _on_GenericNPC_body_exited(body):
+	if body.is_in_group(\"Player\"):
+		$GateSun/AnimationPlayer.play(\"Open\")
+"
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 144, 272 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 288, 32 )
+
+[node name="Fallshade" type="Node2D"]
+script = ExtResource( 33 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 0 )
+motion_offset = Vector2( 0, -300 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -1280.0
+margin_right = 502.0
+margin_bottom = 216.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Trees"]
+position = Vector2( -1200, 384 )
+scale = Vector2( 2.03425, 2.03425 )
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="Trees"]
+position = Vector2( -1200, 384 )
+scale = Vector2( 2.03425, 2.03425 )
+texture = ExtResource( 9 )
+
+[node name="Sprite5" type="Sprite" parent="Trees"]
+position = Vector2( -1024, 384 )
+scale = Vector2( 2.03425, 2.03425 )
+texture = ExtResource( 9 )
+
+[node name="Sprite6" type="Sprite" parent="Trees"]
+position = Vector2( -928, 384 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite18" type="Sprite" parent="Trees"]
+position = Vector2( -1312, 400 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite7" type="Sprite" parent="Trees"]
+position = Vector2( 272, 346 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite8" type="Sprite" parent="Trees"]
+position = Vector2( 576, 346 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite9" type="Sprite" parent="Trees"]
+position = Vector2( 848, 384 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite10" type="Sprite" parent="Trees"]
+position = Vector2( 1136, 256 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite11" type="Sprite" parent="Trees"]
+position = Vector2( 1220.74, 336 )
+scale = Vector2( 2.32159, 2.05608 )
+texture = ExtResource( 9 )
+
+[node name="Sprite12" type="Sprite" parent="Trees"]
+position = Vector2( 1597.63, 327.159 )
+scale = Vector2( 2.69504, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite13" type="Sprite" parent="Trees"]
+position = Vector2( 1872, 384 )
+scale = Vector2( 2.69504, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite14" type="Sprite" parent="Trees"]
+position = Vector2( 1987.92, 408 )
+scale = Vector2( 2.69504, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite15" type="Sprite" parent="Trees"]
+position = Vector2( 2058.74, 336 )
+scale = Vector2( 2.44341, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite16" type="Sprite" parent="Trees"]
+position = Vector2( 2273.55, 352 )
+scale = Vector2( 2.44341, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite17" type="Sprite" parent="Trees"]
+position = Vector2( 2416, 346 )
+scale = Vector2( 2.44341, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite19" type="Sprite" parent="Trees"]
+position = Vector2( 3104, 306 )
+scale = Vector2( 2.44341, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite20" type="Sprite" parent="Trees"]
+position = Vector2( 2800, 363 )
+scale = Vector2( 2.44341, 2.1709 )
+texture = ExtResource( 9 )
+
+[node name="Sprite3" type="Sprite" parent="Trees"]
+position = Vector2( -1104, 384 )
+scale = Vector2( 2.03425, 2.03425 )
+texture = ExtResource( 9 )
+
+[node name="Sprite4" type="Sprite" parent="Trees"]
+position = Vector2( -1104, 384 )
+scale = Vector2( 2.03425, 2.03425 )
+texture = ExtResource( 9 )
+
+[node name="Guardian3" type="Position2D" parent="."]
+position = Vector2( 352, 331 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="Guardian3" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="Guardian4" type="Position2D" parent="."]
+position = Vector2( 1296, 336 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="Guardian4" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="CityWall" type="TextureRect" parent="."]
+modulate = Color( 0.992157, 0.980392, 0.980392, 1 )
+margin_top = 304.0
+margin_right = 1924.0
+margin_bottom = 364.0
+rect_scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A1" type="Position2D" parent="."]
+position = Vector2( 192.145, 288.218 )
+
+[node name="A2" type="Position2D" parent="."]
+position = Vector2( 12112, -22.5768 )
+
+[node name="A3" type="Position2D" parent="."]
+position = Vector2( 6759.65, -6253.31 )
+
+[node name="A4" type="Position2D" parent="."]
+position = Vector2( 6614.07, 6638.12 )
+
+[node name="RustyNail" type="Node2D" parent="."]
+
+[node name="PoorHouse8" type="Area2D" parent="RustyNail"]
+position = Vector2( 816, 540 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse8"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse8"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse8/Sprites"]
+modulate = Color( 0.541176, 0.882353, 0.796078, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse8"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse8/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse8/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse8/Destroyed/Destroyed"]
+position = Vector2( 128, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse9" type="Area2D" parent="RustyNail"]
+position = Vector2( 816, 374 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse9"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse9"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse9/Sprites"]
+modulate = Color( 0.541176, 0.882353, 0.796078, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse9"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse9/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse9/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse9/Destroyed/Destroyed"]
+position = Vector2( 128, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse1" type="Area2D" parent="RustyNail"]
+position = Vector2( 672, 540.637 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse1"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse1"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse1/Sprites"]
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 12 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse1/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse1"]
+visible = false
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse1/Destroyed"]
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse13" type="Area2D" parent="RustyNail"]
+position = Vector2( 2115.92, 203 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse13"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse13"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse13/Sprites"]
+modulate = Color( 0.541176, 0.882353, 0.796078, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse13/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse13"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse13/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse13/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse13/Destroyed/Destroyed"]
+position = Vector2( 79, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse10" type="Area2D" parent="RustyNail"]
+position = Vector2( 1610, 370 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse10"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse10"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse10/Sprites"]
+modulate = Color( 0.635294, 0.901961, 0.662745, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 12 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse10"]
+visible = false
+position = Vector2( -98, -77 )
+rotation = 1.5708
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse10/Destroyed"]
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse3" type="Area2D" parent="RustyNail"]
+position = Vector2( 1008, 549 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse3"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse3"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse3/Sprites"]
+modulate = Color( 0.980392, 0.835294, 0.305882, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse3/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse3"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse3/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse3/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse3/Destroyed/Destroyed"]
+position = Vector2( 128, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse14" type="Area2D" parent="RustyNail"]
+position = Vector2( 2115.92, 371 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse14"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse14"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse14/Sprites"]
+modulate = Color( 0.980392, 0.835294, 0.305882, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse14/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse14"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse14/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse14/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse14/Destroyed/Destroyed"]
+position = Vector2( 128, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse4" type="Area2D" parent="RustyNail"]
+position = Vector2( 1552, 542 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse4"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse4"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse4/Sprites"]
+modulate = Color( 0.541176, 0.882353, 0.796078, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse4/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse4"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse4/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse4/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse4/Destroyed/Destroyed"]
+position = Vector2( 128, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse12" type="Area2D" parent="RustyNail"]
+position = Vector2( 2115.55, 540 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse12"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse12"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse12/Sprites"]
+modulate = Color( 0.541176, 0.882353, 0.796078, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse12/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse12"]
+visible = false
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse12/Destroyed"]
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse12/Destroyed/Destroyed"]
+position = Vector2( -144, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse12/Destroyed/Destroyed"]
+position = Vector2( 128, -41.5758 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse2" type="Area2D" parent="RustyNail"]
+position = Vector2( 672, 366 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse2"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse2"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse2/Sprites"]
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 12 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse2/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse2"]
+visible = false
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse5" type="Area2D" parent="RustyNail"]
+position = Vector2( 1120, 328 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse5"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse5"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse5/Sprites"]
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 20 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse5/Sprites"]
+position = Vector2( 0, -24 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse5"]
+visible = false
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse11" type="Area2D" parent="RustyNail"]
+position = Vector2( 1456, 363 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse11"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse11"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse11/Sprites"]
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 20 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse11/Sprites"]
+position = Vector2( 0, -24 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse11"]
+visible = false
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse7" type="Area2D" parent="RustyNail"]
+position = Vector2( 672, 159 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse7"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse7"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse7/Sprites"]
+modulate = Color( 1, 0.901961, 0.368627, 1 )
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 20 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse7/Sprites"]
+position = Vector2( 0, -24 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse7"]
+visible = false
+position = Vector2( 0, -28.3191 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="PoorHouse6" type="Area2D" parent="RustyNail"]
+position = Vector2( 946.064, 340.5 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse6"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse6"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse6/Sprites"]
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 20 )
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse6"]
+visible = false
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed" type="Sprite" parent="RustyNail"]
+position = Vector2( 1953.55, -3 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed2" type="Sprite" parent="RustyNail"]
+position = Vector2( 2081.55, -3 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed3" type="Sprite" parent="RustyNail"]
+position = Vector2( 2193.55, -3 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed4" type="Sprite" parent="RustyNail"]
+position = Vector2( 2273.55, -3 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed5" type="Sprite" parent="RustyNail"]
+position = Vector2( 2273.55, -32 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed6" type="Sprite" parent="RustyNail"]
+position = Vector2( 2275.55, -64 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="Destroyed7" type="Sprite" parent="RustyNail"]
+position = Vector2( 2273.55, -96 )
+scale = Vector2( 2.04839, 2.04839 )
+texture = ExtResource( 11 )
+
+[node name="SunQG" type="Node2D" parent="."]
+
+[node name="RichHouse" type="Sprite" parent="SunQG"]
+modulate = Color( 0.92549, 0.992157, 0.658824, 1 )
+position = Vector2( 3008, 378 )
+scale = Vector2( 2.87179, 2.87179 )
+texture = ExtResource( 31 )
+
+[node name="Sun" type="Sprite" parent="SunQG"]
+position = Vector2( 2944, 306 )
+texture = ExtResource( 30 )
+
+[node name="CityBricks" type="Node2D" parent="."]
+
+[node name="Wall" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 576, 366 )
+texture = ExtResource( 16 )
+size = Vector2( 192, 32 )
+
+[node name="Wall9" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 576, 169 )
+texture = ExtResource( 16 )
+size = Vector2( 192, 32 )
+
+[node name="Wall5" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1028.13, 109 )
+texture = ExtResource( 16 )
+size = Vector2( 192, 32 )
+
+[node name="Wall12" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1360, 365 )
+texture = ExtResource( 16 )
+size = Vector2( 192, 32 )
+
+[node name="Wall24" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1472, 166 )
+texture = ExtResource( 16 )
+size = Vector2( 128, 32 )
+
+[node name="Wall21" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 2147.55, -128 )
+texture = ExtResource( 16 )
+size = Vector2( 192, 32 )
+
+[node name="Wall3" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1228, 384 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 64 )
+
+[node name="Wall4" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1260, 416 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 32 )
+
+[node name="Wall13" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 1760, 512 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall14" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 1728, 512 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall15" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 1760, 480 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall20" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 2307.92, 331 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall22" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 2307.55, -16 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall23" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 2307.55, -48 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall16" parent="CityBricks" instance=ExtResource( 10 )]
+modulate = Color( 0.619608, 0.498039, 0.415686, 1 )
+position = Vector2( 1360, 331 )
+texture = ExtResource( 21 )
+size = Vector2( 32, 32 )
+
+[node name="Wall10" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 760, 201 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 32 )
+
+[node name="Wall11" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 555, 199 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 32 )
+
+[node name="Wall6" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 992, 144 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 32 )
+
+[node name="Wall7" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 960, 176 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 32 )
+
+[node name="Wall8" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 928, 208.137 )
+texture = ExtResource( 16 )
+size = Vector2( 32, 32 )
+
+[node name="Wall2" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 784, 346 )
+texture = ExtResource( 16 )
+size = Vector2( 448, 32 )
+
+[node name="Wall17" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1889.92, 362 )
+texture = ExtResource( 16 )
+size = Vector2( 448, 32 )
+
+[node name="Wall18" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1891.92, 191 )
+texture = ExtResource( 16 )
+size = Vector2( 384, 32 )
+
+[node name="Wall19" parent="CityBricks" instance=ExtResource( 10 )]
+position = Vector2( 1889.92, 16 )
+texture = ExtResource( 16 )
+size = Vector2( 448, 32 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Walls"]
+modulate = Color( 0.529412, 0.054902, 0.956863, 1 )
+margin_left = 3840.0
+margin_top = 541.0
+margin_right = 7712.0
+margin_bottom = 1760.0
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ground" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( -1344, 541 )
+texture = ExtResource( 4 )
+size = Vector2( 5184, 768 )
+
+[node name="Ground5" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( -1344, 1309 )
+texture = ExtResource( 4 )
+size = Vector2( 5568, 448 )
+
+[node name="Ground2" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 3712, 416 )
+texture = ExtResource( 4 )
+size = Vector2( 128, 32 )
+
+[node name="Ground3" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 3840, 384 )
+texture = ExtResource( 4 )
+size = Vector2( 128, 64 )
+
+[node name="Ground4" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 3968, 320 )
+texture = ExtResource( 4 )
+size = Vector2( 768, 576 )
+
+[node name="FakeWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 3712, 449 )
+script = SubResource( 7 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/FakeWall"]
+texture = ExtResource( 4 )
+polygon = PoolVector2Array( 0, -1, 256, -1, 256, 447, 128, 447, 128, 93, 0, 92 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/FakeWall"]
+polygon = PoolVector2Array( 0, -1, 256, -1, 256, 447, 128, 447, 128, 93, 0, 92 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Walls/FakeWall"]
+anims/Fade = SubResource( 8 )
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="RustyNail" type="Node2D" parent="NPCs"]
+
+[node name="Arnold" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 3664, 503 )
+sprite = ExtResource( 32 )
+speech = "Arnold: O que você tá olhando? Cai fora!!"
+
+[node name="Moses" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 2277, -23 )
+sprite = ExtResource( 29 )
+speech = "Moses: Saudaões Arcano. Você veio finalmente. Nosso povo já sofreu demais nas mãos de Goven. Hoje é o dia do êxodo, nós vamos para as terras secas e criar nosso próprio Cantão. Cada indivíduo vai ser livre e teremos nossas próprias leis. Mas para isso preciso que você destrua o Cristal da Lua que se encontra nos subterrâneos da Torre Branca. Fale com Arnold antes das escadarias da torre, ele vai explicar melhor o que fazer. Boa sorte para nós Arcano."
+
+[node name="Garrett" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 592, 131 )
+sprite = ExtResource( 27 )
+speech = "Garrett: Olá Arcano. Eu vi você chegando pelo portão do Sol. Na verdade a Torre Branca sabia que você ia chegar e nós descobrimos isso através dos nosso espiões lá dentro. Nosso líder tem certeza que você vai nos ajudar por ser um Arcano. Queremos fugir dessa cidade com todos do bairro e começar nosso próprio Cantão. Temos um plano pronto, mas precisamos da sua ajuda. Fale como Moses, nosso lider. Você vai achá-lo no telhado da Fábrica."
+
+[node name="GenericNPC4" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 763, 502 )
+sprite = ExtResource( 22 )
+speech = "Dale: A fome tem sido algo dificil de conviver cada dia que passa. Antes tínhamos que pagar tributo, pagando dois terços de tudo que produzimos. No início do ano Lorde Goven nos disse que iria confiscar tudo de todos e que ia redistribuir a comida de forma igualitária… Mas com passar do messes a comida vem diminuindo para metade de uma ração por familia. Você tem algo para comer?"
+
+[node name="GenericNPC12" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 2048, 322 )
+sprite = ExtResource( 22 )
+speech = "Jon: Esta construção nós chamamos de Fábrica. Aqui trabalhamos o dia todo e não ganhamos quase nada. Em troca Lorde Goven nos dá uma ração de comida por dia para cada família. É muito pouco, mas a última pessoa que reclamou disso para os superiores foi arrastado para fora da Fábrica e nunca mais voltou."
+
+[node name="GenericNPC14" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 1954, 151 )
+sprite = ExtResource( 28 )
+speech = "Scott: Você demorou para chegar Arcano. Meu irmão e o Moses estão no telhado te esperando. Acredito que subir no telhado não vai ser algo difícil para alguém como você."
+mirror = true
+
+[node name="GenericNPC15" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 2054, -26 )
+sprite = ExtResource( 28 )
+speech = "Philip: Nós estávamos te esperando Arcano. Precisamos agir hoje. Se destruir o Cristal da Lua, os Guardiões da parte Leste da cidade serão desativados. E assim poderemos fugir hoje a noite ainda! Fale com Moses para saber mais."
+
+[node name="GenericNPC10" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 1200, 74 )
+sprite = ExtResource( 26 )
+speech = "Craig: Hehehe, eu tenho um segredo para não passar fome. Estou comendo três vezes por dia. Sabe porque estou aqui em cima? Pombos! O gosto é igual á frango Hahaha. Você quer um pouco?"
+mirror = true
+
+[node name="GenericNPC8" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 1680, 504 )
+sprite = ExtResource( 24 )
+speech = "Randy: Ei, você é o Arcano que chegou pelo portão do Sol? Você bate a descrição. Sabe a primeira  construção que você viu assim que chegou na cidade? Suba até o terceiro andar e fale com um homem com o nome de Garrett. Ele está esperando por você."
+
+[node name="GenericNPC6" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 1416, 328 )
+sprite = ExtResource( 23 )
+speech = "Janjani: As pessoas reclamam do Lorde Goven, mas eles não sabem o que falam. Ele é um mago sábio e poderoso e sem ele aposto que nem teríamos nada para comer. Melhor ter uma ração por dia do que nada!"
+mirror = true
+
+[node name="GenericNPC11" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+position = Vector2( 1584, 128 )
+sprite = ExtResource( 25 )
+speech = "Grace: Se você for muito habilidoso, você consegue subir no alto da fábrica, aquela construção grande. Eu vejo muitos trabalhadores subindo na parte de cima. Imagino o que eles fazem lá..."
+mirror = true
+
+[node name="GenericNPC7" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+modulate = Color( 0.972549, 0.517647, 1, 1 )
+position = Vector2( 2184.55, 507 )
+sprite = ExtResource( 23 )
+speech = "Laura: Ouvi dizer que os Guardiões não são humanos. Eles são seres de outra realidade invocados pelo Lorde Goven. Dizem que cristais de outro mundo energizam esses Guardiões. Eles estão guardados na Torre Branca de Lorde Goven."
+
+[node name="GenericNPC5" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+modulate = Color( 0.513726, 0.513726, 0.513726, 1 )
+position = Vector2( 1168, 502 )
+sprite = ExtResource( 22 )
+speech = "Pollard: Estes Guardiões me dão nos nervos. Sempre calados, sempre observando. Meu vizinho sumiu faz duas semanas. Ele costumava denegrir Lorde Goven em publico. A famila dele sumiu do nada. 
+
+Cuidado com o que você fala, eles estão de Olho!
+"
+
+[node name="GenericNPC9" parent="NPCs/RustyNail" instance=ExtResource( 2 )]
+modulate = Color( 0.513726, 0.513726, 0.513726, 1 )
+position = Vector2( 1002, 306 )
+sprite = ExtResource( 25 )
+speech = "Dana: Senhor, estou passando fome. A ração da minha família não chega desde ontem. Os superiores dizem que vamos ficar sem comida pelo resto da semana. Minha família toda trabalha na fábrica e o mínimo que deveriam fazer era nos alimentar. Por favor, você tem algo ai para comer?"
+mirror = true
+
+[node name="GenericNPC17" parent="NPCs" instance=ExtResource( 2 )]
+position = Vector2( 2980, 503 )
+sprite = ExtResource( 3 )
+speech = "Superior: Me perdoe Senhor Arcano, você teve que atravessar a zona dos Inferiores para chegar até aqui. Espero que eles não tenham te incomodado. O grande e poderoso Lorde Goven está a sua espera. A Torre Branca esta logo a frente. Por favor, suba as escadarias e use o Elevador para chegar nos aposentos de Lorde Goven. "
+
+[node name="GenericNPC" parent="NPCs" instance=ExtResource( 2 )]
+position = Vector2( -144, 503.912 )
+sprite = ExtResource( 3 )
+speech = "Homen: Saudações nobre Arcano. Meu grande Lorde Goven me enviou para recebê-lo. Com sua grande sabedoria eterna, ele sabia da sua vinda. Por favor, entre na cidade e suba a Grande Torre Branca. O excelentíssimo Lorde Goven estará te esperando no alto da torre.Os Guardiões têm ordens para permitir sua passagem."
+
+[node name="Guardian" type="Position2D" parent="NPCs"]
+position = Vector2( 608, 376 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="NPCs/Guardian" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="Guardian2" type="Position2D" parent="NPCs"]
+position = Vector2( 208, 550 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="NPCs/Guardian2" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="Guardian3" type="Position2D" parent="NPCs"]
+position = Vector2( 2401.55, 551 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="NPCs/Guardian3" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="Guardian4" type="Position2D" parent="NPCs"]
+position = Vector2( 2832, 551 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="NPCs/Guardian4" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="Guardian5" type="Position2D" parent="NPCs"]
+position = Vector2( 3120, 553 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GenericNPC" parent="NPCs/Guardian5" instance=ExtResource( 2 )]
+position = Vector2( 0, -48 )
+sprite = ExtResource( 8 )
+speech = "Guardião do Sol: ......"
+
+[node name="GenericNPC2" parent="NPCs" instance=ExtResource( 2 )]
+position = Vector2( 518.4, 524 )
+sprite = ExtResource( 18 )
+speech = "Rusty Nail : Bairro Pobre
+Casta: Inferior"
+
+[node name="GenericNPC3" parent="NPCs" instance=ExtResource( 2 )]
+position = Vector2( 1937.55, 524 )
+sprite = ExtResource( 18 )
+speech = "Zona de Produção : Bairro Pobre
+Laboro da Casta Inferior"
+
+[node name="GenericNPC4" parent="NPCs" instance=ExtResource( 2 )]
+position = Vector2( 2736, 524 )
+sprite = ExtResource( 18 )
+speech = "Sun House"
+
+[node name="Player" parent="." instance=ExtResource( 15 )]
+position = Vector2( 3472, 480 )
+
+[node name="Gates" type="Node2D" parent="."]
+position = Vector2( 0, -3 )
+script = SubResource( 2 )
+
+[node name="GateSun" parent="Gates" instance=ExtResource( 14 )]
+modulate = Color( 0.956863, 0.984314, 0.509804, 1 )
+position = Vector2( 40, 544 )
+scale = Vector2( 3, 3 )
+
+[node name="Sun" type="Sprite" parent="Gates"]
+position = Vector2( 40, 179 )
+texture = ExtResource( 30 )
+
+[node name="InvisibleWall" type="StaticBody2D" parent="."]
+position = Vector2( -1120, 368 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall"]
+position = Vector2( 112, -96 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InvisibleWall"]
+position = Vector2( 256, -390.577 )
+shape = SubResource( 4 )
+
+[node name="Master" parent="." instance=ExtResource( 13 )]
+position = Vector2( -816, 528 )
+speech = "Joven aprendiz, você chegou na cidadela de Fallshade. O Lorde desse feudo é conhecido por ser tirânico e opressor. Ele é um mago muito astuto e vai querer te manipular para seus próprios ganhos. O povo pobre desde feudo vive em miséria e fome e não por muito tempo vão aceitar essa situação. Siga seus instintos e tome a decisão certa. "
+
+[node name="UI" parent="." instance=ExtResource( 1 )]
+[connection signal="area_entered" from="RustyNail/PoorHouse8" to="RustyNail/PoorHouse8" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse9" to="RustyNail/PoorHouse9" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse1" to="RustyNail/PoorHouse1" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse13" to="RustyNail/PoorHouse13" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse10" to="RustyNail/PoorHouse10" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse3" to="RustyNail/PoorHouse3" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse14" to="RustyNail/PoorHouse14" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse4" to="RustyNail/PoorHouse4" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse12" to="RustyNail/PoorHouse12" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse2" to="RustyNail/PoorHouse2" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse5" to="RustyNail/PoorHouse5" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse11" to="RustyNail/PoorHouse11" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse7" to="RustyNail/PoorHouse7" method="_on_PoorHouse1_area_entered"]
+[connection signal="area_entered" from="RustyNail/PoorHouse6" to="RustyNail/PoorHouse6" method="_on_PoorHouse1_area_entered"]
+[connection signal="body_entered" from="NPCs/RustyNail/Arnold" to="." method="_on_Arnold_body_entered"]
+[connection signal="body_entered" from="NPCs/RustyNail/Moses" to="." method="_on_Moses_body_entered"]
+[connection signal="body_exited" from="NPCs/GenericNPC" to="Gates" method="_on_GenericNPC_body_exited"]

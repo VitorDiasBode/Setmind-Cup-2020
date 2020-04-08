@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MoonGuardian.png-baa9834178e8bc3dc30741fc1764c760.stex"
+path="res://.import/Moon.png-d9ba5317171bc9f9fb2f6d7f78143d99.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NPC/MoonGuardian/MoonGuardian.png"
-dest_files=[ "res://.import/MoonGuardian.png-baa9834178e8bc3dc30741fc1764c760.stex" ]
+source_file="res://Levels/Fallshade/Moon.png"
+dest_files=[ "res://.import/Moon.png-d9ba5317171bc9f9fb2f6d7f78143d99.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
