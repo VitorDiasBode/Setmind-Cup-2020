@@ -12,3 +12,8 @@ func _on_Arnold_body_entered(body: Node) -> void:
 		if quest_talk_to_arnold == true:
 			$Walls/FakeWall/AnimationPlayer.play("Fade")
 			$Walls/FakeWall.open_passage()
+
+
+func _on_CristalTraps_body_entered(body: Node) -> void:
+	if body.is_in_group("Player"):
+		$Player.global_position = Vector2(4016,1248)

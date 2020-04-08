@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Player/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://NPC/GenericNPC/GenericNPC.tscn" type="PackedScene" id=2]
@@ -33,6 +33,9 @@
 [ext_resource path="res://Levels/Fallshade/Houses/RichHouse.png" type="Texture" id=31]
 [ext_resource path="res://NPC/FallshadePoorPeople/NP6.png" type="Texture" id=32]
 [ext_resource path="res://Levels/Fallshade_Level.gd" type="Script" id=33]
+[ext_resource path="res://Levels/Fallshade/CristalTrap.png" type="Texture" id=34]
+[ext_resource path="res://Scenery/MovingWall/MovingWall.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Scenery/FadePlaform/FadePlatform.tscn" type="PackedScene" id=36]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Position2D
@@ -96,6 +99,9 @@ extents = Vector2( 144, 272 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 288, 32 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 864, 10 )
 
 [node name="Fallshade" type="Node2D"]
 script = ExtResource( 33 )
@@ -270,6 +276,8 @@ position = Vector2( 6759.65, -6253.31 )
 
 [node name="A4" type="Position2D" parent="."]
 position = Vector2( 6614.07, 6638.12 )
+
+[node name="Tower" type="Node2D" parent="."]
 
 [node name="RustyNail" type="Node2D" parent="."]
 
@@ -931,12 +939,12 @@ __meta__ = {
 [node name="Ground" parent="Walls" instance=ExtResource( 10 )]
 position = Vector2( -1344, 541 )
 texture = ExtResource( 4 )
-size = Vector2( 5184, 768 )
+size = Vector2( 5184, 800 )
 
 [node name="Ground5" parent="Walls" instance=ExtResource( 10 )]
-position = Vector2( -1344, 1309 )
+position = Vector2( -1344, 1312 )
 texture = ExtResource( 4 )
-size = Vector2( 5568, 448 )
+size = Vector2( 5568, 640 )
 
 [node name="Ground2" parent="Walls" instance=ExtResource( 10 )]
 position = Vector2( 3712, 416 )
@@ -949,9 +957,39 @@ texture = ExtResource( 4 )
 size = Vector2( 128, 64 )
 
 [node name="Ground4" parent="Walls" instance=ExtResource( 10 )]
-position = Vector2( 3968, 320 )
+position = Vector2( 3968, 321 )
 texture = ExtResource( 4 )
-size = Vector2( 768, 576 )
+size = Vector2( 2048, 576 )
+
+[node name="Ground7" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 5952, 1186 )
+texture = ExtResource( 4 )
+size = Vector2( 320, 320 )
+
+[node name="Ground8" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 5696, 898 )
+texture = ExtResource( 4 )
+size = Vector2( 320, 128 )
+
+[node name="Ground9" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 6144, 1058 )
+texture = ExtResource( 4 )
+size = Vector2( 128, 128 )
+
+[node name="Ground10" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 6016, 322 )
+texture = ExtResource( 4 )
+size = Vector2( 256, 608 )
+
+[node name="Ground11" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 6272, 322 )
+texture = ExtResource( 4 )
+size = Vector2( 256, 1632 )
+
+[node name="Ground6" parent="Walls" instance=ExtResource( 10 )]
+position = Vector2( 4224, 1504 )
+texture = ExtResource( 4 )
+size = Vector2( 2048, 448 )
 
 [node name="FakeWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( 3712, 449 )
@@ -1143,7 +1181,7 @@ sprite = ExtResource( 18 )
 speech = "Sun House"
 
 [node name="Player" parent="." instance=ExtResource( 15 )]
-position = Vector2( 3472, 480 )
+position = Vector2( 4016, 1248 )
 
 [node name="Gates" type="Node2D" parent="."]
 position = Vector2( 0, -3 )
@@ -1174,6 +1212,109 @@ position = Vector2( -816, 528 )
 speech = "Joven aprendiz, você chegou na cidadela de Fallshade. O Lorde desse feudo é conhecido por ser tirânico e opressor. Ele é um mago muito astuto e vai querer te manipular para seus próprios ganhos. O povo pobre desde feudo vive em miséria e fome e não por muito tempo vão aceitar essa situação. Siga seus instintos e tome a decisão certa. "
 
 [node name="UI" parent="." instance=ExtResource( 1 )]
+
+[node name="Catacombs" type="Node2D" parent="."]
+position = Vector2( 4224, 1504 )
+
+[node name="CristalTraps" type="Area2D" parent="Catacombs"]
+position = Vector2( 0, -32 )
+
+[node name="TextureRect" type="TextureRect" parent="Catacombs/CristalTraps"]
+margin_top = -7.0
+margin_right = 3456.0
+margin_bottom = 73.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 34 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Catacombs/CristalTraps"]
+position = Vector2( 864, 16 )
+shape = SubResource( 9 )
+
+[node name="MovingWalls" type="Node2D" parent="Catacombs"]
+
+[node name="MovingWall" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
+position = Vector2( 160, -192 )
+texture = ExtResource( 4 )
+motion = Vector2( 1, 0 )
+speed = 50.0
+move_range = 128.0
+
+[node name="MovingWall2" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
+position = Vector2( 304, -304 )
+texture = ExtResource( 4 )
+motion = Vector2( -1, 0 )
+speed = 50.0
+move_range = 128.0
+
+[node name="MovingWall3" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
+position = Vector2( 464, -304 )
+texture = ExtResource( 4 )
+motion = Vector2( -1, -1 )
+speed = 50.0
+move_range = 128.0
+
+[node name="MovingWall4" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
+position = Vector2( 656, -304 )
+texture = ExtResource( 4 )
+speed = 50.0
+move_range = 128.0
+
+[node name="MovingWall5" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
+position = Vector2( 1408, -272 )
+texture = ExtResource( 4 )
+motion = Vector2( 0, 1 )
+speed = 200.0
+move_range = 128.0
+
+[node name="MovingWall6" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
+position = Vector2( 1184, -272 )
+texture = ExtResource( 4 )
+motion = Vector2( 0, 1 )
+speed = 200.0
+move_range = 128.0
+
+[node name="FadeWalls" type="Node2D" parent="Catacombs"]
+
+[node name="FadePlatform" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
+position = Vector2( 864, -304 )
+texture = ExtResource( 4 )
+time_out = 1.0
+time_in = 4.0
+size = Vector2( 32, 32 )
+
+[node name="FadePlatform2" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
+position = Vector2( 1046, -224 )
+texture = ExtResource( 4 )
+time_out = 1.0
+time_in = 3.0
+size = Vector2( 32, 224 )
+
+[node name="FadePlatform3" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
+position = Vector2( 1296, -368 )
+texture = ExtResource( 4 )
+status = 0
+time_out = 3.0
+time_in = 2.0
+size = Vector2( 32, 32 )
+
+[node name="FadePlatform4" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
+position = Vector2( 1168, -96 )
+texture = ExtResource( 4 )
+time_out = 2.0
+time_in = 6.0
+size = Vector2( 542, 32 )
+
+[node name="FadePlatform5" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
+position = Vector2( 1680, -256 )
+texture = ExtResource( 4 )
+time_out = 2.0
+time_in = 6.0
+size = Vector2( 32, 32 )
 [connection signal="area_entered" from="RustyNail/PoorHouse8" to="RustyNail/PoorHouse8" method="_on_PoorHouse1_area_entered"]
 [connection signal="area_entered" from="RustyNail/PoorHouse9" to="RustyNail/PoorHouse9" method="_on_PoorHouse1_area_entered"]
 [connection signal="area_entered" from="RustyNail/PoorHouse1" to="RustyNail/PoorHouse1" method="_on_PoorHouse1_area_entered"]
@@ -1191,3 +1332,4 @@ speech = "Joven aprendiz, você chegou na cidadela de Fallshade. O Lorde desse f
 [connection signal="body_entered" from="NPCs/RustyNail/Arnold" to="." method="_on_Arnold_body_entered"]
 [connection signal="body_entered" from="NPCs/RustyNail/Moses" to="." method="_on_Moses_body_entered"]
 [connection signal="body_exited" from="NPCs/GenericNPC" to="Gates" method="_on_GenericNPC_body_exited"]
+[connection signal="body_entered" from="Catacombs/CristalTraps" to="." method="_on_CristalTraps_body_entered"]
