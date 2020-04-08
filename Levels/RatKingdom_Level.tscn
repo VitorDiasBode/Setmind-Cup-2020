@@ -122,6 +122,7 @@ position = Vector2( 416, 0 )
 [node name="FadePlatform" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( -512, -128 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 2.0
 time_in = 4.0
 size = Vector2( 64, 32 )
@@ -129,6 +130,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform2" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 1088, 2016 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 10.0
 time_in = 2.0
 size = Vector2( 64, 32 )
@@ -136,6 +138,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform3" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 1248, 1888 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 2.0
 time_in = 2.0
 size = Vector2( 64, 32 )
@@ -143,6 +146,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform4" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 1120, 1088 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 2.0
 time_in = 2.0
 size = Vector2( 64, 32 )
@@ -150,6 +154,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform5" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 1280, 996.576 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 4.0
 time_in = 4.0
 size = Vector2( 64, 32 )
@@ -157,6 +162,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform6" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 1836.8, 2336 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 1.0
 time_in = 8.0
 size = Vector2( 64, 32 )
@@ -164,6 +170,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform7" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 2048, 2262.4 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 1.0
 time_in = 4.0
 size = Vector2( 64, 32 )
@@ -171,6 +178,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform8" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 2240, 2134.4 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 1.0
 time_in = 5.0
 size = Vector2( 64, 32 )
@@ -178,6 +186,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform11" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 4608, 2243.2 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 2.0
 time_in = 4.0
 size = Vector2( 64, 32 )
@@ -193,6 +202,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform14" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 5312, 2217.6 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 1.0
 time_in = 2.0
 size = Vector2( 64, 32 )
@@ -208,6 +218,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform16" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 5664, 2057.6 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 1.0
 time_in = 2.0
 size = Vector2( 64, 32 )
@@ -223,6 +234,7 @@ size = Vector2( 64, 32 )
 [node name="FadePlatform10" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 2912, 2025.6 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 2.0
 time_in = 2.0
 size = Vector2( 32, 32 )
@@ -238,6 +250,7 @@ size = Vector2( 32, 32 )
 [node name="FadePlatform18" parent="FadePlats" instance=ExtResource( 6 )]
 position = Vector2( 2912, 2336 )
 texture = ExtResource( 1 )
+status = 1
 time_out = 2.0
 time_in = 2.0
 size = Vector2( 32, 32 )
