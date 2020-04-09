@@ -12,7 +12,7 @@ var floor_normal = Vector2.UP
 var poisoned = false
 var knocked = false
 
-var air_skill = 1
+var air_skill = 100
 
 var earth_skill = 0
 var load_wall = load( "res://Colectables/Earth_Shard/Earth_Wall.tscn" )

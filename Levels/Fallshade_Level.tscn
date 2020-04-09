@@ -1047,6 +1047,39 @@ position = Vector2( 128, -41.5758 )
 scale = Vector2( 2.56452, 2.56452 )
 texture = ExtResource( 11 )
 
+[node name="PoorHouse1" type="Area2D" parent="RustyNail" groups=[
+"builds",
+]]
+position = Vector2( 672, 540.637 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse1"]
+position = Vector2( 0, -76.4373 )
+shape = SubResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse1"]
+
+[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse1/Sprites"]
+position = Vector2( 0, -86.6373 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 12 )
+
+[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse1/Sprites"]
+position = Vector2( 0, -44.6373 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 7 )
+
+[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse1"]
+visible = false
+
+[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse1/Destroyed"]
+position = Vector2( 0, -36.3192 )
+scale = Vector2( 2.56452, 2.56452 )
+texture = ExtResource( 11 )
+
 [node name="PoorHouse9" type="Area2D" parent="RustyNail" groups=[
 "builds",
 ]]
@@ -1080,39 +1113,6 @@ texture = ExtResource( 11 )
 
 [node name="Destroyed2" type="Sprite" parent="RustyNail/PoorHouse9/Destroyed/Destroyed"]
 position = Vector2( 128, -41.5758 )
-scale = Vector2( 2.56452, 2.56452 )
-texture = ExtResource( 11 )
-
-[node name="PoorHouse1" type="Area2D" parent="RustyNail" groups=[
-"builds",
-]]
-position = Vector2( 672, 540.637 )
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse1"]
-position = Vector2( 0, -76.4373 )
-shape = SubResource( 6 )
-
-[node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse1"]
-
-[node name="PoorHouse2" type="Sprite" parent="RustyNail/PoorHouse1/Sprites"]
-position = Vector2( 0, -86.6373 )
-scale = Vector2( 2.75, 2.75 )
-texture = ExtResource( 12 )
-
-[node name="Doors" type="Sprite" parent="RustyNail/PoorHouse1/Sprites"]
-position = Vector2( 0, -44.6373 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Destroyed" type="Node2D" parent="RustyNail/PoorHouse1"]
-visible = false
-
-[node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse1/Destroyed"]
-position = Vector2( 0, -36.3192 )
 scale = Vector2( 2.56452, 2.56452 )
 texture = ExtResource( 11 )
 
@@ -2518,6 +2518,7 @@ anims/Fade = SubResource( 16 )
 anims/Float = SubResource( 15 )
 
 [node name="People" type="Node2D" parent="."]
+visible = false
 
 [node name="NPC2" type="Sprite" parent="People"]
 position = Vector2( 9588, 506 )
@@ -2625,10 +2626,10 @@ anims/Night = SubResource( 14 )
 [connection signal="body_entered" from="Tower/Doors/TowerDoor4" to="Tower/Doors/TowerDoor4" method="_on_TowerDoor_body_entered"]
 [connection signal="area_entered" from="RustyNail/PoorHouse8" to="RustyNail/PoorHouse8" method="_on_PoorHouse1_area_entered"]
 [connection signal="destroyed" from="RustyNail/PoorHouse8" to="." method="_destroyed"]
-[connection signal="area_entered" from="RustyNail/PoorHouse9" to="RustyNail/PoorHouse9" method="_on_PoorHouse1_area_entered"]
-[connection signal="destroyed" from="RustyNail/PoorHouse9" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse1" to="RustyNail/PoorHouse1" method="_on_PoorHouse1_area_entered"]
 [connection signal="destroyed" from="RustyNail/PoorHouse1" to="." method="_destroyed"]
+[connection signal="area_entered" from="RustyNail/PoorHouse9" to="RustyNail/PoorHouse9" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse9" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse13" to="RustyNail/PoorHouse13" method="_on_PoorHouse1_area_entered"]
 [connection signal="destroyed" from="RustyNail/PoorHouse13" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse10" to="RustyNail/PoorHouse10" method="_on_PoorHouse1_area_entered"]
