@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		if steps.y > move_range or steps.y <= 0:
 			motion.y = motion.y * -1
 
+
 func set_texture(tex):
 	texture = tex
 	$Polygon2D.texture = tex

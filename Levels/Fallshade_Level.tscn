@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://Player/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://NPC/GenericNPC/GenericNPC.tscn" type="PackedScene" id=2]
@@ -58,6 +58,9 @@
 [ext_resource path="res://NPC/ElfsNPCS/Elf_NPC 7.png" type="Texture" id=56]
 [ext_resource path="res://NPC/ElfsNPCS/Elf_NPC 8.png" type="Texture" id=57]
 [ext_resource path="res://Levels/Fallshade/Tower/Throne.png" type="Texture" id=58]
+[ext_resource path="res://Levels/Fallshade/Tower/Objects.png" type="Texture" id=59]
+[ext_resource path="res://Levels/Fallshade/Tower/Food.png" type="Texture" id=60]
+[ext_resource path="res://Levels/Fallshade/resources_basic.png" type="Texture" id=61]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Position2D
@@ -72,7 +75,7 @@ func _process(delta):
 		$GenericNPC/Sprite.flip_h = true
 "
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Area2D
 
 
@@ -82,10 +85,10 @@ func _on_TowerDoor_body_entered(body):
 
 "
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 40 )
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Sprite
 
 var roll = false
@@ -98,13 +101,13 @@ func activate():
 	roll = true
 "
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 208, 96.2 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 96, 96.2 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=7]
 script/source = "extends StaticBody2D
 
 var open = false
@@ -118,8 +121,7 @@ func open_passage():
 	open = true
 "
 
-[sub_resource type="Animation" id=5]
-resource_name = "Fade"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Polygon2D:color")
 tracks/0/interp = 1
@@ -133,23 +135,124 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "Float"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 2.2 ),
+"transitions": PoolRealArray( 0.5, 2.92817, 0.329877 ),
+"update": 0,
+"values": [ Vector2( 3, 4 ), Vector2( 3, -4 ), Vector2( 3, 0.31463 ) ]
+}
+
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 864, 10 )
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="Animation" id=16]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.882353, 0.737255, 0.901961, 1 ), Color( 0.882353, 0.737255, 0.901961, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Float"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 2.2 ),
+"transitions": PoolRealArray( 0.5, 2.92817, 0.329877 ),
+"update": 0,
+"values": [ Vector2( 3, 4 ), Vector2( 3, -4 ), Vector2( 3, 0.31463 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.882353, 0.737255, 0.901961, 1 ) ]
+}
+
+[sub_resource type="GDScript" id=10]
 script/source = "extends Node2D
 
 
 func _on_GenericNPC_body_exited(body):
 	if body.is_in_group(\"Player\"):
 		$GateSun/AnimationPlayer.play(\"Open\")
+
+func destroy_moon_gate():
+	$GateMoon/AnimationPlayer.play(\"Open\")
+	$GateMoon/Gate/Destroyed.show()
+	$GateMoon/Wall/Destroyed.show()
+
+func restore_moon_gate():
+	pass
 "
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 144, 272 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 288, 32 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "Day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxBackground/ParallaxLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Night"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxBackground/ParallaxLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.141176, 0.137255, 0.517647, 1 ) ]
+}
 
 [node name="Fallshade" type="Node2D"]
 script = ExtResource( 33 )
@@ -159,9 +262,6 @@ script = ExtResource( 33 )
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.2, 0 )
 motion_offset = Vector2( 0, -300 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 margin_left = -1280.0
@@ -444,7 +544,7 @@ __meta__ = {
 }
 
 [node name="Altar" type="Node2D" parent="Tower/TowerImages"]
-position = Vector2( 392, -1816 )
+position = Vector2( 392, -1815 )
 
 [node name="Base" type="TextureRect" parent="Tower/TowerImages/Altar"]
 margin_top = 0.00012207
@@ -486,6 +586,296 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Props" type="Node2D" parent="Tower"]
+
+[node name="Throne" type="Sprite" parent="Tower/Props"]
+position = Vector2( 136, -1664 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 58 )
+
+[node name="Sprite" type="Sprite" parent="Tower/Props"]
+position = Vector2( 152, -173 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 64.3076, 191.021, 47.8157, 62.3357 )
+
+[node name="Sprite2" type="Sprite" parent="Tower/Props"]
+position = Vector2( 408, -171 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 64.3076, 191.021, 47.8157, 62.3357 )
+
+[node name="Sprite4" type="Sprite" parent="Tower/Props"]
+position = Vector2( 264, -344 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 121.105, 264.765, 30.0413, 29.791 )
+
+[node name="Sprite5" type="Sprite" parent="Tower/Props"]
+position = Vector2( 264, -488 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 61.7731, 267.77, 19.7772, 22.7813 )
+
+[node name="Sprite6" type="Sprite" parent="Tower/Props"]
+position = Vector2( 264, -632 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 121.105, 264.765, 30.0413, 29.791 )
+
+[node name="Sprite8" type="Sprite" parent="Tower/Props"]
+position = Vector2( 434, -544 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 176.591, 275.391, 15.7008, 28.1392 )
+
+[node name="Sprite9" type="Sprite" parent="Tower/Props"]
+position = Vector2( 520, -536 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 271.691, 327.669, 11.2892, 23.8329 )
+
+[node name="Sprite10" type="Sprite" parent="Tower/Props"]
+position = Vector2( 512.941, -662.059 )
+rotation = -0.785397
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 2.58389, 270.736, 11.4715, 21.5092 )
+
+[node name="Sprite11" type="Sprite" parent="Tower/Props"]
+position = Vector2( 533.941, -662.059 )
+rotation = 0.785397
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 2.58389, 270.736, 11.4715, 21.5092 )
+
+[node name="Sprite13" type="Sprite" parent="Tower/Props"]
+position = Vector2( 512.941, -772.059 )
+rotation = -0.785397
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 2.58389, 270.736, 11.4715, 21.5092 )
+
+[node name="Sprite12" type="Sprite" parent="Tower/Props"]
+position = Vector2( 533.941, -772.059 )
+rotation = 0.785397
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 2.58389, 270.736, 11.4715, 21.5092 )
+
+[node name="Sprite7" type="Sprite" parent="Tower/Props"]
+position = Vector2( 264, -776 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 205.931, 158.206, 19.9829, 20.1868 )
+
+[node name="Sprite14" type="Sprite" parent="Tower/Props"]
+position = Vector2( 152, -1416 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 1.0541, 127.654, 63.1117, 49.1622 )
+
+[node name="Sprite18" type="Sprite" parent="Tower/Props"]
+position = Vector2( 392, -1672 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 137.885, 143.226, 59.8672, 34.0562 )
+
+[node name="Sprite19" type="Sprite" parent="Tower/Props"]
+position = Vector2( 504, -1672 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 206.356, 159, 18.6413, 20.7922 )
+
+[node name="Sprite20" type="Sprite" parent="Tower/Props"]
+position = Vector2( 280, -1672 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 206.356, 159, 18.6413, 20.7922 )
+
+[node name="Sprite21" type="Sprite" parent="Tower/Props"]
+position = Vector2( 672, -1672 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 93.1784, 269.026, 22.689, 22.689 )
+
+[node name="Sprite15" type="Sprite" parent="Tower/Props"]
+position = Vector2( 664, -1416 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 1.0541, 127.654, 63.1117, 49.1622 )
+
+[node name="Sprite17" type="Sprite" parent="Tower/Props"]
+position = Vector2( 488, -1032 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 299.35, 333.281, 50.7139, 17.5193 )
+
+[node name="Sprite3" type="Sprite" parent="Tower/Props"]
+position = Vector2( 648, -173 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+region_enabled = true
+region_rect = Rect2( 64.3076, 191.021, 47.8157, 62.3357 )
+
+[node name="Sprite16" type="Sprite" parent="Tower/Props"]
+position = Vector2( 344, -1032 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 299.35, 333.281, 50.7139, 17.5193 )
+
+[node name="Sprite22" type="Sprite" parent="Tower/Props"]
+position = Vector2( 390, -1073 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0.498478, 64.7952, 15.0247, 15.0247 )
+
+[node name="Sprite24" type="Sprite" parent="Tower/Props"]
+position = Vector2( 360, -1074 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 62.7433, 48.4828, 16.5272, 16.0979 )
+
+[node name="Sprite25" type="Sprite" parent="Tower/Props"]
+position = Vector2( 331.75, -1073.5 )
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 16.3813, 48.6975, 15.8833, 14.3808 )
+
+[node name="Sprite34" type="Sprite" parent="Tower/Props"]
+position = Vector2( 249, -1041 )
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 99.8755, 31.8076, 8.80019, 16.3125 )
+
+[node name="Sprite35" type="Sprite" parent="Tower/Props"]
+position = Vector2( 214, -1039 )
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 48.7932, 16.3527, 14.3808, 15.6686 )
+
+[node name="Sprite36" type="Sprite" parent="Tower/Props"]
+position = Vector2( 587, -1044 )
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 48.5807, -1.89311, 13.9515, 17.6004 )
+
+[node name="Sprite30" type="Sprite" parent="Tower/Props"]
+position = Vector2( 415, -1087 )
+rotation = -0.454317
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 80.3475, 32.2427, 16.0979, 15.8833 )
+
+[node name="Sprite31" type="Sprite" parent="Tower/Props"]
+position = Vector2( 371, -1138 )
+rotation = -0.0474859
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 47.9334, 80.3166, 15.454, 15.6686 )
+
+[node name="Sprite32" type="Sprite" parent="Tower/Props"]
+position = Vector2( 390, -1126 )
+rotation = -0.0474859
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 65.1058, 63.7877, 14.8101, 15.6686 )
+
+[node name="Sprite33" type="Sprite" parent="Tower/Props"]
+position = Vector2( 346, -1136 )
+rotation = -0.0474859
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 48.578, 95.5549, 14.1662, 16.3125 )
+
+[node name="Sprite26" type="Sprite" parent="Tower/Props"]
+position = Vector2( 543, -1075 )
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 64.889, 31.9549, 13.9515, 15.6686 )
+
+[node name="Sprite27" type="Sprite" parent="Tower/Props"]
+position = Vector2( 468, -1073 )
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 15.9488, 14.9981, 16.0979, 16.9565 )
+
+[node name="Sprite28" type="Sprite" parent="Tower/Props"]
+position = Vector2( 378, -1099 )
+rotation = 0.551416
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 32.484, 48.9842, 15.2393, 14.5954 )
+
+[node name="Sprite29" type="Sprite" parent="Tower/Props"]
+position = Vector2( 341, -1108 )
+rotation = -0.454317
+scale = Vector2( 3.23333, 3.21427 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0.50283, 47.4817, 15.6686, 15.454 )
+
+[node name="Sprite23" type="Sprite" parent="Tower/Props"]
+position = Vector2( 410, -1063 )
+rotation = 0.361858
+scale = Vector2( 3, 3 )
+texture = ExtResource( 60 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 32.2653, 97.2062, 16.0979, 14.5954 )
+
 [node name="TowerSolids" type="Node2D" parent="Tower"]
 
 [node name="TowerCover" parent="Tower/TowerSolids" instance=ExtResource( 10 )]
@@ -517,7 +907,7 @@ size = Vector2( 872, 40 )
 
 [node name="TowerDoor" type="Area2D" parent="Tower/Doors"]
 position = Vector2( 696, -512 )
-script = SubResource( 12 )
+script = SubResource( 2 )
 
 [node name="TowerDoor" type="Sprite" parent="Tower/Doors/TowerDoor"]
 position = Vector2( 0, -40 )
@@ -526,7 +916,7 @@ texture = ExtResource( 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Doors/TowerDoor"]
 position = Vector2( 0, -32 )
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 
 [node name="Destination" type="Position2D" parent="Tower/Doors/TowerDoor"]
 position = Vector2( -500.8, -512 )
@@ -536,7 +926,7 @@ __meta__ = {
 
 [node name="TowerDoor3" type="Area2D" parent="Tower/Doors"]
 position = Vector2( 672, -1024 )
-script = SubResource( 12 )
+script = SubResource( 2 )
 
 [node name="TowerDoor" type="Sprite" parent="Tower/Doors/TowerDoor3"]
 position = Vector2( 0, -40 )
@@ -545,7 +935,7 @@ texture = ExtResource( 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Doors/TowerDoor3"]
 position = Vector2( 0, -32 )
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 
 [node name="Destination" type="Position2D" parent="Tower/Doors/TowerDoor3"]
 position = Vector2( -80, -516 )
@@ -555,7 +945,7 @@ __meta__ = {
 
 [node name="TowerDoor2" type="Area2D" parent="Tower/Doors"]
 position = Vector2( 120, -1024 )
-script = SubResource( 12 )
+script = SubResource( 2 )
 
 [node name="TowerDoor" type="Sprite" parent="Tower/Doors/TowerDoor2"]
 position = Vector2( 0, -40 )
@@ -564,7 +954,7 @@ texture = ExtResource( 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Doors/TowerDoor2"]
 position = Vector2( 0, -32 )
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 
 [node name="Destination" type="Position2D" parent="Tower/Doors/TowerDoor2"]
 position = Vector2( 496, 504 )
@@ -574,7 +964,7 @@ __meta__ = {
 
 [node name="TowerDoor4" type="Area2D" parent="Tower/Doors"]
 position = Vector2( 672, -1536 )
-script = SubResource( 12 )
+script = SubResource( 2 )
 
 [node name="TowerDoor" type="Sprite" parent="Tower/Doors/TowerDoor4"]
 position = Vector2( 0, -40 )
@@ -583,7 +973,7 @@ texture = ExtResource( 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Doors/TowerDoor4"]
 position = Vector2( 0, -32 )
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 
 [node name="Destination" type="Position2D" parent="Tower/Doors/TowerDoor4"]
 position = Vector2( -78.3999, 508 )
@@ -595,13 +985,17 @@ __meta__ = {
 position = Vector2( 264, -96 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 41 )
-script = SubResource( 10 )
+script = SubResource( 4 )
 
-[node name="Elevator" parent="Tower" instance=ExtResource( 35 )]
+[node name="ElevatorAnchor" type="Position2D" parent="Tower"]
+__meta__ = {
+"_gizmo_extents_": 240.2
+}
+
+[node name="Elevator" parent="Tower/ElevatorAnchor" instance=ExtResource( 35 )]
 position = Vector2( 184, -24 )
 texture = ExtResource( 39 )
 motion = Vector2( 0, -1 )
-speed = 0.0
 move_range = 491.0
 size = Vector2( 160, 40 )
 
@@ -612,13 +1006,6 @@ motion = Vector2( 0, -1 )
 speed = 100.0
 move_range = 245.0
 size = Vector2( 160, 40 )
-
-[node name="Props" type="Node2D" parent="Tower"]
-
-[node name="Throne" type="Sprite" parent="Tower/Props"]
-position = Vector2( 136, -1664 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 58 )
 
 [node name="RustyNail" type="Node2D" parent="."]
 
@@ -631,7 +1018,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse8"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse8"]
 
@@ -665,7 +1052,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse9"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse9"]
 
@@ -699,7 +1086,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse1"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse1"]
 
@@ -730,7 +1117,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse13"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse13"]
 
@@ -769,7 +1156,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse10"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse10"]
 
@@ -798,7 +1185,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse3"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse3"]
 
@@ -837,7 +1224,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse14"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse14"]
 
@@ -876,7 +1263,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse4"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse4"]
 
@@ -915,7 +1302,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse12"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse12"]
 
@@ -954,7 +1341,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse2"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse2"]
 
@@ -983,7 +1370,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse5"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse5"]
 
@@ -999,7 +1386,7 @@ texture = ExtResource( 7 )
 
 [node name="Destroyed" type="Sprite" parent="RustyNail/PoorHouse5"]
 visible = false
-position = Vector2( 0, -36.3192 )
+position = Vector2( 0, -20.3192 )
 scale = Vector2( 2.56452, 2.56452 )
 texture = ExtResource( 11 )
 
@@ -1012,7 +1399,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse11"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse11"]
 
@@ -1041,7 +1428,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse7"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse7"]
 
@@ -1071,7 +1458,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RustyNail/PoorHouse6"]
 position = Vector2( 0, -76.4373 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Sprites" type="Node2D" parent="RustyNail/PoorHouse6"]
 
@@ -1234,6 +1621,22 @@ texture = ExtResource( 46 )
 flip_h = true
 region_enabled = true
 region_rect = Rect2( 2, 98, 90, 29 )
+
+[node name="Sprite10" type="Sprite" parent="GoldenPlaza"]
+position = Vector2( 8464, 528 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 254.823, 220.399, 33.8485, 19.5751 )
+
+[node name="Sprite11" type="Sprite" parent="GoldenPlaza"]
+position = Vector2( 8352, 494 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 59 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 243.608, 221.419, 8.97191, 18.5555 )
 
 [node name="MoonQG" type="Node2D" parent="."]
 position = Vector2( 5864, 536 )
@@ -1455,7 +1858,7 @@ texture = ExtResource( 4 )
 size = Vector2( 1184, 352 )
 
 [node name="Ground11" parent="Walls" instance=ExtResource( 10 )]
-position = Vector2( 6272, 543.363 )
+position = Vector2( 6272, 544 )
 texture = ExtResource( 4 )
 size = Vector2( 4480, 1408 )
 
@@ -1466,7 +1869,7 @@ size = Vector2( 2048, 448 )
 
 [node name="FakeWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( 3712, 449 )
-script = SubResource( 4 )
+script = SubResource( 7 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/FakeWall"]
 texture = ExtResource( 4 )
@@ -1479,7 +1882,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Walls/FakeWall"]
-anims/Fade = SubResource( 5 )
+anims/Fade = SubResource( 8 )
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -1648,39 +2051,47 @@ speech = "Superior: Oh! Você deve ser o Arcano. Senhor me perdoe! O Elevador qu
 [node name="GenericNPC18" parent="NPCs/Tower" instance=ExtResource( 2 )]
 position = Vector2( 4728, -232 )
 sprite = ExtResource( 3 )
-speech = "Superior: Me perdoe Senhor Arcano, você teve que atravessar a zona dos Inferiores para chegar até aqui. Espero que eles não tenham te incomodado. O grande e poderoso Lorde Goven está a sua espera. A Torre Branca esta logo a frente. Por favor, suba as escadarias e use o Elevador para chegar nos aposentos de Lorde Goven. "
+speech = "Superior: Lorde Goven é tão bom. As pessoas da Casta Inferior reclamam, mas todos tem oportunidades iguais. Todos começamos de baixo mas se eles se esforçarem, como eu fiz, todos podem passar na prova e trabalhar para o grande sábio Lorde Goven!"
 
 [node name="GenericNPC19" parent="NPCs/Tower" instance=ExtResource( 2 )]
 position = Vector2( 4632, -744 )
 sprite = ExtResource( 3 )
-speech = "Superior: Me perdoe Senhor Arcano, você teve que atravessar a zona dos Inferiores para chegar até aqui. Espero que eles não tenham te incomodado. O grande e poderoso Lorde Goven está a sua espera. A Torre Branca esta logo a frente. Por favor, suba as escadarias e use o Elevador para chegar nos aposentos de Lorde Goven. "
+speech = "Superior: Aqui tem tanta comida. Eu tive muita sorte de ter sido designado para trabalhar na cozinha. Tem acesso quanta comida eu quiser! A verdade é que se todos comessem de forma desesperada a comida ia acabar muito rápido, por isso precisamos de uma única liderança sábia e poderosa para garantir que todos possam viver e não morrer de fome."
 
 [node name="GenericNPC" parent="NPCs/Tower" instance=ExtResource( 2 )]
 position = Vector2( 4432, -744 )
 sprite = ExtResource( 49 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Superior: Se você for no bairro pobre, você provavelmente irá ouvir os inferiores reclamando de fome e da única ração diária. A verdade é que poderíamos dar até três rações, mas se eles comessem três vezes por dia iriam ficar muito acomodados e não iam se esforçar para ser da Casta Superior. Mas para dizer a verdade eu acho que essa redução foi para enfraquecer os inferiores. Cada vez mais há relatos dos sujos se revoltando contra o dignissimo Lorde Goven."
 mirror = true
 
 [node name="Vizir" parent="NPCs/Tower" instance=ExtResource( 2 )]
 position = Vector2( 4632, -1248 )
 sprite = ExtResource( 56 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Vizir: Ai está o Arcano! Você demorou para chegar! Eu previ sua vinda hoje em minhas visões. Na visão você resolveria o problema desta cidade. Claramente o problema é o lixo da Casta Inferior. Os humanos estão se revoltando cada vez mais. Precisamos dar um fim nisso! Por isso, acho melhor da próxima vez, escravizar pequenos Hobbits. De qualquer forma, fale com o glorioso Lorde Goven. Ele está no trono a sua espera."
 mirror = true
 
 [node name="Goven" parent="NPCs/Tower" instance=ExtResource( 2 )]
 position = Vector2( 4272, -1304 )
 sprite = ExtResource( 57 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Goven: Olá Arcano. Eu sou o escolhido, o único, aquele capaz de levar esta cidade para um futuro glorioso. Mas algumas pessoas não aceitam ser guiadas para o futuro. Preferem resolver sozinhas seus problemas. Tolos! O que você acha Arcano? Destrua todo o bairro pobre, assim posso reconstruir um bairro melhor. Use do poder do Cristal do Sol. Apenas toque nele e poder ilimitado será seu. O Cristal está no topo da Torre."
 mirror = true
+
+[node name="SunCrystal" parent="NPCs/Tower" instance=ExtResource( 2 )]
+position = Vector2( 4525, -1610 )
+speech = "Ao tocar no Cristal do Sol você sente seu poder do fogo aumentar indescritivelmente. O fogo começa a regenerar a todo momento e o seu poder cresce sem parar!"
+mirror = true
+
+[node name="Crystal" type="Sprite" parent="NPCs/Tower/SunCrystal"]
+modulate = Color( 1, 0.866667, 0, 1 )
+position = Vector2( 3, 4 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 61 )
+region_enabled = true
+region_rect = Rect2( 171.678, 50.2353, 16.8238, 18.1179 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/Tower/SunCrystal/Crystal"]
+autoplay = "Float"
+anims/Float = SubResource( 13 )
 
 [node name="Board1" parent="NPCs" instance=ExtResource( 2 )]
 position = Vector2( 518.4, 524 )
@@ -1705,7 +2116,7 @@ sprite = ExtResource( 18 )
 speech = "Moon House"
 
 [node name="Board5" parent="NPCs" instance=ExtResource( 2 )]
-position = Vector2( 6312, 520 )
+position = Vector2( 6270, 528 )
 sprite = ExtResource( 18 )
 speech = "Golden Plaza: Bairro Rico
 Casta: Superior
@@ -1726,11 +2137,6 @@ position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
 
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian6"]
-visible = false
-position = Vector2( -8, -48 )
-texture = ExtResource( 45 )
-
 [node name="Guardian8" type="Position2D" parent="NPCs/MoonGuardians"]
 position = Vector2( 5048, 328 )
 script = SubResource( 1 )
@@ -1742,11 +2148,6 @@ __meta__ = {
 position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
-
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian8"]
-visible = false
-position = Vector2( -8, -48 )
-texture = ExtResource( 45 )
 
 [node name="Guardian7" type="Position2D" parent="NPCs/MoonGuardians"]
 position = Vector2( 6016, 552 )
@@ -1760,11 +2161,6 @@ position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
 
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian7"]
-visible = false
-position = Vector2( -8, -48 )
-texture = ExtResource( 45 )
-
 [node name="Guardian10" type="Position2D" parent="NPCs/MoonGuardians"]
 position = Vector2( 8672, 552 )
 script = SubResource( 1 )
@@ -1776,11 +2172,6 @@ __meta__ = {
 position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
-
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian10"]
-visible = false
-position = Vector2( -8, -48 )
-texture = ExtResource( 45 )
 
 [node name="Guardian11" type="Position2D" parent="NPCs/MoonGuardians"]
 position = Vector2( 8744, 552 )
@@ -1794,11 +2185,6 @@ position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
 
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian11"]
-visible = false
-position = Vector2( -8, -48 )
-texture = ExtResource( 45 )
-
 [node name="Guardian12" type="Position2D" parent="NPCs/MoonGuardians"]
 position = Vector2( 9040, 552 )
 script = SubResource( 1 )
@@ -1810,11 +2196,6 @@ __meta__ = {
 position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
-
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian12"]
-visible = false
-position = Vector2( -8, -48 )
-texture = ExtResource( 45 )
 
 [node name="Guardian9" type="Position2D" parent="NPCs/MoonGuardians"]
 position = Vector2( 4232, -184 )
@@ -1828,9 +2209,35 @@ position = Vector2( -8, -48 )
 sprite = ExtResource( 44 )
 speech = "Guardião da Lua: ......"
 
-[node name="Off" type="Sprite" parent="NPCs/MoonGuardians/Guardian9"]
+[node name="DisabledGuardians" type="Node2D" parent="NPCs"]
 visible = false
-position = Vector2( -8, -48 )
+
+[node name="Off7" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 4224, -232 )
+texture = ExtResource( 45 )
+
+[node name="Off6" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 9032, 504 )
+texture = ExtResource( 45 )
+
+[node name="Off5" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 8736, 504 )
+texture = ExtResource( 45 )
+
+[node name="Off4" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 8664, 504 )
+texture = ExtResource( 45 )
+
+[node name="Off3" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 6008, 504 )
+texture = ExtResource( 45 )
+
+[node name="Off2" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 5040, 280 )
+texture = ExtResource( 45 )
+
+[node name="Off" type="Sprite" parent="NPCs/DisabledGuardians"]
+position = Vector2( 5856, 504 )
 texture = ExtResource( 45 )
 
 [node name="GoldenPlaza" type="Node2D" parent="NPCs"]
@@ -1838,60 +2245,39 @@ texture = ExtResource( 45 )
 [node name="ElfNPC" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
 position = Vector2( 6728, 504 )
 sprite = ExtResource( 47 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Aerith: Não sei porque aqueles Humanos Inferiores acham ruim a liderança do Lorde Goven. Todos nós temos acesso a tudo. Comida, proteção dos muros, uma bela cidade a nossa volta. Eles são egoísta porque não querem fazer a parte deles. Todos devem fazer a sua parte para o bem maior de todos."
 
 [node name="ElfNPC5" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
-position = Vector2( 7472, 504 )
+position = Vector2( 7473, 506 )
 sprite = ExtResource( 55 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Shalia: Os Guardiões do Sol e da Lua podem parecer inofensivos, mas eu já vi a forma que eles tratam os salteadores das estradas. Eles são muito violentos e letais. Mesmo os Guardiões não sendo criaturas vivas, Lorde Goven deveria diminuir o nível de violência deles para com os salteadores. Afinal os pobres coitados só estão com fome e não tiveram a oportunidade de nascer em uma cidade cheia de oportunidades como a nossa."
 mirror = true
 
 [node name="ElfNPC2" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
 position = Vector2( 7080, 504 )
 sprite = ExtResource( 48 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Artin: Ouvi rumores entre os humanos superiores que trabalham na Torre Branca que os humanos inferiores querem fugir da cidade para construir seu próprio Cantão. Ha! Que loucura. Faz séculos que não existe um reino humano, quanto mais um Cantão. Lorde Goven deveria ser mais rigido com os Inferiores."
 
 [node name="ElfNPC3" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
 position = Vector2( 8136, 504 )
 sprite = ExtResource( 51 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Elanil: Sei que é importante separarmos os humanos inferiores dos Superiores através das provas, a fim dos Superiores realizarem trabalhos estratégicos. Mas precisamos mesmo de tantos humanos Superiores na parte Rica da cidade? Não sou preconceituoso, mas eles são humanos, não deveriam andar perto de Elfos como nós. Claro que no seu caso Arcano, é um caso à parte..."
 
 [node name="ElfNPC4" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
-position = Vector2( 7984, 504 )
+position = Vector2( 7963, 503 )
 sprite = ExtResource( 52 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Rydel: Você viu o Portal perto da Torre Branca. Um dos orgulhos da nossa cidade. Sem o conhecimento e uma liderança forte como a do Lorde Goven, quem construiria os Portais nas cidades?"
 mirror = true
 
 [node name="ElfNPC6" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
 position = Vector2( 8568, 504 )
 sprite = ExtResource( 49 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
+speech = "Superior: Desculpe Senhor Arcano, o Portão da Lua está fechado. A estrada que leva para o Norte está muito perigosa e Lorde Goven proibiu qualquer pessoa sair por este portão. É para segurança de todos."
 
-! Proibido Entrada de Classe Inferior!"
-
-[node name="ElfNPC7" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
-position = Vector2( 8392, 512 )
+[node name="Boris" parent="NPCs/GoldenPlaza" instance=ExtResource( 2 )]
+position = Vector2( 8400, 507 )
 sprite = ExtResource( 50 )
-speech = "Golden Plaza: Bairro Rico
-Casta: Superior
-
-! Proibido Entrada de Classe Inferior!"
+speech = "Boris: Eu construo e concerto coisas. Simples assim. Precisa de algun concerto?"
 
 [node name="Portal" parent="." instance=ExtResource( 53 )]
 position = Vector2( 5512, 368 )
@@ -1951,7 +2337,6 @@ move_range = 128.0
 [node name="MovingWall4" parent="Catacombs/MovingWalls" instance=ExtResource( 35 )]
 position = Vector2( 656, -304 )
 texture = ExtResource( 4 )
-motion = Vector2( 0, 0 )
 speed = 50.0
 move_range = 128.0
 
@@ -1974,7 +2359,6 @@ move_range = 128.0
 [node name="FadePlatform" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
 position = Vector2( 864, -304 )
 texture = ExtResource( 4 )
-status = 1
 time_out = 1.0
 time_in = 4.0
 size = Vector2( 32, 32 )
@@ -1982,7 +2366,6 @@ size = Vector2( 32, 32 )
 [node name="FadePlatform2" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
 position = Vector2( 1046, -224 )
 texture = ExtResource( 4 )
-status = 1
 time_out = 1.0
 time_in = 3.0
 size = Vector2( 32, 224 )
@@ -1998,7 +2381,6 @@ size = Vector2( 32, 32 )
 [node name="FadePlatform4" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
 position = Vector2( 1168, -96 )
 texture = ExtResource( 4 )
-status = 1
 time_out = 2.0
 time_in = 6.0
 size = Vector2( 542, 32 )
@@ -2006,7 +2388,6 @@ size = Vector2( 542, 32 )
 [node name="FadePlatform5" parent="Catacombs/FadeWalls" instance=ExtResource( 36 )]
 position = Vector2( 1680, -256 )
 texture = ExtResource( 4 )
-status = 1
 time_out = 2.0
 time_in = 6.0
 size = Vector2( 32, 32 )
@@ -2055,12 +2436,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MoonCrystal" parent="Catacombs" instance=ExtResource( 2 )]
+position = Vector2( 1989, -521 )
+speech = "Ao tocar no Cristal você sente o poder emanar dele. Você sussurra algumas palavras e concentra um pouco de energia no centro do Cristal. O artefato começa a se desfazer e você sente uma força se esvair abruptamente da cidade enquanto o Cristal se desfaz."
+
+[node name="Crystal2" type="Sprite" parent="Catacombs/MoonCrystal"]
+modulate = Color( 0.882353, 0.737255, 0.901961, 1 )
+position = Vector2( 3, 4 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 61 )
+region_enabled = true
+region_rect = Rect2( 50.3333, 50.9687, 18.5555, 17.6653 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Catacombs/MoonCrystal/Crystal2"]
+autoplay = "Float"
+anims/Fade = SubResource( 16 )
+anims/Float = SubResource( 15 )
+
 [node name="Player" parent="." instance=ExtResource( 15 )]
-position = Vector2( -712, 480 )
+position = Vector2( -730, 478 )
 
 [node name="Gates" type="Node2D" parent="."]
 position = Vector2( 0, -3 )
-script = SubResource( 6 )
+script = SubResource( 10 )
 
 [node name="GateSun" parent="Gates" instance=ExtResource( 14 )]
 modulate = Color( 0.956863, 0.984314, 0.509804, 1 )
@@ -2071,7 +2469,7 @@ scale = Vector2( 3, 3 )
 position = Vector2( 40, 179 )
 texture = ExtResource( 30 )
 
-[node name="Gate" parent="Gates" instance=ExtResource( 14 )]
+[node name="GateMoon" parent="Gates" instance=ExtResource( 14 )]
 modulate = Color( 0.552941, 0.466667, 0.745098, 1 )
 position = Vector2( 8840, 547 )
 scale = Vector2( 3, 3 )
@@ -2086,47 +2484,74 @@ position = Vector2( -1120, 368 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall"]
 position = Vector2( 112, -96 )
-shape = SubResource( 7 )
+shape = SubResource( 11 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="InvisibleWall"]
 position = Vector2( 256, -390.577 )
-shape = SubResource( 8 )
+shape = SubResource( 12 )
 
 [node name="InvisibleWall2" type="StaticBody2D" parent="."]
 position = Vector2( -912, 368 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall2"]
 position = Vector2( 11080, -96 )
-shape = SubResource( 7 )
+shape = SubResource( 11 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="InvisibleWall2"]
 position = Vector2( 10936, -400 )
-shape = SubResource( 8 )
+shape = SubResource( 12 )
 
 [node name="Master" parent="." instance=ExtResource( 13 )]
 position = Vector2( -816, 528 )
 speech = "Joven aprendiz, você chegou na cidadela de Fallshade. O Lorde desse feudo é conhecido por ser tirânico e opressor. Ele é um mago muito astuto e vai querer te manipular para seus próprios ganhos. O povo pobre desde feudo vive em miséria e fome e não por muito tempo vão aceitar essa situação. Siga seus instintos e tome a decisão certa. "
 
 [node name="UI" parent="." instance=ExtResource( 1 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Day = SubResource( 17 )
+anims/Night = SubResource( 14 )
+
+[node name="TimerFire" type="Timer" parent="."]
 [connection signal="body_entered" from="Tower/Doors/TowerDoor" to="Tower/Doors/TowerDoor" method="_on_TowerDoor_body_entered"]
 [connection signal="body_entered" from="Tower/Doors/TowerDoor3" to="Tower/Doors/TowerDoor3" method="_on_TowerDoor_body_entered"]
 [connection signal="body_entered" from="Tower/Doors/TowerDoor2" to="Tower/Doors/TowerDoor2" method="_on_TowerDoor_body_entered"]
 [connection signal="body_entered" from="Tower/Doors/TowerDoor4" to="Tower/Doors/TowerDoor4" method="_on_TowerDoor_body_entered"]
 [connection signal="area_entered" from="RustyNail/PoorHouse8" to="RustyNail/PoorHouse8" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse8" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse9" to="RustyNail/PoorHouse9" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse9" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse1" to="RustyNail/PoorHouse1" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse1" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse13" to="RustyNail/PoorHouse13" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse13" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse10" to="RustyNail/PoorHouse10" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse10" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse3" to="RustyNail/PoorHouse3" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse3" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse14" to="RustyNail/PoorHouse14" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse14" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse4" to="RustyNail/PoorHouse4" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse4" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse12" to="RustyNail/PoorHouse12" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse12" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse2" to="RustyNail/PoorHouse2" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse2" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse5" to="RustyNail/PoorHouse5" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse5" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse11" to="RustyNail/PoorHouse11" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse11" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse7" to="RustyNail/PoorHouse7" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse7" to="." method="_destroyed"]
 [connection signal="area_entered" from="RustyNail/PoorHouse6" to="RustyNail/PoorHouse6" method="_on_PoorHouse1_area_entered"]
+[connection signal="destroyed" from="RustyNail/PoorHouse6" to="." method="_destroyed"]
 [connection signal="body_entered" from="NPCs/RustyNail/Arnold" to="." method="_on_Arnold_body_entered"]
 [connection signal="body_entered" from="NPCs/RustyNail/Moses" to="." method="_on_Moses_body_entered"]
 [connection signal="body_exited" from="NPCs/SunGuardians/GenericNPC" to="Gates" method="_on_GenericNPC_body_exited"]
+[connection signal="body_entered" from="NPCs/Tower/ElevatorMan" to="." method="_on_ElevatorMan_body_entered"]
+[connection signal="body_entered" from="NPCs/Tower/SunCrystal" to="." method="_on_SunCrystal_body_entered"]
+[connection signal="body_exited" from="NPCs/Tower/SunCrystal" to="." method="_on_SunCrystal_body_exited"]
+[connection signal="body_entered" from="NPCs/GoldenPlaza/Boris" to="." method="_on_Boris_body_entered"]
 [connection signal="body_entered" from="Catacombs/CristalTraps" to="." method="_on_CristalTraps_body_entered"]
+[connection signal="body_entered" from="Catacombs/MoonCrystal" to="." method="_on_MoonCrystal_body_entered"]
+[connection signal="body_exited" from="Catacombs/MoonCrystal" to="." method="_on_MoonCrystal_body_exited"]
+[connection signal="timeout" from="TimerFire" to="." method="_on_TimerFire_timeout"]
