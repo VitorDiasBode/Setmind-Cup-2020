@@ -5,6 +5,8 @@ var quest_fix_elevator = false
 var quest_destroy_all = false
 var destroyed_buildings = 0
 
+var elevator_man_old_speech = ""
+
 func _ready() -> void:
 	$Player.fire_skill = 0
 	$NPCs/Tower/SunCrystal/Sprite.texture = null
@@ -32,12 +34,24 @@ func _on_CristalTraps_body_entered(body: Node) -> void:
 		$Catacombs/MoonCrystal/CollisionShape2D.set_deferred("disabled",false)
 		$AnimationPlayer.play("Day")
 		$NPCs/RustyNail.global_position.y = 0
-		$Tower/ElevatorAnchor.global_position.y = 0
+		$Tower/ElevatorAnchor.position.y = 0
 		$NPCs/SunGuardians.global_position.y = 0
 		$NPCs/MoonGuardians.global_position.y = 0
 		$NPCs/GoldenPlaza.global_position.y = 0
 		$Gates.restore_moon_gate()
 		$NPCs/DisabledGuardians.hide()
+		$People.hide()
+		$Tower/Roll.activate(false)
+		$TimerFire.stop()
+		$Player.fire_skill = 0
+		$Player.modulate = Color(1,1,1)
+		destroyed_buildings = 0
+		get_tree().call_group("builds","rebuild")
+		$NPCs/Tower/SunCrystal/CollisionShape2D.call_deferred("disabled",false)
+		$NPCs/Tower/ElevatorMan.speech = elevator_man_old_speech
+		$NPCs/ProtectingGuardians.hide()
+		$Catacombs/MoonCrystal/Crystal2/AnimationPlayer.play("Float")
+		
 
 
 func _on_ElevatorMan_body_entered(body: Node) -> void:
@@ -47,10 +61,10 @@ func _on_ElevatorMan_body_entered(body: Node) -> void:
 
 func _on_Boris_body_entered(body: Node) -> void:
 	if quest_fix_elevator:
-		$NPCs/Tower/ElevatorMan.speech = "uperior: Ah! Obrigado Arcano! Agora o Elevador está funcionando e você pode ver o grande e bondoso Lorde Goven. Mas por favor, não fale nada do que aconteceu aqui.. Lorde Goven é bondoso, mas sua tolerancia é severa..."
+		$NPCs/Tower/ElevatorMan.speech = "Superior: Ah! Obrigado Arcano! Agora o Elevador está funcionando e você pode ver o grande e bondoso Lorde Goven. Mas por favor, não fale nada do que aconteceu aqui.. Lorde Goven é bondoso, mas sua tolerancia é severa..."
 		$Tower/ElevatorAnchor/Elevator.speed = 100
 		$Tower/ElevatorAnchor/Elevator.motion = Vector2(0,-1)
-
+		$Tower/Roll.activate(true)
 
 func _on_SunCrystal_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
@@ -62,7 +76,7 @@ func _on_SunCrystal_body_entered(body: Node) -> void:
 
 func _on_SunCrystal_body_exited(body: Node) -> void:
 	if body.is_in_group("Player"):
-		$NPCs/Tower/SunCrystal/CollisionShape2D.disabled = true
+		$NPCs/Tower/SunCrystal/CollisionShape2D.call_deferred("disabled",true)
 
 func _on_TimerFire_timeout() -> void:
 	$Player.fire_skill += 10
@@ -85,9 +99,20 @@ func _on_MoonCrystal_body_exited(body: Node) -> void:
 		$Catacombs/MoonCrystal/CollisionShape2D.set_deferred("disabled",true)
 		$AnimationPlayer.play("Night")
 		$NPCs/RustyNail.global_position.y = - 9000
-		$Tower/ElevatorAnchor.global_position.y = -9000
+		$Tower/ElevatorAnchor.position.y = -9000
 		$NPCs/SunGuardians.global_position.y = -9000
 		$NPCs/MoonGuardians.global_position.y = -9000
 		$NPCs/GoldenPlaza.global_position.y = -9000
 		$Gates.destroy_moon_gate()
 		$NPCs/DisabledGuardians.show()
+		$People.show()
+		$Tower/Roll.activate(false)
+		$TimerFire.stop()
+		$Player.fire_skill = 0
+		$Player.modulate = Color(1,1,1)
+		destroyed_buildings = 0
+		get_tree().call_group("builds","rebuild")
+		$NPCs/Tower/SunCrystal/CollisionShape2D.call_deferred("disabled",false)
+		elevator_man_old_speech = $NPCs/Tower/ElevatorMan.speech
+		$NPCs/Tower/ElevatorMan.speech = "Superior: Senhor Arcano, o caos aconteceu! Os Inferiores invadiram do nada a parte Leste da cidade e todos os Guardiões da Lua pararam de funcionar. As pessoas destruíram o portão da Lua e saíram da cidade. Somente os Guardiões do Sol estão funcionando. Nosso trabalho é proteger Lorde Goven com nossas vidas, ninguém pode subir na Torre. Infelizmente nem o senhor..."
+		$NPCs/ProtectingGuardians.show()

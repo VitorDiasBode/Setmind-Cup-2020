@@ -16,8 +16,14 @@ func _on_PoorHouse1_area_entered(area: Area2D) -> void:
 		life -= 1
 		modulate = Color(1,0,0)
 		if life <= 0 :
-			$CollisionShape2D.queue_free()
+			$CollisionShape2D.call_deferred("disabled",true)
 			$Sprites.hide()
 			$Destroyed.show()
 			emit_signal("destroyed")
-		
+
+func rebuild():
+	$CollisionShape2D.call_deferred("disabled",false)
+	$Sprites.show()
+	$Destroyed.hide()
+	life = 5
+	
