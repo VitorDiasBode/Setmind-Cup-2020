@@ -33,7 +33,7 @@ func _physics_process(delta):
 		if get_slide_count() > 0:
 			var collision = get_slide_collision(0)
 			if collision.collider.is_in_group("Player"):
-				UI.restart_level()
+				pass
 
 func _on_Area_Vision_body_entered(body):
 	if body.is_in_group("Player") and $AudioStreamPlayer2D.stream == null:

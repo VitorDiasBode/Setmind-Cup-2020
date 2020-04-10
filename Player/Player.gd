@@ -11,6 +11,8 @@ var floor_normal = Vector2.UP
 
 var poisoned = false
 var knocked = false
+var coffeed = false
+var riding = false
 
 var air_skill = 1
 
@@ -53,8 +55,12 @@ func _physics_process(delta):
 		"""
 		movement.x = speed*direction.x
 		if Input.is_action_just_pressed("ui_up"):
-			if is_on_floor() or is_on_wall():
+			if is_on_floor():
 				movement.y = -jump_strength
+			elif is_on_wall():
+				movement.y = -jump_strength
+				knock_back(Vector2(get_slide_collision(0).normal.x*700, -jump_strength), 0.2)
+				print(movement)
 			elif air_skill > 0:
 				"""
 				Se pressionar a tecla de pulo, nao estiver no chao e
@@ -104,15 +110,21 @@ func _input(event):
 			fire_ball.global_position.y = global_position.y
 	
 func set_animation():
-	if knocked == false:
-		if movement.x > 0:
+	if riding == true:
+		if direction.x > 0:
+			$AnimatedSprite.flip_h = false
+		elif direction.x < 0:
+			$AnimatedSprite.flip_h = true
+	elif knocked == false:
+		if direction.x > 0:
 			$AnimatedSprite.play( "walk" )
 			$AnimatedSprite.flip_h = false
-		elif movement.x < 0:
+		elif direction.x < 0:
 			$AnimatedSprite.play( "walk" )
 			$AnimatedSprite.flip_h = true
 		else:
 			$AnimatedSprite.play( "idle" )
+		
 
 func poison():
 	poisoned = true
@@ -134,7 +146,6 @@ func knock_back(knock_impulse, knock_duration):
 func apply_damage(amount):
 	if knocked != true:
 		$"Player UI/LifeBar".value -= amount
-		print($"Player UI/LifeBar".value)
 		if $"Player UI/LifeBar".value <= 0:
 			get_tree().reload_current_scene()
 
@@ -144,11 +155,22 @@ func ui_update():
 
 
 func _on_Coffee_pressed():
-	$"Player UI/LifeBar".value += 0.3
-	coffee -= 1
-	print(speed)
-	speed *= 2
-	yield(get_tree().create_timer(5),"timeout")
-	print(speed)
-	speed /= 2
+	if coffeed == false:
+		$"Player UI/LifeBar".value += 0.3
+		coffee -= 1
+		speed *= 2
+		coffeed = true
+		yield(get_tree().create_timer(5),"timeout")
+		speed /= 2
+		coffeed = false
 	pass # Replace with function body.
+
+func ride(activate):
+	if activate == true:
+		set_physics_process(false)
+		riding = true
+		$AnimatedSprite.play("idle")
+	else:
+		set_physics_process(true)
+		riding = false
+#		

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/Scorpion/Scorpion.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 56, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 10 )
+
+[node name="Scorpion" type="KinematicBody2D"]
+script = ExtResource( 1 )
+speed = 150.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 0, 8 )
+color = Color( 0.180392, 0.14902, 0, 1 )
+polygon = PoolVector2Array( -56, -24, 56, -24, 56, 8, -56, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="WalkRange" type="Position2D" parent="."]
+
+[node name="Right" type="ColorRect" parent="WalkRange"]
+margin_top = -8.0
+color = Color( 0.494118, 0.694118, 0.937255, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="WalkRange"]
+margin_bottom = 8.0
+rect_rotation = 180.0
+color = Color( 0.494118, 0.694118, 0.937255, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area_Ride" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Ride"]
+position = Vector2( 0, -16 )
+shape = SubResource( 2 )
+
+[node name="Rider_Position" type="Position2D" parent="."]
+position = Vector2( 0, -80 )
+[connection signal="body_entered" from="Area_Ride" to="." method="_on_Area_Ride_body_entered"]
