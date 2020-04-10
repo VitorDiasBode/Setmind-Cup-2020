@@ -23,11 +23,16 @@ var load_water_jet = load( "res://Colectables/Water_Shard/Water_Jet.tscn" )
 var fire_skill = 45
 var load_fire_ball = load( "res://Colectables/Fire_Shard/Fire_Ball.tscn" )
 
+var coffee_beans = 0 
+var coffee = 0
+
 func _ready():
 	Audio.change_music()
+	
 
 func _physics_process(delta):
-
+	ui_update()
+	
 	if knocked == false:
 		"""
 		Defini para qual direção o jogador deve se mover
@@ -120,12 +125,30 @@ func _on_PoisonTimer_timeout():
 	$AnimationPlayer.seek(0.0, true)
 	$AnimationPlayer.stop()
 
-func knock_back(knock_origin, knock_strength, knock_duration):
-	movement = (global_position - knock_origin).normalized() * knock_strength.x
-	movement.y = knock_strength.y
+func knock_back(knock_impulse, knock_duration):
+	movement = knock_impulse
 	knocked = true
 	yield( get_tree().create_timer(knock_duration), "timeout")
 	knocked = false
-	
+
+func apply_damage(amount):
+	if knocked != true:
+		$"Player UI/LifeBar".value -= amount
+		print($"Player UI/LifeBar".value)
+		if $"Player UI/LifeBar".value <= 0:
+			get_tree().reload_current_scene()
+
+func ui_update():
+	$"Player UI/CoffeeBeans/Label".text = str(coffee_beans)
+	$"Player UI/Coffee/Label".text = str(coffee)
 
 
+func _on_Coffee_pressed():
+	$"Player UI/LifeBar".value += 0.3
+	coffee -= 1
+	print(speed)
+	speed *= 2
+	yield(get_tree().create_timer(5),"timeout")
+	print(speed)
+	speed /= 2
+	pass # Replace with function body.

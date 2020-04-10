@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Enemies/Scorpion_Rider/Scorpion_Rider.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Scorpion_Rider/Animation/Scorpion_rider.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 29 )
+
+[node name="Scorpion_Rider" type="KinematicBody2D"]
+script = ExtResource( 1 )
+walk_range = 6.0
+speed = 350.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2, -7 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="RayCast_Vision" type="RayCast2D" parent="."]
+position = Vector2( 33, -17 )
+enabled = true
+cast_to = Vector2( 300, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -7 )
+shape = SubResource( 1 )
+
+[node name="WalkRange" type="Position2D" parent="."]
+
+[node name="Right" type="ColorRect" parent="WalkRange"]
+margin_top = -8.0
+margin_right = 218.88
+color = Color( 0.494118, 0.694118, 0.937255, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="WalkRange"]
+margin_right = 218.88
+margin_bottom = 8.0
+rect_rotation = 180.0
+color = Color( 0.494118, 0.694118, 0.937255, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
