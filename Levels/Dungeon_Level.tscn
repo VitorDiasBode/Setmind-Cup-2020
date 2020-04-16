@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Effects/PlayerLight2.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Spider/Spider.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Spider_Boss/SpiderBoss.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Colectables/Air_Shard/Air_Shard.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -24,7 +25,6 @@ __meta__ = {
 position = Vector2( 0, 512 )
 
 [node name="BG" type="Polygon2D" parent="Level"]
-visible = false
 position = Vector2( 96, 0 )
 color = Color( 0.341176, 0.341176, 0.341176, 1 )
 polygon = PoolVector2Array( -512, -1024, 3072, -1024, 3072, 2560, -512, 2464 )
@@ -109,7 +109,6 @@ position = Vector2( 401.537, 411.175 )
 [node name="Light2D" type="Light2D" parent="Player"]
 light_mask = 2
 texture = ExtResource( 1 )
-color = Color( 1, 1, 1, 0.862745 )
 mode = 2
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -127,3 +126,6 @@ curve = SubResource( 2 )
 
 [node name="Spider_Boss" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 2176, 1152 )
+
+[node name="Air_Shard" parent="." instance=ExtResource( 5 )]
+position = Vector2( 632.191, 511.504 )

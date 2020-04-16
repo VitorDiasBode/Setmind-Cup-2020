@@ -1,14 +1,35 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Colectables/Water_Shard/Water_Jet.gd" type="Script" id=1]
+[ext_resource path="res://Colectables/Water_Shard/Animations/WaterJet0.png" type="Texture" id=2]
+[ext_resource path="res://Colectables/Water_Shard/Animations/WaterJet2.png" type="Texture" id=3]
+[ext_resource path="res://Colectables/Water_Shard/Animations/WaterJet3.png" type="Texture" id=4]
+[ext_resource path="res://Colectables/Water_Shard/Animations/WaterJet1.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 24 )
+extents = Vector2( 53.0538, 18.9001 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
 
 [node name="Water_Jet" type="Area2D"]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.0163803, -0.892582 )
 shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -3.47525, 0.463287 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+frame = 3
+playing = true
 [connection signal="body_entered" from="." to="." method="_on_Water_Jet_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Water_Jet_body_exited"]

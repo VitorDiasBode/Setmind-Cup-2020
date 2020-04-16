@@ -48,7 +48,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( -8, 0 )
 [connection signal="area_entered" from="." to="." method="_on_Spell_area_entered"]

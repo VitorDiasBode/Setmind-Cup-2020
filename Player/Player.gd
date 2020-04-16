@@ -9,31 +9,41 @@ var jump_strength = 900
 var look_direction = 1
 var floor_normal = Vector2.UP
 
+var life = 3
 var poisoned = false
 var knocked = false
 var coffeed = false
 var riding = false
 
-var air_skill = 1
+onready var sounds = $Player_Sounds
 
-var earth_skill = 0
+var air_skill = 133
+
+var earth_skill = 22
 var load_wall = load( "res://Colectables/Earth_Shard/Earth_Wall.tscn" )
 
-var water_skill = 0
+var water_skill = 30
 var load_water_jet = load( "res://Colectables/Water_Shard/Water_Jet.tscn" )
 
 var fire_skill = 45
 var load_fire_ball = load( "res://Colectables/Fire_Shard/Fire_Ball.tscn" )
 
-var coffee_beans = 0 
-var coffee = 0
+var coffee_beans = 43
+var coffee = 43
 
 func _ready():
 	Audio.change_music()
 	
 
 func _physics_process(delta):
-	ui_update()
+	$"Player_UI/Interface".update_ui({ 
+		"Air_Skill":air_skill,
+		"Earth_Skill":earth_skill,
+		"Fire_Skill":fire_skill,
+		"Water_Skill":water_skill,
+		"Coffee":coffee,
+		"Coffee_Beans":coffee_beans,
+		"Life":life })
 	
 	if knocked == false:
 		"""
@@ -57,10 +67,11 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_up"):
 			if is_on_floor():
 				movement.y = -jump_strength
+				sounds.play_audio("Jump")
 			elif is_on_wall():
 				movement.y = -jump_strength
 				knock_back(Vector2(get_slide_collision(0).normal.x*700, -jump_strength), 0.2)
-				print(movement)
+				sounds.play_audio("Jump")
 			elif air_skill > 0:
 				"""
 				Se pressionar a tecla de pulo, nao estiver no chao e
@@ -68,6 +79,7 @@ func _physics_process(delta):
 				"""
 				movement.y = -jump_strength
 				air_skill -= 1
+				sounds.play_audio("Jump")
 		 
 		""" Caso a condicao do Player seja 'Poisoned' os controles serão invertidos"""
 		if poisoned == true:
@@ -96,9 +108,10 @@ func _input(event):
 		if water_skill > 0:
 			water_skill -= 1
 			var water_jet = load_water_jet.instance()
-			get_parent().add_child(water_jet)
-			water_jet.growth_scale = water_jet.growth_scale * look_direction
-			water_jet.global_position.x = global_position.x + ( look_direction * 84 )
+			add_child(water_jet)
+			water_jet.get_node("AnimatedSprite").rotation *= look_direction
+			print(water_jet.get_node("AnimatedSprite").flip_h)
+			water_jet.global_position.x = global_position.x + ( look_direction * 64)
 			water_jet.global_position.y = global_position.y
 	elif event.is_action_pressed("fire_skill"):
 		if fire_skill > 0:
@@ -108,23 +121,37 @@ func _input(event):
 			fire_ball.direction.x = look_direction
 			fire_ball.global_position.x = global_position.x + ( look_direction * 84 )
 			fire_ball.global_position.y = global_position.y
+			sounds.play_audio("FireBall")
+	elif event.is_action_pressed("coffe_skill"):
+		if coffeed == false:
+			sounds.play_audio("DrinkCoffee")
+			life += 0.5
+			coffee -= 1
+			speed *= 2
+			coffeed = true
+			yield(get_tree().create_timer(5),"timeout")
+			speed /= 2
+			coffeed = false
 	
 func set_animation():
 	if riding == true:
+		$AnimatedSprite.play("ride")
 		if direction.x > 0:
 			$AnimatedSprite.flip_h = false
 		elif direction.x < 0:
 			$AnimatedSprite.flip_h = true
 	elif knocked == false:
 		if direction.x > 0:
-			$AnimatedSprite.play( "walk" )
 			$AnimatedSprite.flip_h = false
-		elif direction.x < 0:
 			$AnimatedSprite.play( "walk" )
+		elif direction.x < 0:
 			$AnimatedSprite.flip_h = true
+			$AnimatedSprite.play( "walk" )
 		else:
 			$AnimatedSprite.play( "idle" )
 		
+		if !is_on_floor():
+			$AnimatedSprite.play( "jump" )
 
 func poison():
 	poisoned = true
@@ -144,33 +171,25 @@ func knock_back(knock_impulse, knock_duration):
 	knocked = false
 
 func apply_damage(amount):
+	print(life)
 	if knocked != true:
-		$"Player UI/LifeBar".value -= amount
-		if $"Player UI/LifeBar".value <= 0:
+		sounds.play_audio("Damage")
+		life -= amount
+		if life <= 0:
 			get_tree().reload_current_scene()
-
-func ui_update():
-	$"Player UI/CoffeeBeans/Label".text = str(coffee_beans)
-	$"Player UI/Coffee/Label".text = str(coffee)
-
-
-func _on_Coffee_pressed():
-	if coffeed == false:
-		$"Player UI/LifeBar".value += 0.3
-		coffee -= 1
-		speed *= 2
-		coffeed = true
-		yield(get_tree().create_timer(5),"timeout")
-		speed /= 2
-		coffeed = false
-	pass # Replace with function body.
 
 func ride(activate):
 	if activate == true:
+		collision_layer = 2
+		collision_mask = 2
 		set_physics_process(false)
+		set_process_input(false)
 		riding = true
-		$AnimatedSprite.play("idle")
+		$AnimatedSprite.play("ride")
 	else:
+		collision_layer = 1
+		collision_mask = 1
 		set_physics_process(true)
+		set_process_input(true)
 		riding = false
 #		

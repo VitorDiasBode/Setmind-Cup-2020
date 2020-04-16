@@ -2,26 +2,26 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CoffeeBeansSack.png-7186d3a658a960e3aca3e11d888e7fc6.stex"
+path="res://.import/ProgressBar1.png-255f20230dba2aaf0a9927430e938a87.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Colectables/Coffee_Beans/CoffeeBeansSack.png"
-dest_files=[ "res://.import/CoffeeBeansSack.png-7186d3a658a960e3aca3e11d888e7fc6.stex" ]
+source_file="res://Interface/ProgressBar1.png"
+dest_files=[ "res://.import/ProgressBar1.png-255f20230dba2aaf0a9927430e938a87.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

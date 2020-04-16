@@ -27,6 +27,7 @@ position = Vector2( 57, 364 )
 
 [node name="Scorpion_Rider" parent="." instance=ExtResource( 2 )]
 position = Vector2( 571, 432 )
+initial_direction = 1
 walk_range = 100.0
 speed = 150.0
 

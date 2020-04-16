@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bonfire1.png-1c3569f0e3f3794fe1342d8396f248c2.stex"
+path="res://.import/WaterJet1.png-9b4cbc5f46c5b27b6b6afb6de26bffd2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenery/Bonfire/bonfire1.png"
-dest_files=[ "res://.import/bonfire1.png-1c3569f0e3f3794fe1342d8396f248c2.stex" ]
+source_file="res://Colectables/Water_Shard/Animations/WaterJet1.png"
+dest_files=[ "res://.import/WaterJet1.png-9b4cbc5f46c5b27b6b6afb6de26bffd2.stex" ]
 
 [params]
 
@@ -31,4 +31,4 @@ process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=2.0
+svg/scale=1.0

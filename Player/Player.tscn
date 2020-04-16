@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Animation/player_01.png" type="Texture" id=2]
@@ -12,8 +12,9 @@
 [ext_resource path="res://Player/Animation/player_09.png" type="Texture" id=10]
 [ext_resource path="res://Player/Animation/player_02.png" type="Texture" id=11]
 [ext_resource path="res://Player/Animation/player_03.png" type="Texture" id=12]
-[ext_resource path="res://Colectables/Coffee_Beans/Coffee_Mug.png" type="Texture" id=13]
-[ext_resource path="res://Colectables/Coffee_Beans/CoffeeBeansSack.png" type="Texture" id=14]
+[ext_resource path="res://Player/Player_Sounds.gd" type="Script" id=13]
+[ext_resource path="res://Player/Audios/Damage.wav" type="AudioStream" id=14]
+[ext_resource path="res://Interface/Interface.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 44.4815 )
@@ -23,6 +24,16 @@ animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "ride",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 4 ) ],
@@ -69,7 +80,7 @@ current = true
 position = Vector2( 7.29761, 18.5758 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
-animation = "idle"
+animation = "ride"
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -78,57 +89,11 @@ anims/poison = SubResource( 3 )
 [node name="PoisonTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Player UI" type="CanvasLayer" parent="."]
+[node name="Player_UI" type="CanvasLayer" parent="."]
 
-[node name="CoffeeBeans" type="TextureButton" parent="Player UI"]
-margin_left = 27.0081
-margin_top = 25.9373
-margin_right = 67.0081
-margin_bottom = 65.9373
-texture_normal = ExtResource( 14 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Interface" parent="Player_UI" instance=ExtResource( 15 )]
 
-[node name="Label" type="Label" parent="Player UI/CoffeeBeans"]
-margin_left = 45.429
-margin_top = 8.8642
-margin_right = 85.429
-margin_bottom = 33.8642
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Coffee" type="TextureButton" parent="Player UI"]
-margin_left = 30.166
-margin_top = 75.4106
-margin_right = 70.166
-margin_bottom = 115.411
-texture_normal = ExtResource( 13 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Player UI/Coffee"]
-margin_left = 39.8889
-margin_top = 8.8642
-margin_right = 79.8889
-margin_bottom = 33.8642
-text = "0"
-
-[node name="LifeBar" type="ProgressBar" parent="Player UI"]
-margin_left = 453.668
-margin_top = 23.6789
-margin_right = 600.668
-margin_bottom = 48.6789
-max_value = 3.0
-value = 3.0
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Player_Sounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+script = ExtResource( 13 )
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
-[connection signal="pressed" from="Player UI/Coffee" to="." method="_on_Coffee_pressed"]
