@@ -23,7 +23,7 @@ polygon = PoolVector2Array( 0, -48, 0, 0, 1040, 0, 1040, -48 )
 polygon = PoolVector2Array( -232, 352, -176, 352, -176, 240, -52.5604, 237.309, -52.5604, 352, 486.719, 352, 488, 0, 560, 0, 564.26, 352, 704, 352, 704, 488, -232, 488 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 57, 364 )
+position = Vector2( 128, 696 )
 
 [node name="Scorpion_Rider" parent="." instance=ExtResource( 2 )]
 position = Vector2( 571, 432 )

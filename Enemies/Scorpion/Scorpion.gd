@@ -32,10 +32,17 @@ func _input(event):
 			rider.knock_back(Vector2(0,-1000), 0.5)
 			state = "patrol"
 			direction.x = 1
+			start_postion = global_position.x - 1
 
 func rided_movement():
 	rider.global_position = $Rider_Position.global_position
-	direction.x = int(Input.is_action_pressed("ui_right") ) - int(Input.is_action_pressed("ui_right") )
+	if Input.is_action_pressed("ui_left"):
+		direction.x = -1
+	elif Input.is_action_pressed("ui_right"):
+		direction.x = 1
+	else:
+		direction.x = 0
+	
 	rider.direction.x = direction.x
 	
 	movement.x = direction.x*speed
@@ -46,7 +53,6 @@ func rided_movement():
 func patrol_movement():
 	distance_traveled = abs(start_postion - global_position.x )
 	if distance_traveled >= movement_distance or is_on_wall():
-			print(distance_traveled)
 			direction *= -1
 			distance_traveled = 0
 		
