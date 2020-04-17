@@ -12,7 +12,6 @@ extents = Vector2( 48, 10 )
 extents = Vector2( 64, 16 )
 
 [node name="Scorpion" type="KinematicBody2D"]
-position = Vector2( 223783, 2.2276e+08 )
 script = ExtResource( 1 )
 movement_distance = 100.0
 

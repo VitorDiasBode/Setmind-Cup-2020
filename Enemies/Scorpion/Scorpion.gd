@@ -44,10 +44,11 @@ func rided_movement():
 	movement = move_and_slide(movement, Vector2.UP)
 
 func patrol_movement():
+	distance_traveled = abs(start_postion - global_position.x )
 	if distance_traveled >= movement_distance or is_on_wall():
 			print(distance_traveled)
 			direction *= -1
-			distance_traveled = abs( global_position.x - start_postion )
+			distance_traveled = 0
 		
 	movement.x = direction.x*speed
 	if !is_on_floor():
