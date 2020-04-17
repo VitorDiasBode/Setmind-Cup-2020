@@ -96,4 +96,8 @@ one_shot = true
 [node name="Player_Sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 script = ExtResource( 13 )
+
+[node name="Timer_Collisions" type="Timer" parent="."]
+one_shot = true
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
+[connection signal="timeout" from="Timer_Collisions" to="." method="_on_Timer_Collisions_timeout"]

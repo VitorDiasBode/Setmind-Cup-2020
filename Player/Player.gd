@@ -110,7 +110,6 @@ func _input(event):
 			var water_jet = load_water_jet.instance()
 			add_child(water_jet)
 			water_jet.get_node("AnimatedSprite").rotation *= look_direction
-			print(water_jet.get_node("AnimatedSprite").flip_h)
 			water_jet.global_position.x = global_position.x + ( look_direction * 64)
 			water_jet.global_position.y = global_position.y
 	elif event.is_action_pressed("fire_skill"):
@@ -171,7 +170,6 @@ func knock_back(knock_impulse, knock_duration):
 	knocked = false
 
 func apply_damage(amount):
-	print(life)
 	if knocked != true:
 		sounds.play_audio("Damage")
 		life -= amount
@@ -187,9 +185,12 @@ func ride(activate):
 		riding = true
 		$AnimatedSprite.play("ride")
 	else:
-		collision_layer = 1
-		collision_mask = 1
 		set_physics_process(true)
 		set_process_input(true)
 		riding = false
-#		
+		knock_back(Vector2(0, -1000), 0.5)
+		$Timer_Collisions.start(0.1)
+
+func _on_Timer_Collisions_timeout():
+		collision_layer = 1
+		collision_mask = 1

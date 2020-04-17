@@ -1,4 +1,3 @@
-tool
 extends KinematicBody2D
 
 const GRAVITY = -35
@@ -29,10 +28,10 @@ func _input(event):
 	if event.is_action_pressed("ui_up"):
 		if state == "rided":
 			rider.ride(false)
-			rider.knock_back(Vector2(0,-1000), 0.5)
-			state = "patrol"
 			direction.x = 1
 			start_postion = global_position.x - 1
+			state = "patrol"
+			
 
 func rided_movement():
 	rider.global_position = $Rider_Position.global_position
@@ -75,9 +74,9 @@ func _on_Area_Ride_body_entered(body):
 	if state == "patrol":
 		if body.is_in_group("Player"):
 			randomize()
-			if randf() > 0.20:
+			if randf() > 0:
+				body.ride(true)
 				rider = body
-				rider.ride(true)
 				state = "rided"
 				
 			else:
@@ -89,4 +88,4 @@ func _on_Area2D_body_entered(body):
 		var knock_direction = (body.global_position - global_position).normalized()
 		body.apply_damage(1)
 		body.knock_back(Vector2(knock_direction.x*600, knock_direction.y*900), 0.5)
-	pass # Replace with function body.
+			
