@@ -1,0 +1,424 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Levels/ThePlains/Ref.png" type="Texture" id=1]
+[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenery/Wall/Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/ThePlains/Grass.png" type="Texture" id=5]
+[ext_resource path="res://Levels/ThePlains/Background.png" type="Texture" id=6]
+[ext_resource path="res://Levels/ThePlains/Ground.png" type="Texture" id=7]
+[ext_resource path="res://Levels/ThePlains/Tiles.png" type="Texture" id=8]
+[ext_resource path="res://Levels/ThePlains.gd" type="Script" id=9]
+[ext_resource path="res://Levels/ThePlains/CaveWall.png" type="Texture" id=10]
+
+[node name="ThePlains" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="Ref" type="Sprite" parent="."]
+position = Vector2( 10216, -16 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.3, 0.01 )
+motion_offset = Vector2( 0, -256 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -1584.0
+margin_top = -856.0
+margin_right = 1480.0
+margin_bottom = -63.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Scenario" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="CaveWall" type="TextureRect" parent="Scenario"]
+margin_left = 2264.0
+margin_top = -636.0
+margin_right = 2604.0
+margin_bottom = 215.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaveWall2" type="TextureRect" parent="Scenario"]
+margin_left = 2692.0
+margin_top = 116.0
+margin_right = 2792.0
+margin_bottom = 300.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaveWall3" type="TextureRect" parent="Scenario"]
+margin_left = 2771.5
+margin_top = -55.0
+margin_right = 3483.5
+margin_bottom = 261.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tiles" type="Sprite" parent="Scenario"]
+position = Vector2( 2304, 32 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Tiles2" type="Sprite" parent="Scenario"]
+position = Vector2( 2356, 32 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Tiles3" type="Sprite" parent="Scenario"]
+position = Vector2( 2392, 32 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Tiles4" type="Sprite" parent="Scenario"]
+position = Vector2( 2408, 44 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Tiles5" type="Sprite" parent="Scenario"]
+position = Vector2( 2424, 32 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Solids" type="Node2D" parent="."]
+
+[node name="Wall" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 16, 520 )
+texture = ExtResource( 5 )
+size = Vector2( 1824, 256 )
+
+[node name="Wall46" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8800, 656 )
+texture = ExtResource( 7 )
+size = Vector2( 96, 384 )
+
+[node name="Wall47" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9320, 840 )
+texture = ExtResource( 7 )
+size = Vector2( 96, 400 )
+
+[node name="Wall6" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 2368, 512 )
+texture = ExtResource( 5 )
+size = Vector2( 672, 256 )
+
+[node name="Wall7" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3184, 512 )
+texture = ExtResource( 5 )
+size = Vector2( 672, 256 )
+
+[node name="Wall8" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 4048, 464 )
+texture = ExtResource( 5 )
+size = Vector2( 288, 256 )
+
+[node name="Wall2" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 1840, 416 )
+texture = ExtResource( 5 )
+size = Vector2( 192, 128 )
+
+[node name="Wall3" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 2176, 416 )
+texture = ExtResource( 5 )
+size = Vector2( 192, 128 )
+
+[node name="Wall4" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 2032, 328 )
+texture = ExtResource( 5 )
+size = Vector2( 144, 128 )
+
+[node name="Wall9" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3040, 328 )
+texture = ExtResource( 5 )
+size = Vector2( 144, 128 )
+
+[node name="Wall14" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 2520, 328 )
+texture = ExtResource( 5 )
+size = Vector2( 368, 40 )
+
+[node name="Wall16" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 4440, 424 )
+texture = ExtResource( 5 )
+size = Vector2( 784, 40 )
+
+[node name="Wall24" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5880, 424 )
+texture = ExtResource( 5 )
+size = Vector2( 496, 96 )
+
+[node name="Wall29" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 6936, -408 )
+texture = ExtResource( 5 )
+size = Vector2( 416, 96 )
+
+[node name="Wall28" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 6064, -112 )
+texture = ExtResource( 5 )
+size = Vector2( 784, 128 )
+
+[node name="Wall26" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 6696, 280 )
+texture = ExtResource( 5 )
+size = Vector2( 240, 352 )
+
+[node name="Wall30" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 7352, -112 )
+texture = ExtResource( 5 )
+size = Vector2( 240, 96 )
+
+[node name="Wall40" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8496, 592 )
+texture = ExtResource( 5 )
+size = Vector2( 144, 96 )
+
+[node name="Wall48" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8896, 992 )
+texture = ExtResource( 5 )
+size = Vector2( 352, 48 )
+
+[node name="Wall49" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8984, 800 )
+texture = ExtResource( 5 )
+size = Vector2( 432, 48 )
+
+[node name="Wall50" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9280, 1392 )
+texture = ExtResource( 5 )
+size = Vector2( 320, 48 )
+
+[node name="Wall59" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9472, 1656 )
+texture = ExtResource( 5 )
+size = Vector2( 384, 48 )
+
+[node name="Wall44" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8736, 592 )
+texture = ExtResource( 5 )
+size = Vector2( 80, 96 )
+
+[node name="Wall41" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8608, 416 )
+texture = ExtResource( 5 )
+size = Vector2( 928, 64 )
+
+[node name="Wall43" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8504, 1176 )
+texture = ExtResource( 5 )
+size = Vector2( 912, 96 )
+
+[node name="Wall51" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8496, 1768 )
+texture = ExtResource( 5 )
+size = Vector2( 480, 64 )
+
+[node name="Wall52" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9144, 1768 )
+texture = ExtResource( 5 )
+size = Vector2( 384, 64 )
+
+[node name="Wall31" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8080, -112 )
+texture = ExtResource( 5 )
+size = Vector2( 1328, 96 )
+
+[node name="Wall23" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5384, 512 )
+texture = ExtResource( 5 )
+size = Vector2( 1328, 40 )
+
+[node name="Wall15" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3384, 280 )
+texture = ExtResource( 5 )
+size = Vector2( 240, 40 )
+
+[node name="Wall17" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5208, 328 )
+texture = ExtResource( 5 )
+size = Vector2( 96, 144 )
+
+[node name="Wall18" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5304, 224 )
+texture = ExtResource( 5 )
+size = Vector2( 80, 256 )
+
+[node name="Wall10" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3712, 464 )
+texture = ExtResource( 5 )
+size = Vector2( 144, 128 )
+
+[node name="Wall11" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3856, 416 )
+texture = ExtResource( 5 )
+size = Vector2( 192, 128 )
+
+[node name="Wall5" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 1840, 448 )
+texture = ExtResource( 7 )
+size = Vector2( 528, 384 )
+
+[node name="Wall12" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3040, 448 )
+texture = ExtResource( 7 )
+size = Vector2( 144, 384 )
+
+[node name="Wall13" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3848, 536 )
+texture = ExtResource( 7 )
+size = Vector2( 208, 384 )
+
+[node name="Wall32" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8080, -56 )
+texture = ExtResource( 7 )
+size = Vector2( 1328, 128 )
+
+[node name="Wall20" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 4528, -1272 )
+texture = ExtResource( 7 )
+size = Vector2( 400, 1280 )
+
+[node name="Wall34" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9520, -1264 )
+texture = ExtResource( 7 )
+size = Vector2( 208, 2702 )
+
+[node name="Wall37" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 10392, -1848 )
+texture = ExtResource( 7 )
+size = Vector2( 176, 3406 )
+
+[node name="Wall21" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5584, -1152 )
+texture = ExtResource( 7 )
+size = Vector2( 480, 1280 )
+
+[node name="Wall27" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 6936, -352 )
+texture = ExtResource( 7 )
+size = Vector2( 416, 1280 )
+
+[node name="Wall33" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 7208, -24 )
+texture = ExtResource( 7 )
+size = Vector2( 1296, 1930 )
+
+[node name="Wall36" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 11296, -1888 )
+texture = ExtResource( 7 )
+size = Vector2( 720, 3338 )
+
+[node name="Wall39" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 13120, -2000 )
+texture = ExtResource( 7 )
+size = Vector2( 1360, 4362 )
+
+[node name="Wall35" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 7208, 1832 )
+texture = ExtResource( 7 )
+size = Vector2( 6032, 970 )
+
+[node name="Wall22" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5488, -1152 )
+texture = ExtResource( 7 )
+size = Vector2( 96, 1504 )
+
+[node name="Wall19" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 4440, 464 )
+texture = ExtResource( 7 )
+size = Vector2( 944, 384 )
+
+[node name="Wall45" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 8816, 480 )
+texture = ExtResource( 7 )
+size = Vector2( 704, 176 )
+
+[node name="Wall53" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9472, 1680 )
+texture = ExtResource( 7 )
+size = Vector2( 624, 176 )
+
+[node name="Wall55" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12016, 1272 )
+texture = ExtResource( 7 )
+size = Vector2( 144, 176 )
+
+[node name="Wall56" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12112, 536 )
+texture = ExtResource( 7 )
+size = Vector2( 1008, 208 )
+
+[node name="Wall57" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12400, 328 )
+texture = ExtResource( 7 )
+size = Vector2( 720, 208 )
+
+[node name="Wall58" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12496, -184 )
+texture = ExtResource( 7 )
+size = Vector2( 720, 544 )
+
+[node name="Wall61" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9952, 1472 )
+texture = ExtResource( 5 )
+size = Vector2( 144, 96 )
+
+[node name="Wall62" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 10096, 1768 )
+texture = ExtResource( 5 )
+size = Vector2( 144, 64 )
+
+[node name="Wall38" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9712, -1264 )
+texture = ExtResource( 7 )
+size = Vector2( 1584, 2368 )
+
+[node name="Wall25" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5368, 544 )
+texture = ExtResource( 7 )
+size = Vector2( 1840, 384 )
+
+[node name="Wall54" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9856, 1592 )
+texture = ExtResource( 7 )
+size = Vector2( 240, 176 )
+
+[node name="Wall60" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 9856, 1560 )
+texture = ExtResource( 5 )
+size = Vector2( 240, 48 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8848, 264 )
+
+[node name="UI" parent="." instance=ExtResource( 2 )]
