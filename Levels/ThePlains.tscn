@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Levels/ThePlains/Ref.png" type="Texture" id=1]
 [ext_resource path="res://Player/UI.tscn" type="PackedScene" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Levels/ThePlains/Tiles.png" type="Texture" id=8]
 [ext_resource path="res://Levels/ThePlains.gd" type="Script" id=9]
 [ext_resource path="res://Levels/ThePlains/CaveWall.png" type="Texture" id=10]
+[ext_resource path="res://Scenery/FallingWall/FallingWall.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Colectables/Timer_Challenge/TimerChallenge.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Colectables/Coffee_Beans/Coffee_Beans.tscn" type="PackedScene" id=13]
 
 [node name="ThePlains" type="Node2D"]
 script = ExtResource( 9 )
@@ -114,9 +117,9 @@ region_rect = Rect2( 16, 160, 80, 81 )
 [node name="Solids" type="Node2D" parent="."]
 
 [node name="Wall" parent="Solids" instance=ExtResource( 4 )]
-position = Vector2( 16, 520 )
+position = Vector2( -320, 520 )
 texture = ExtResource( 5 )
-size = Vector2( 1824, 256 )
+size = Vector2( 2160, 256 )
 
 [node name="Wall46" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 8800, 656 )
@@ -358,6 +361,11 @@ position = Vector2( 4440, 464 )
 texture = ExtResource( 7 )
 size = Vector2( 944, 384 )
 
+[node name="Wall42" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 3824, 592 )
+texture = ExtResource( 7 )
+size = Vector2( 944, 384 )
+
 [node name="Wall45" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 8816, 480 )
 texture = ExtResource( 7 )
@@ -374,9 +382,9 @@ texture = ExtResource( 7 )
 size = Vector2( 144, 176 )
 
 [node name="Wall56" parent="Solids" instance=ExtResource( 4 )]
-position = Vector2( 12112, 536 )
+position = Vector2( 12176, 536 )
 texture = ExtResource( 7 )
-size = Vector2( 1008, 208 )
+size = Vector2( 944, 208 )
 
 [node name="Wall57" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 12400, 328 )
@@ -396,7 +404,52 @@ size = Vector2( 144, 96 )
 [node name="Wall62" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 10096, 1768 )
 texture = ExtResource( 5 )
+size = Vector2( 2352, 64 )
+
+[node name="Wall63" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12688, 1768 )
+texture = ExtResource( 5 )
+size = Vector2( 208, 64 )
+
+[node name="Wall66" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 13024, 944 )
+texture = ExtResource( 5 )
+size = Vector2( 96, 64 )
+
+[node name="Wall67" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12176, 480 )
+texture = ExtResource( 5 )
+size = Vector2( 224, 64 )
+
+[node name="Wall68" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12400, 272 )
+texture = ExtResource( 5 )
+size = Vector2( 96, 64 )
+
+[node name="Wall69" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12368, -104 )
+texture = ExtResource( 5 )
+size = Vector2( 128, 64 )
+
+[node name="Wall70" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12496, -248 )
+texture = ExtResource( 5 )
 size = Vector2( 144, 64 )
+
+[node name="Wall71" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12640, -296 )
+texture = ExtResource( 5 )
+size = Vector2( 480, 112 )
+
+[node name="Wall64" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12896, 1688 )
+texture = ExtResource( 5 )
+size = Vector2( 224, 144 )
+
+[node name="Wall65" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 12016, 1192 )
+texture = ExtResource( 5 )
+size = Vector2( 960, 144 )
 
 [node name="Wall38" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 9712, -1264 )
@@ -418,7 +471,24 @@ position = Vector2( 9856, 1560 )
 texture = ExtResource( 5 )
 size = Vector2( 240, 48 )
 
+[node name="FallingWalls" type="Node2D" parent="."]
+
+[node name="FallingWall" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 888, 384 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 1.0
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 8848, 264 )
+position = Vector2( 376, 440 )
+air_skill = 0
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
+
+[node name="TimerChallenge" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1000, 328 )
+reward = NodePath("../Coffee_Beans")
+
+[node name="Coffee_Beans" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1880, 400 )

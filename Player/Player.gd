@@ -17,18 +17,18 @@ var riding = false
 
 onready var sounds = $Player_Sounds
 
-var air_skill = 133
+export var air_skill = 133
 
-var earth_skill = 22
+export var earth_skill = 22
 var load_wall = load( "res://Colectables/Earth_Shard/Earth_Wall.tscn" )
 
-var water_skill = 30
+export var water_skill = 30
 var load_water_jet = load( "res://Colectables/Water_Shard/Water_Jet.tscn" )
 
-var fire_skill = 45
+export var fire_skill = 45
 var load_fire_ball = load( "res://Colectables/Fire_Shard/Fire_Ball.tscn" )
 
-var coffee_beans = 43
+export var coffee_beans = 43
 var coffee = 43
 
 func _ready():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Animation/player_01.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Player/Player_Sounds.gd" type="Script" id=13]
 [ext_resource path="res://Player/Audios/Damage.wav" type="AudioStream" id=14]
 [ext_resource path="res://Interface/Interface.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Player/Rays.gd" type="Script" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 44.4815 )
@@ -28,12 +29,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "jump",
+"name": "ride",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "ride",
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 4 ) ],
@@ -99,5 +100,19 @@ script = ExtResource( 13 )
 
 [node name="Timer_Collisions" type="Timer" parent="."]
 one_shot = true
+
+[node name="Rays" type="Position2D" parent="."]
+position = Vector2( 0, 72 )
+script = ExtResource( 16 )
+
+[node name="R1_RayCast2D" type="RayCast2D" parent="Rays"]
+position = Vector2( -24, -8 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+
+[node name="R2_RayCast2D" type="RayCast2D" parent="Rays"]
+position = Vector2( 24, -8 )
+enabled = true
+cast_to = Vector2( 0, 20 )
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
 [connection signal="timeout" from="Timer_Collisions" to="." method="_on_Timer_Collisions_timeout"]
