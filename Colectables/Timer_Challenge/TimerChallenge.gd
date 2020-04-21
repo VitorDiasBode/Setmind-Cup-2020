@@ -19,9 +19,12 @@ func _ready():
 		
 		reward.connect("tree_exited",self,"destroy")
 	
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	if active == true:
+		box.get_node("CollisionShape2D").disabled = true
 		$CanvasLayer/TimerLabel.text = str( round( $Timer.time_left*10 ) / 10 )
+	else:
+		box.get_node("CollisionShape2D").disabled = false
 
 func _on_TimerChallenge_body_entered(body):
 	if body.is_in_group("Player"):

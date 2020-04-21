@@ -58,3 +58,11 @@ func _on_Timer_timeout():
 		global_position = initial_pos
 		$AnimationPlayer.play("Fade_In")
 		$CollisionPolygon2D.set_deferred("disabled",false)
+
+func reset():
+	$Timer.stop()
+	$AnimationPlayer.play("Fade_In")
+	falling = false
+	triggered = false
+	global_position = initial_pos
+	$CollisionPolygon2D.set_deferred("disabled",false)

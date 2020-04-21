@@ -24,6 +24,8 @@ func _on_Bonfire_body_entered(body: Node) -> void:
 func _on_HazardObject_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
 		player.global_position = player_initial_pos
+		player._on_PoisonTimer_timeout()
+		get_tree().call_group("FallingWall","reset")
 
 func _on_ForestCrystal_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):

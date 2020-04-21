@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Levels/ThePlains/Ref.png" type="Texture" id=1]
 [ext_resource path="res://Player/UI.tscn" type="PackedScene" id=2]
@@ -21,18 +21,22 @@
 [ext_resource path="res://Levels/ThePlains/ForestCrystal/crystal_01a.png" type="Texture" id=19]
 [ext_resource path="res://Levels/ThePlains/ForestCrystal/gem_01a.png" type="Texture" id=20]
 [ext_resource path="res://Enemies/Spider/Spider.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenery/Portal/Portal.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Levels/TheGate.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Levels/Fallshade/Board.png" type="Texture" id=24]
+[ext_resource path="res://NPC/GenericNPC/GenericNPC.tscn" type="PackedScene" id=25]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 8, -8, 0, 0, 0, 0, 8, 240, 0, 0, 0, 0, 192, 240, 0, 0, 0, 0, 8, -8 )
 }
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 0, 0, 0, 0, 744, 248, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 256, 0, 0, 0, 0, 480, 256, 0, 0, 0, 0, 0, 0 )
 }
 
 [node name="ThePlains" type="Node2D"]
@@ -73,6 +77,70 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="PortalVegetagion" type="Node2D" parent="."]
+
+[node name="Tiles180" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 12928, -512 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles181" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 13008, -504 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles182" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 12968, -512 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles183" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 13056, -440 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles184" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 12888, -448 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles185" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 12936, -504 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 225.469, 35.5242, 28.6082, 13.2038 )
+
+[node name="Tiles186" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 13064, -376 )
+rotation = 1.8108
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 225.469, 35.5242, 28.6082, 13.2038 )
+
+[node name="Tiles187" type="Sprite" parent="PortalVegetagion"]
+position = Vector2( 12872, -360 )
+rotation = 4.37755
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 225.469, 35.5242, 28.6082, 13.2038 )
+
+[node name="Portal" parent="." instance=ExtResource( 22 )]
+position = Vector2( 12968, -408 )
+level = ExtResource( 23 )
 
 [node name="Scenario" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
@@ -122,6 +190,7 @@ texture = ExtResource( 10 )
 expand = true
 stretch_mode = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -215,7 +284,7 @@ region_enabled = true
 region_rect = Rect2( 16, 160, 80, 81 )
 
 [node name="Tiles6" type="Sprite" parent="Scenario"]
-position = Vector2( 1952, 192 )
+position = Vector2( 1952, 193 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 256.266, 1.73541, 30.0886, 30.0886 )
@@ -468,6 +537,24 @@ region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
 
 [node name="Tiles150" type="Sprite" parent="Scenario"]
 position = Vector2( 4344, -244 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles157" type="Sprite" parent="Scenario"]
+position = Vector2( 6064, -68 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles171" type="Sprite" parent="Scenario"]
+position = Vector2( 6124, -56 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles172" type="Sprite" parent="Scenario"]
+position = Vector2( 6208, -36 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
@@ -940,6 +1027,97 @@ texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
 
+[node name="Tiles158" type="Sprite" parent="Scenario"]
+position = Vector2( 6016, 172 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles159" type="Sprite" parent="Scenario"]
+position = Vector2( 6008, 156 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles160" type="Sprite" parent="Scenario"]
+position = Vector2( 6012, 132 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles161" type="Sprite" parent="Scenario"]
+position = Vector2( 6012, 112 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles162" type="Sprite" parent="Scenario"]
+position = Vector2( 6016, 88 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles163" type="Sprite" parent="Scenario"]
+position = Vector2( 6016, 60 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles164" type="Sprite" parent="Scenario"]
+position = Vector2( 6016, 40 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles165" type="Sprite" parent="Scenario"]
+position = Vector2( 6016, 8 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles166" type="Sprite" parent="Scenario"]
+position = Vector2( 6008, 20 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles167" type="Sprite" parent="Scenario"]
+position = Vector2( 6008, -20 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles168" type="Sprite" parent="Scenario"]
+position = Vector2( 6008, -44 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles169" type="Sprite" parent="Scenario"]
+position = Vector2( 6012, -60 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles170" type="Sprite" parent="Scenario"]
+position = Vector2( 6008, -32 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
 [node name="Tiles125" type="Sprite" parent="Scenario"]
 position = Vector2( 6304, 908 )
 texture = ExtResource( 8 )
@@ -960,6 +1138,30 @@ region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
 
 [node name="Tiles128" type="Sprite" parent="Scenario"]
 position = Vector2( 6348, -160 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles173" type="Sprite" parent="Scenario"]
+position = Vector2( 6452, -160 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles174" type="Sprite" parent="Scenario"]
+position = Vector2( 6520, -164 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles175" type="Sprite" parent="Scenario"]
+position = Vector2( 6504, -156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles177" type="Sprite" parent="Scenario"]
+position = Vector2( 6444, -160 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
@@ -1002,6 +1204,18 @@ region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
 
 [node name="Tiles135" type="Sprite" parent="Scenario"]
 position = Vector2( 6392, -156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
+
+[node name="Tiles178" type="Sprite" parent="Scenario"]
+position = Vector2( 6480, -156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
+
+[node name="Tiles179" type="Sprite" parent="Scenario"]
+position = Vector2( 6480, -156 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
@@ -1124,6 +1338,366 @@ move_range = 200.0
 size = Vector2( 20, 20 )
 offest = Vector2( 12, 12 )
 
+[node name="HazardObject13" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 8528, 712 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 248.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject15" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 8528, 1128 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 248.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject28" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9752, 1416 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 300.0
+move_range = 616.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject29" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9752, 1376 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 300.0
+move_range = 616.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject30" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 10544, 1576 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 200.0
+move_range = 160.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject31" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 10984, 1752 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, -1 )
+speed = 200.0
+move_range = 160.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject32" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 11184, 1752 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, -1 )
+speed = 200.0
+move_range = 160.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject33" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 11856, 1760 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 512.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject34" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 11888, 1728 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 512.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject35" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 11920, 1696 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 512.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject36" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12664, 1168 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject37" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12664, 1128 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject38" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12664, 1088 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject39" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12664, 1048 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject48" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 1168 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject47" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 1128 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject46" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 1088 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject45" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 1048 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 240.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject40" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 880 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 640.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject49" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12104, 224 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 280.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject41" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 920 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 640.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject42" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 960 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 640.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject43" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 960 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 640.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject44" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12272, 1000 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 640.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject16" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 8936, 1040 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 256.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject19" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9072, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject27" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9024, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject20" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9120, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject21" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9168, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject22" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9216, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject23" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9264, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject24" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9312, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject25" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9360, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject26" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9408, 632 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 40.0
+move_range = 184.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject17" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9232, 1184 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( -1, 0 )
+speed = 200.0
+move_range = 256.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject18" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 9224, 1000 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( -1, 0 )
+speed = 200.0
+move_range = 256.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
 [node name="HazardObject10" parent="Hazards" instance=ExtResource( 16 )]
 position = Vector2( 5912, 424 )
 rotate_motion = 200.0
@@ -1170,9 +1744,14 @@ move_range = 0.0
 size = Vector2( 160, 32 )
 
 [node name="HazardObject5" parent="Hazards" instance=ExtResource( 16 )]
-position = Vector2( 12448, 1800 )
+position = Vector2( 12456, 1800 )
 move_range = 0.0
 size = Vector2( 224, 32 )
+
+[node name="HazardObject14" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12008, -152 )
+move_range = 0.0
+size = Vector2( 32, 512 )
 
 [node name="Solids" type="Node2D" parent="."]
 
@@ -1634,6 +2213,97 @@ fall_speed = 150.0
 size = Vector2( 32, 32 )
 time_trigger = 0.1
 
+[node name="FallingWall20" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 8656, 760 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 1.0
+
+[node name="FallingWall21" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 8656, 968 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 1.0
+
+[node name="FallingWall22" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 11984, 1688 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 1.0
+
+[node name="FallingWall23" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12208, 1640 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall24" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12144, 1016 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall30" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12952, 1504 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall31" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 13056, 1392 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall25" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12016, 880 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall26" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12112, 712 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall32" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12016, 544 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall27" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12248, 360 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall28" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12120, 112 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
+[node name="FallingWall29" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 12304, -40 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 2.0
+
 [node name="FallingWall16" parent="FallingWalls" instance=ExtResource( 11 )]
 position = Vector2( 7848, -96 )
 texture = ExtResource( 5 )
@@ -1668,19 +2338,29 @@ time_trigger = 0.1
 position = Vector2( 4576, 408 )
 
 [node name="Bonfire2" parent="BonFires" instance=ExtResource( 14 )]
-position = Vector2( 9320, -128 )
+position = Vector2( 8712, 400 )
 
 [node name="Bonfire3" parent="BonFires" instance=ExtResource( 14 )]
 position = Vector2( 8824, 1752 )
 
+[node name="Bonfire4" parent="BonFires" instance=ExtResource( 14 )]
+position = Vector2( 13040, 1672 )
+
+[node name="GenericNPC" parent="." instance=ExtResource( 25 )]
+position = Vector2( 552, 504 )
+sprite = ExtResource( 24 )
+speech = "Floresta Plana.
+
+Cuidado com a serras vivas!"
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 5008, 352 )
-air_skill = 0
+position = Vector2( 304, 448 )
+air_skill = 200
 earth_skill = 1
 water_skill = 1
 fire_skill = 1
 coffee_beans = 0
-coffee = 0
+coffee = 200
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -1694,17 +2374,17 @@ time = 5.0
 [node name="TimerChallenge4" parent="Collectables" instance=ExtResource( 12 )]
 position = Vector2( 5168, 392 )
 reward = NodePath("../../ForestCrystal")
-time = 6.0
+time = 6.5
 
 [node name="TimerChallenge2" parent="Collectables" instance=ExtResource( 12 )]
 position = Vector2( 6392, 192 )
 reward = NodePath("../Coffee_Beans2")
-time = 5.0
+time = 6.0
 
 [node name="TimerChallenge3" parent="Collectables" instance=ExtResource( 12 )]
-position = Vector2( 8560, 1728 )
+position = Vector2( 8544, 1728 )
 reward = NodePath("../Coffee_Beans3")
-time = 5.0
+time = 17.0
 
 [node name="Coffee_Beans" parent="Collectables" instance=ExtResource( 13 )]
 position = Vector2( 2328, 400 )
@@ -1713,10 +2393,13 @@ position = Vector2( 2328, 400 )
 position = Vector2( 6104, -136 )
 
 [node name="Coffee_Beans3" parent="Collectables" instance=ExtResource( 13 )]
-position = Vector2( 12952, 1664 )
+position = Vector2( 12776, 1744 )
 
 [node name="ForestCrystal" type="Area2D" parent="."]
-position = Vector2( 5184, -824 )
+position = Vector2( 5184, -792 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="gem_01a" type="Sprite" parent="ForestCrystal"]
 position = Vector2( 16, -8 )
@@ -1750,18 +2433,60 @@ shape = SubResource( 1 )
 [node name="Spider" parent="Spiders" instance=ExtResource( 21 )]
 position = Vector2( 7384, -376 )
 
+[node name="Spider4" parent="Spiders" instance=ExtResource( 21 )]
+position = Vector2( 10672, 1504 )
+
+[node name="Spider5" parent="Spiders" instance=ExtResource( 21 )]
+position = Vector2( 11448, 1496 )
+
 [node name="Spider3" parent="Spiders" instance=ExtResource( 21 )]
 position = Vector2( 8176, -360 )
-curve = SubResource( 3 )
+curve = SubResource( 2 )
 
 [node name="Spider2" parent="Spiders" instance=ExtResource( 21 )]
-position = Vector2( 8632, 152 )
-curve = SubResource( 2 )
+position = Vector2( 8920, 160 )
+curve = SubResource( 3 )
 [connection signal="body_entered" from="Hazards/HazardObject" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject6" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject8" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject7" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject9" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject13" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject15" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject28" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject29" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject30" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject31" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject32" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject33" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject34" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject35" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject36" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject37" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject38" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject39" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject48" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject47" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject46" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject45" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject40" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject49" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject41" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject42" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject43" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject44" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject16" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject19" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject27" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject20" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject21" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject22" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject23" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject24" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject25" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject26" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject17" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject18" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject10" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject11" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject12" to="." method="_on_HazardObject_body_entered"]
@@ -1769,7 +2494,9 @@ curve = SubResource( 2 )
 [connection signal="body_entered" from="Hazards/HazardObject3" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject4" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="Hazards/HazardObject5" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject14" to="." method="_on_HazardObject_body_entered"]
 [connection signal="body_entered" from="BonFires/Bonfire" to="." method="_on_Bonfire_body_entered"]
 [connection signal="body_entered" from="BonFires/Bonfire2" to="." method="_on_Bonfire_body_entered"]
 [connection signal="body_entered" from="BonFires/Bonfire3" to="." method="_on_Bonfire_body_entered"]
+[connection signal="body_entered" from="BonFires/Bonfire4" to="." method="_on_Bonfire_body_entered"]
 [connection signal="body_entered" from="ForestCrystal" to="." method="_on_ForestCrystal_body_entered"]

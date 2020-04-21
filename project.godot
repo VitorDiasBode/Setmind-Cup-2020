@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Audio="*res://Audio/Audio.tscn"
 Global="*res://Global.gd"
+UI="*res://Player/UI.tscn"
 
 [display]
 
