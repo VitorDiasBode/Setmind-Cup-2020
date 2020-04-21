@@ -21,7 +21,7 @@ func _ready():
 	
 func _process(delta):
 	if active == true:
-		$CanvasLayer/TimerLabel.text = str( $Timer.time_left )
+		$CanvasLayer/TimerLabel.text = str( round( $Timer.time_left*10 ) / 10 )
 
 func _on_TimerChallenge_body_entered(body):
 	if body.is_in_group("Player"):

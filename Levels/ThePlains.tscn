@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Levels/ThePlains/Ref.png" type="Texture" id=1]
 [ext_resource path="res://Player/UI.tscn" type="PackedScene" id=2]
@@ -13,17 +13,46 @@
 [ext_resource path="res://Scenery/FallingWall/FallingWall.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Colectables/Timer_Challenge/TimerChallenge.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Colectables/Coffee_Beans/Coffee_Beans.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenery/Bonfire/Bonfire.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenery/HazardObject/Saw.png" type="Texture" id=15]
+[ext_resource path="res://Scenery/HazardObject/HazardObject.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/Fallshade/Trees.png" type="Texture" id=17]
+[ext_resource path="res://Colectables/Timer_Challenge/LightPixel.png" type="Texture" id=18]
+[ext_resource path="res://Levels/ThePlains/ForestCrystal/crystal_01a.png" type="Texture" id=19]
+[ext_resource path="res://Levels/ThePlains/ForestCrystal/gem_01a.png" type="Texture" id=20]
+[ext_resource path="res://Enemies/Spider/Spider.tscn" type="PackedScene" id=21]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.0
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 8, -8, 0, 0, 0, 0, 8, 240, 0, 0, 0, 0, 192, 240, 0, 0, 0, 0, 8, -8 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 0, 0, 0, 0, 744, 248, 0, 0, 0, 0, 0, 0 )
+}
 
 [node name="ThePlains" type="Node2D"]
 script = ExtResource( 9 )
 
 [node name="Ref" type="Sprite" parent="."]
+visible = false
 position = Vector2( 10216, -16 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Roof" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Roof"]
+position = Vector2( -8, -224 )
+polygon = PoolVector2Array( 3896, -1216, 13192, -1216, 13192, -736, 3896, -720 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -84,6 +113,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CaveWall4" type="TextureRect" parent="Scenario"]
+margin_left = 4236.0
+margin_top = -52.0
+margin_right = 6596.0
+margin_bottom = 936.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaveWall5" type="TextureRect" parent="Scenario"]
+margin_left = 3656.0
+margin_top = -200.0
+margin_right = 4824.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Tiles" type="Sprite" parent="Scenario"]
 position = Vector2( 2304, 32 )
 texture = ExtResource( 8 )
@@ -95,6 +147,54 @@ position = Vector2( 2356, 32 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Tiles136" type="Sprite" parent="Scenario"]
+position = Vector2( -199.5, 187.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles137" type="Sprite" parent="Scenario"]
+position = Vector2( -159.5, 195.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles138" type="Sprite" parent="Scenario"]
+position = Vector2( -119.5, 187.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles139" type="Sprite" parent="Scenario"]
+position = Vector2( -87.5, 187.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles140" type="Sprite" parent="Scenario"]
+position = Vector2( -75.5, 191.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles141" type="Sprite" parent="Scenario"]
+position = Vector2( -11.5, 191.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles142" type="Sprite" parent="Scenario"]
+position = Vector2( -200, 192 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
+
+[node name="Tiles143" type="Sprite" parent="Scenario"]
+position = Vector2( -247.5, 195.5 )
+texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( -0.385773, -1.83012, 73.4801, 159.79 )
 
 [node name="Tiles3" type="Sprite" parent="Scenario"]
 position = Vector2( 2392, 32 )
@@ -113,6 +213,966 @@ position = Vector2( 2424, 32 )
 texture = ExtResource( 8 )
 region_enabled = true
 region_rect = Rect2( 16, 160, 80, 81 )
+
+[node name="Tiles6" type="Sprite" parent="Scenario"]
+position = Vector2( 1952, 192 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 256.266, 1.73541, 30.0886, 30.0886 )
+
+[node name="Tiles15" type="Sprite" parent="Scenario"]
+position = Vector2( 2368, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 274.704, 35.2655, 12.5172, 12.7675 )
+
+[node name="Tiles16" type="Sprite" parent="Scenario"]
+position = Vector2( 2492, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 274.704, 35.2655, 12.5172, 12.7675 )
+
+[node name="Tiles17" type="Sprite" parent="Scenario"]
+position = Vector2( 2744, 252 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 274.339, 50.9478, 29.3968, 16.9405 )
+
+[node name="Tiles18" type="Sprite" parent="Scenario"]
+position = Vector2( 2968, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 274.339, 50.9478, 29.3968, 16.9405 )
+
+[node name="Tiles19" type="Sprite" parent="Scenario"]
+position = Vector2( 2716, 132 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 83.818, 65.0431, 55.939, 14.1384 )
+
+[node name="Tiles20" type="Sprite" parent="Scenario"]
+position = Vector2( 2788, 196 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 211.064, 47.2164, 10.4501, 47.9477 )
+
+[node name="Tiles21" type="Sprite" parent="Scenario"]
+position = Vector2( 2788, 240 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 211.064, 47.2164, 10.4501, 47.9477 )
+
+[node name="Tiles22" type="Sprite" parent="Scenario"]
+position = Vector2( 2912, 252 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 83.5099, 66.5801, 57.4757, 13.5237 )
+
+[node name="Tiles23" type="Sprite" parent="Scenario"]
+position = Vector2( 3144, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 83.5099, 66.5801, 57.4757, 13.5237 )
+
+[node name="Tiles24" type="Sprite" parent="Scenario"]
+position = Vector2( 3048, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 274.993, 50.5971, 11.3722, 15.0605 )
+
+[node name="Tiles25" type="Sprite" parent="Scenario"]
+position = Vector2( 2804, 76 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.471, 188.174, 78.4346, 82.9293 )
+
+[node name="Tiles26" type="Sprite" parent="Scenario"]
+position = Vector2( 2872, 60 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.471, 188.174, 78.4346, 82.9293 )
+
+[node name="Tiles27" type="Sprite" parent="Scenario"]
+position = Vector2( 3032, 20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.471, 188.174, 78.4346, 82.9293 )
+
+[node name="Tiles28" type="Sprite" parent="Scenario"]
+position = Vector2( 3376, 0 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.471, 188.174, 78.4346, 82.9293 )
+
+[node name="Tiles29" type="Sprite" parent="Scenario"]
+position = Vector2( 3304, 0 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.471, 188.174, 78.4346, 82.9293 )
+
+[node name="Tiles30" type="Sprite" parent="Scenario"]
+position = Vector2( 3332, 244 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.471, 188.174, 78.4346, 82.9293 )
+
+[node name="Tiles31" type="Sprite" parent="Scenario"]
+position = Vector2( 3212, 252 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 175.943, 75.861, 15.3253, 20.4337 )
+
+[node name="Tiles32" type="Sprite" parent="Scenario"]
+position = Vector2( 3436, 132 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 175.943, 75.861, 15.3253, 23.1582 )
+
+[node name="Tiles33" type="Sprite" parent="Scenario"]
+position = Vector2( 3448, -4 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 239.449, 65.9734, 51.1229, 8.95968 )
+
+[node name="Tiles35" type="Sprite" parent="Scenario"]
+position = Vector2( 3268, -80 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 144.916, 48.2937, 62.4474, 48.5667 )
+
+[node name="Tiles36" type="Sprite" parent="Scenario"]
+position = Vector2( 3616, -220 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 258.436, 0.177217, 25.8189, 32.5716 )
+
+[node name="Tiles37" type="Sprite" parent="Scenario"]
+position = Vector2( 4184, -72 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 258.436, 0.177217, 25.8189, 32.5716 )
+
+[node name="Tiles38" type="Sprite" parent="Scenario"]
+position = Vector2( 4444, -64 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.579, 31.9544, 13.9025, 16.2858 )
+
+[node name="Tiles39" type="Sprite" parent="Scenario"]
+position = Vector2( 4212, -56 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.579, 31.9544, 54.0783, 32.6264 )
+
+[node name="Tiles40" type="Sprite" parent="Scenario"]
+position = Vector2( 4732, -40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 85.6557, 64.5801, 55.1073, 15.6056 )
+
+[node name="Tiles41" type="Sprite" parent="Scenario"]
+position = Vector2( 4764, -40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 85.6557, 64.5801, 55.1073, 15.6056 )
+
+[node name="Tiles42" type="Sprite" parent="Scenario"]
+position = Vector2( 4636, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96.2783, 47.6087, 15.5477, 16.8653 )
+
+[node name="Tiles43" type="Sprite" parent="Scenario"]
+position = Vector2( 4636, 56 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96.2783, 47.6087, 15.5477, 16.8653 )
+
+[node name="Tiles44" type="Sprite" parent="Scenario"]
+position = Vector2( 4636, 88 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.855, 47.8722, 12.6501, 48.7513 )
+
+[node name="Tiles45" type="Sprite" parent="Scenario"]
+position = Vector2( 4636, 136 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.855, 47.8722, 12.6501, 48.7513 )
+
+[node name="Tiles46" type="Sprite" parent="Scenario"]
+position = Vector2( 4636, 184 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.855, 47.8722, 12.6501, 48.7513 )
+
+[node name="Tiles47" type="Sprite" parent="Scenario"]
+position = Vector2( 4744, 204 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles48" type="Sprite" parent="Scenario"]
+position = Vector2( 4572, 32 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles49" type="Sprite" parent="Scenario"]
+position = Vector2( 4516, 56 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles50" type="Sprite" parent="Scenario"]
+position = Vector2( 4492, 92 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles144" type="Sprite" parent="Scenario"]
+position = Vector2( 3708, -208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles145" type="Sprite" parent="Scenario"]
+position = Vector2( 3772, -184 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles146" type="Sprite" parent="Scenario"]
+position = Vector2( 3972, -180 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles147" type="Sprite" parent="Scenario"]
+position = Vector2( 4096, -196 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles148" type="Sprite" parent="Scenario"]
+position = Vector2( 4384, -208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles149" type="Sprite" parent="Scenario"]
+position = Vector2( 4312, -204 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles150" type="Sprite" parent="Scenario"]
+position = Vector2( 4344, -244 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles151" type="Sprite" parent="Scenario"]
+position = Vector2( 4244, -212 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles152" type="Sprite" parent="Scenario"]
+position = Vector2( 4764, -216 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles153" type="Sprite" parent="Scenario"]
+position = Vector2( 4692, -192 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles154" type="Sprite" parent="Scenario"]
+position = Vector2( 4596, -184 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles155" type="Sprite" parent="Scenario"]
+position = Vector2( 4524, -184 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles156" type="Sprite" parent="Scenario"]
+position = Vector2( 4448, -188 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 319.43, 66.6792, 81.9072, 76.2192 )
+
+[node name="Tiles51" type="Sprite" parent="Scenario"]
+position = Vector2( 4468, 36 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles52" type="Sprite" parent="Scenario"]
+position = Vector2( 4400, 232 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles53" type="Sprite" parent="Scenario"]
+position = Vector2( 4400, 332 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles54" type="Sprite" parent="Scenario"]
+position = Vector2( 4276, 344 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles55" type="Sprite" parent="Scenario"]
+position = Vector2( 4268, 276 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles56" type="Sprite" parent="Scenario"]
+position = Vector2( 4752, 340 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles57" type="Sprite" parent="Scenario"]
+position = Vector2( 4660, 576 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles58" type="Sprite" parent="Scenario"]
+position = Vector2( 4464, 484 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles59" type="Sprite" parent="Scenario"]
+position = Vector2( 4268, 576 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles60" type="Sprite" parent="Scenario"]
+position = Vector2( 4744, 680 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles61" type="Sprite" parent="Scenario"]
+position = Vector2( 4272, 864 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles62" type="Sprite" parent="Scenario"]
+position = Vector2( 4924, 828 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles63" type="Sprite" parent="Scenario"]
+position = Vector2( 5060, 864 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles64" type="Sprite" parent="Scenario"]
+position = Vector2( 5236, 772 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles65" type="Sprite" parent="Scenario"]
+position = Vector2( 5244, 780 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles66" type="Sprite" parent="Scenario"]
+position = Vector2( 5180, 564 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles67" type="Sprite" parent="Scenario"]
+position = Vector2( 5636, 564 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles68" type="Sprite" parent="Scenario"]
+position = Vector2( 6540, 836 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles69" type="Sprite" parent="Scenario"]
+position = Vector2( 5992, 876 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles70" type="Sprite" parent="Scenario"]
+position = Vector2( 5936, 888 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles71" type="Sprite" parent="Scenario"]
+position = Vector2( 6452, 888 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles72" type="Sprite" parent="Scenario"]
+position = Vector2( 6020, 588 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles73" type="Sprite" parent="Scenario"]
+position = Vector2( 6008, 292 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles74" type="Sprite" parent="Scenario"]
+position = Vector2( 6208, 204 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles75" type="Sprite" parent="Scenario"]
+position = Vector2( 6024, 92 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles76" type="Sprite" parent="Scenario"]
+position = Vector2( 6240, -8 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 178.361, 193.799, 75.7145, 77.671 )
+
+[node name="Tiles77" type="Sprite" parent="Scenario"]
+position = Vector2( 6144, 236 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 275.382, 51.2765, 27.7882, 15.271 )
+
+[node name="Tiles78" type="Sprite" parent="Scenario"]
+position = Vector2( 6240, 588 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 275.382, 51.2765, 27.7882, 15.271 )
+
+[node name="Tiles79" type="Sprite" parent="Scenario"]
+position = Vector2( 6156, 880 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 275.382, 51.2765, 27.7882, 15.271 )
+
+[node name="Tiles80" type="Sprite" parent="Scenario"]
+position = Vector2( 5604, 876 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 275.382, 51.2765, 27.7882, 15.271 )
+
+[node name="Tiles81" type="Sprite" parent="Scenario"]
+position = Vector2( 5164, 876 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 275.382, 51.2765, 27.7882, 15.271 )
+
+[node name="Tiles82" type="Sprite" parent="Scenario"]
+position = Vector2( 5400, 880 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 220.707, 51.6474, 53.7066, 8.41187 )
+
+[node name="Tiles83" type="Sprite" parent="Scenario"]
+position = Vector2( 5444, 880 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 220.707, 51.6474, 53.7066, 8.41187 )
+
+[node name="Tiles84" type="Sprite" parent="Scenario"]
+position = Vector2( 5424, 876 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 220.707, 51.6474, 53.7066, 8.41187 )
+
+[node name="Tiles85" type="Sprite" parent="Scenario"]
+position = Vector2( 4964, 772 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 278.318, 82.1507, 37.6411, 37.2825 )
+
+[node name="Tiles86" type="Sprite" parent="Scenario"]
+position = Vector2( 4724, 872 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 271.875, 126.39, 49.0409, 44.9541 )
+
+[node name="Tiles87" type="Sprite" parent="Scenario"]
+position = Vector2( 4748, 684 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 271.875, 126.39, 49.0409, 44.9541 )
+
+[node name="Tiles88" type="Sprite" parent="Scenario"]
+position = Vector2( 4460, 584 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 275.958, 36.0165, 30.1047, 12.5436 )
+
+[node name="Tiles89" type="Sprite" parent="Scenario"]
+position = Vector2( 2176, 288 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles92" type="Sprite" parent="Scenario"]
+position = Vector2( 2212, 292 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles93" type="Sprite" parent="Scenario"]
+position = Vector2( 3800, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles94" type="Sprite" parent="Scenario"]
+position = Vector2( 3816, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles95" type="Sprite" parent="Scenario"]
+position = Vector2( 3828, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles96" type="Sprite" parent="Scenario"]
+position = Vector2( 3840, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles97" type="Sprite" parent="Scenario"]
+position = Vector2( 3852, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles98" type="Sprite" parent="Scenario"]
+position = Vector2( 3864, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles99" type="Sprite" parent="Scenario"]
+position = Vector2( 3876, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles100" type="Sprite" parent="Scenario"]
+position = Vector2( 3888, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles101" type="Sprite" parent="Scenario"]
+position = Vector2( 3904, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles102" type="Sprite" parent="Scenario"]
+position = Vector2( 3924, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles103" type="Sprite" parent="Scenario"]
+position = Vector2( 3944, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles104" type="Sprite" parent="Scenario"]
+position = Vector2( 3960, -16 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles105" type="Sprite" parent="Scenario"]
+position = Vector2( 3932, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles106" type="Sprite" parent="Scenario"]
+position = Vector2( 3968, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles107" type="Sprite" parent="Scenario"]
+position = Vector2( 3988, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles108" type="Sprite" parent="Scenario"]
+position = Vector2( 4012, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles109" type="Sprite" parent="Scenario"]
+position = Vector2( 4012, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles110" type="Sprite" parent="Scenario"]
+position = Vector2( 4036, -20 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles111" type="Sprite" parent="Scenario"]
+position = Vector2( 4024, -12 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles112" type="Sprite" parent="Scenario"]
+position = Vector2( 4000, -12 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles113" type="Sprite" parent="Scenario"]
+position = Vector2( 3980, -12 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles114" type="Sprite" parent="Scenario"]
+position = Vector2( 4496, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles115" type="Sprite" parent="Scenario"]
+position = Vector2( 4512, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles116" type="Sprite" parent="Scenario"]
+position = Vector2( 4528, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles117" type="Sprite" parent="Scenario"]
+position = Vector2( 4544, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles118" type="Sprite" parent="Scenario"]
+position = Vector2( 4560, 908 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles119" type="Sprite" parent="Scenario"]
+position = Vector2( 4572, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles120" type="Sprite" parent="Scenario"]
+position = Vector2( 6232, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles121" type="Sprite" parent="Scenario"]
+position = Vector2( 6248, 908 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles122" type="Sprite" parent="Scenario"]
+position = Vector2( 6264, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles123" type="Sprite" parent="Scenario"]
+position = Vector2( 6280, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles124" type="Sprite" parent="Scenario"]
+position = Vector2( 6292, 912 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles125" type="Sprite" parent="Scenario"]
+position = Vector2( 6304, 908 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles126" type="Sprite" parent="Scenario"]
+position = Vector2( 6320, 908 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles127" type="Sprite" parent="Scenario"]
+position = Vector2( 6336, 908 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.531, 15.8112, 15.8509 )
+
+[node name="Tiles128" type="Sprite" parent="Scenario"]
+position = Vector2( 6348, -160 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles129" type="Sprite" parent="Scenario"]
+position = Vector2( 6360, -148 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles130" type="Sprite" parent="Scenario"]
+position = Vector2( 6308, -132 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles131" type="Sprite" parent="Scenario"]
+position = Vector2( 6236, -60 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles132" type="Sprite" parent="Scenario"]
+position = Vector2( 6288, -136 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 257.46, -0.44447, 29.4909, 32.4108 )
+
+[node name="Tiles133" type="Sprite" parent="Scenario"]
+position = Vector2( 6272, -128 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
+
+[node name="Tiles134" type="Sprite" parent="Scenario"]
+position = Vector2( 6208, -56 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
+
+[node name="Tiles135" type="Sprite" parent="Scenario"]
+position = Vector2( 6392, -156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 209.282, -0.73646, 47.5942, 17.5193 )
+
+[node name="Tiles90" type="Sprite" parent="Scenario"]
+position = Vector2( 2188, 288 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.007, 15.8112, 16.3754 )
+
+[node name="Tiles91" type="Sprite" parent="Scenario"]
+position = Vector2( 2200, 288 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 176.874, 128.182, 15.8112, 16.2006 )
+
+[node name="Tiles34" type="Sprite" parent="Scenario"]
+position = Vector2( 3444, -32 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 238.148, 66.9686, 53.2553, 7.48215 )
+
+[node name="Tiles7" type="Sprite" parent="Scenario"]
+position = Vector2( 1708, 240 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 256.266, 1.73541, 30.0886, 30.0886 )
+
+[node name="Tiles8" type="Sprite" parent="Scenario"]
+position = Vector2( 1544, 156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 208.059, -0.529329, 14.8825, 16.5002 )
+
+[node name="Tiles9" type="Sprite" parent="Scenario"]
+position = Vector2( 1388, 156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 208.059, -0.529329, 14.8825, 16.5002 )
+
+[node name="Tiles10" type="Sprite" parent="Scenario"]
+position = Vector2( 1372, 156 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 208.059, -0.529329, 14.8825, 16.5002 )
+
+[node name="Tiles11" type="Sprite" parent="Scenario"]
+position = Vector2( 1240, 248 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 208.059, -0.529329, 14.8825, 16.5002 )
+
+[node name="Tiles12" type="Sprite" parent="Scenario"]
+position = Vector2( 896, 256 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 216.147, 19.8527, 30.0886, 12.6178 )
+
+[node name="Tiles13" type="Sprite" parent="Scenario"]
+position = Vector2( 684, 247 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 256.388, 2.72885, 32.1866, 30.7235 )
+
+[node name="Tiles14" type="Sprite" parent="Scenario"]
+position = Vector2( 604, 247 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 256.388, 2.72885, 32.1866, 30.7235 )
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="HazardObject" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 1304, 496 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, -1 )
+speed = 200.0
+move_range = 200.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject6" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 2688, 128 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 200.0
+move_range = 200.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject8" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 3288, 96 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 0, 1 )
+speed = 400.0
+move_range = 520.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject7" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 2536, 504 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 200.0
+move_range = 400.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject9" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 4104, 448 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 50.0
+move_range = 200.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject10" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 5912, 424 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 256.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject11" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 6496, -224 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( 1, 0 )
+speed = 100.0
+move_range = 69.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject12" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 6352, -112 )
+rotate_motion = 200.0
+texture = ExtResource( 15 )
+motion = Vector2( -1, 0 )
+speed = 100.0
+move_range = 69.0
+size = Vector2( 20, 20 )
+offest = Vector2( 12, 12 )
+
+[node name="HazardObject2" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 4320, 560 )
+move_range = 0.0
+size = Vector2( 128, 32 )
+
+[node name="HazardObject3" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 7592, -56 )
+move_range = 0.0
+size = Vector2( 512, 32 )
+
+[node name="HazardObject4" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 8976, 1800 )
+move_range = 0.0
+size = Vector2( 160, 32 )
+
+[node name="HazardObject5" parent="Hazards" instance=ExtResource( 16 )]
+position = Vector2( 12448, 1800 )
+move_range = 0.0
+size = Vector2( 224, 32 )
 
 [node name="Solids" type="Node2D" parent="."]
 
@@ -133,6 +1193,11 @@ size = Vector2( 96, 400 )
 
 [node name="Wall6" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 2368, 512 )
+texture = ExtResource( 5 )
+size = Vector2( 672, 256 )
+
+[node name="Wall72" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( -992, 520 )
 texture = ExtResource( 5 )
 size = Vector2( 672, 256 )
 
@@ -188,6 +1253,11 @@ size = Vector2( 416, 96 )
 
 [node name="Wall28" parent="Solids" instance=ExtResource( 4 )]
 position = Vector2( 6064, -112 )
+texture = ExtResource( 5 )
+size = Vector2( 784, 128 )
+
+[node name="Wall73" parent="Solids" instance=ExtResource( 4 )]
+position = Vector2( 5488, -1256 )
 texture = ExtResource( 5 )
 size = Vector2( 784, 128 )
 
@@ -474,21 +1544,232 @@ size = Vector2( 240, 48 )
 [node name="FallingWalls" type="Node2D" parent="."]
 
 [node name="FallingWall" parent="FallingWalls" instance=ExtResource( 11 )]
-position = Vector2( 888, 384 )
+position = Vector2( 888, 328 )
 texture = ExtResource( 5 )
 fall_speed = 150.0
 size = Vector2( 64, 32 )
 time_trigger = 1.0
 
+[node name="FallingWall4" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 4352, 336 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 1.0
+
+[node name="FallingWall6" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 5424, 48 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 0.5
+
+[node name="FallingWall7" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 5192, -64 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 0.5
+
+[node name="FallingWall8" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 4944, -176 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 0.5
+
+[node name="FallingWall9" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 5176, -328 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 0.5
+
+[node name="FallingWall10" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 5368, -488 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 0.5
+
+[node name="FallingWall11" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 5152, -640 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 0.5
+
+[node name="FallingWall5" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 6360, 256 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 64, 32 )
+time_trigger = 1.0
+
+[node name="FallingWall12" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7600, -96 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.2
+
+[node name="FallingWall13" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7656, -104 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="FallingWall14" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7720, -96 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="FallingWall15" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7784, -104 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="FallingWall16" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7848, -96 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="FallingWall17" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7912, -104 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="FallingWall18" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 7976, -96 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="FallingWall19" parent="FallingWalls" instance=ExtResource( 11 )]
+position = Vector2( 8032, -104 )
+texture = ExtResource( 5 )
+fall_speed = 150.0
+size = Vector2( 32, 32 )
+time_trigger = 0.1
+
+[node name="BonFires" type="Node2D" parent="."]
+
+[node name="Bonfire" parent="BonFires" instance=ExtResource( 14 )]
+position = Vector2( 4576, 408 )
+
+[node name="Bonfire2" parent="BonFires" instance=ExtResource( 14 )]
+position = Vector2( 9320, -128 )
+
+[node name="Bonfire3" parent="BonFires" instance=ExtResource( 14 )]
+position = Vector2( 8824, 1752 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 376, 440 )
+position = Vector2( 5008, 352 )
 air_skill = 0
+earth_skill = 1
+water_skill = 1
+fire_skill = 1
+coffee_beans = 0
+coffee = 0
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
-[node name="TimerChallenge" parent="." instance=ExtResource( 12 )]
-position = Vector2( 1000, 328 )
-reward = NodePath("../Coffee_Beans")
+[node name="Collectables" type="Node2D" parent="."]
 
-[node name="Coffee_Beans" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1880, 400 )
+[node name="TimerChallenge" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 1000, 240 )
+reward = NodePath("../Coffee_Beans")
+time = 5.0
+
+[node name="TimerChallenge4" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 5168, 392 )
+reward = NodePath("../../ForestCrystal")
+time = 6.0
+
+[node name="TimerChallenge2" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 6392, 192 )
+reward = NodePath("../Coffee_Beans2")
+time = 5.0
+
+[node name="TimerChallenge3" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 8560, 1728 )
+reward = NodePath("../Coffee_Beans3")
+time = 5.0
+
+[node name="Coffee_Beans" parent="Collectables" instance=ExtResource( 13 )]
+position = Vector2( 2328, 400 )
+
+[node name="Coffee_Beans2" parent="Collectables" instance=ExtResource( 13 )]
+position = Vector2( 6104, -136 )
+
+[node name="Coffee_Beans3" parent="Collectables" instance=ExtResource( 13 )]
+position = Vector2( 12952, 1664 )
+
+[node name="ForestCrystal" type="Area2D" parent="."]
+position = Vector2( 5184, -824 )
+
+[node name="gem_01a" type="Sprite" parent="ForestCrystal"]
+position = Vector2( 16, -8 )
+texture = ExtResource( 20 )
+
+[node name="gem_01a2" type="Sprite" parent="ForestCrystal"]
+position = Vector2( -16, -8 )
+texture = ExtResource( 20 )
+
+[node name="gem_01a4" type="Sprite" parent="ForestCrystal"]
+position = Vector2( 16, 8 )
+texture = ExtResource( 20 )
+
+[node name="gem_01a3" type="Sprite" parent="ForestCrystal"]
+position = Vector2( -16, 8 )
+texture = ExtResource( 20 )
+
+[node name="Sprite" type="Sprite" parent="ForestCrystal"]
+texture = ExtResource( 19 )
+
+[node name="Light2D" type="Light2D" parent="ForestCrystal"]
+scale = Vector2( 1.42085, 1.42085 )
+texture = ExtResource( 18 )
+color = Color( 0.243137, 0.996078, 0, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ForestCrystal"]
+shape = SubResource( 1 )
+
+[node name="Spiders" type="Node2D" parent="."]
+
+[node name="Spider" parent="Spiders" instance=ExtResource( 21 )]
+position = Vector2( 7384, -376 )
+
+[node name="Spider3" parent="Spiders" instance=ExtResource( 21 )]
+position = Vector2( 8176, -360 )
+curve = SubResource( 3 )
+
+[node name="Spider2" parent="Spiders" instance=ExtResource( 21 )]
+position = Vector2( 8632, 152 )
+curve = SubResource( 2 )
+[connection signal="body_entered" from="Hazards/HazardObject" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject6" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject8" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject7" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject9" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject10" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject11" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject12" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject2" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject3" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject4" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="Hazards/HazardObject5" to="." method="_on_HazardObject_body_entered"]
+[connection signal="body_entered" from="BonFires/Bonfire" to="." method="_on_Bonfire_body_entered"]
+[connection signal="body_entered" from="BonFires/Bonfire2" to="." method="_on_Bonfire_body_entered"]
+[connection signal="body_entered" from="BonFires/Bonfire3" to="." method="_on_Bonfire_body_entered"]
+[connection signal="body_entered" from="ForestCrystal" to="." method="_on_ForestCrystal_body_entered"]

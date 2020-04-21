@@ -29,7 +29,7 @@ export var fire_skill = 45
 var load_fire_ball = load( "res://Colectables/Fire_Shard/Fire_Ball.tscn" )
 
 export var coffee_beans = 43
-var coffee = 43
+export var coffee = 43
 
 func _ready():
 	Audio.change_music()
@@ -122,15 +122,16 @@ func _input(event):
 			fire_ball.global_position.y = global_position.y
 			sounds.play_audio("FireBall")
 	elif event.is_action_pressed("coffe_skill"):
-		if coffeed == false:
-			sounds.play_audio("DrinkCoffee")
-			life += 0.5
-			coffee -= 1
-			speed *= 2
-			coffeed = true
-			yield(get_tree().create_timer(5),"timeout")
-			speed /= 2
-			coffeed = false
+		if coffee > 0:
+			if coffeed == false:
+				sounds.play_audio("DrinkCoffee")
+				life += 0.5
+				coffee -= 1
+				speed *= 2
+				coffeed = true
+				yield(get_tree().create_timer(5),"timeout")
+				speed /= 2
+				coffeed = false
 	
 func set_animation():
 	if riding == true:

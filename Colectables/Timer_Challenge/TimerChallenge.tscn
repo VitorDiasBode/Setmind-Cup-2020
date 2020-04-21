@@ -1,10 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Colectables/Timer_Challenge/Key.png" type="Texture" id=1]
 [ext_resource path="res://Colectables/Timer_Challenge/TimerChallenge.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 8 ) ]
+}
 
 [node name="TimerChallenge" type="Area2D"]
 script = ExtResource( 2 )
@@ -20,16 +37,20 @@ layer = 2
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer"]
 visible = false
-margin_left = 440.0
+margin_left = 488.0
 margin_top = 128.0
-margin_right = 568.0
+margin_right = 616.0
 margin_bottom = 192.0
-text = "1123
-"
+text = "1123"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_TimerChallenge_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
