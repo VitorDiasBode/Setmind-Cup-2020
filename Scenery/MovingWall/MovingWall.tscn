@@ -2,6 +2,8 @@
 
 [ext_resource path="res://Scenery/MovingWall/MovingWall.gd" type="Script" id=1]
 
+
+
 [node name="MovingWall" type="KinematicBody2D"]
 script = ExtResource( 1 )
 size = Vector2( 32, 32 )

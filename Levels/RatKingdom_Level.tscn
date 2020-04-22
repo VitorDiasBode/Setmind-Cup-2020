@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Levels/RatKingdom/Pixel_BrickWall.png" type="Texture" id=1]
 [ext_resource path="res://Levels/RatKingdom/CollisionGenerator.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Scenery/MovingWall/MovingWall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/Rat/Rat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://NPC/RatLord/RatLord.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Colectables/Air_Shard/Air_Shard.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Colectables/Earth_Shard/Earth_Shard.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Colectables/Water_Shard/Water_Shard.tscn" type="PackedScene" id=13]
@@ -81,8 +80,6 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="UI" parent="." instance=ExtResource( 10 )]
 
 [node name="Spikes" type="Node2D" parent="."]
 

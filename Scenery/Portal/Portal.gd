@@ -5,8 +5,9 @@ var next_level
 export var active = true
 
 func _ready():
-	next_level = load(level.get_path())
-	activate(active)
+	if level != null:
+		next_level = load(level.get_path())
+		activate(active)
 
 func _process(delta):
 	if active:
