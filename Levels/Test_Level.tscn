@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/RatKingdom/CollisionGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Scorpion_Rider/Scorpion_Rider.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenery/Bonfire/Bonfire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Colectables/Fire_Shard/Fire_Shard.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Scorpion/Scorpion.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Colectables/Timer_Challenge/TimerChallenge.tscn" type="PackedScene" id=7]
 
 [node name="Test_Level" type="Node2D"]
 __meta__ = {
@@ -22,10 +24,10 @@ polygon = PoolVector2Array( 0, -48, 0, 0, 1040, 0, 1040, -48 )
 polygon = PoolVector2Array( -232, 352, -176, 352, -176, 240, -52.5604, 237.309, -52.5604, 352, 486.719, 352, 488, 0, 560, 0, 564.26, 352, 704, 352, 704, 488, -232, 488 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -160, 648 )
+position = Vector2( -8, 256 )
 
 [node name="Scorpion_Rider" parent="." instance=ExtResource( 2 )]
-position = Vector2( 571, 432 )
+position = Vector2( 656, 840 )
 walk_range = 100.0
 speed = 150.0
 
@@ -35,3 +37,10 @@ position = Vector2( 649, 457 )
 [node name="Scorpion" parent="." instance=ExtResource( 6 )]
 position = Vector2( 72, 832 )
 movement_distance = 200.0
+
+[node name="TimerChallenge" parent="." instance=ExtResource( 7 )]
+position = Vector2( 192, 424 )
+reward = NodePath("../Fire_Shard")
+
+[node name="Fire_Shard" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 432 )

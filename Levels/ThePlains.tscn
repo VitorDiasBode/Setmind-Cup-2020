@@ -2355,12 +2355,12 @@ Cuidado com a serras vivas!"
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 304, 448 )
-air_skill = 200
-earth_skill = 1
-water_skill = 1
-fire_skill = 1
+air_skill = 0
+earth_skill = 0
+water_skill = 0
+fire_skill = 0
 coffee_beans = 0
-coffee = 200
+coffee = 0
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
