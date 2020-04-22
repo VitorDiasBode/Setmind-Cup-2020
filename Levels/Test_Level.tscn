@@ -38,9 +38,9 @@ position = Vector2( 649, 457 )
 position = Vector2( 72, 832 )
 movement_distance = 200.0
 
-[node name="TimerChallenge" parent="." instance=ExtResource( 7 )]
-position = Vector2( 192, 424 )
-reward = NodePath("../Fire_Shard")
-
 [node name="Fire_Shard" parent="." instance=ExtResource( 5 )]
-position = Vector2( 384, 432 )
+position = Vector2( 880, 448 )
+
+[node name="TimerChallenge" parent="." instance=ExtResource( 7 )]
+position = Vector2( 288, 392 )
+reward = NodePath("../Fire_Shard")

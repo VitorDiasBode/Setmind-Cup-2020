@@ -73,6 +73,7 @@ polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0 )
 one_way_collision = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0 )
 
 [node name="Timer" type="Timer" parent="."]

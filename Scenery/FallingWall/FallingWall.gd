@@ -10,11 +10,11 @@ export (float) var fall_speed = 50
 
 export (Vector2) var size setget set_size
 
-export (float) var time_trigger = 5
+export (float) var time_trigger = 5 # Precisa
 
-var falling = false
+var falling = false # Precisa
 
-var triggered = false
+var triggered = false # Precisa
 
 func _physics_process(delta: float) -> void:
 	if not Engine.editor_hint:
@@ -40,15 +40,15 @@ func set_size(area:Vector2):
 	$Polygon2D.polygon = PoolVector2Array(array)
 
 
-func player_step_over():
+func player_step_over(): # Passo 1
 	if triggered == false:
 		triggered = true
 		$Timer.start(time_trigger)
 		$AnimationPlayer.play("Shake")
 
-func _on_Timer_timeout():
+func _on_Timer_timeout(): # Passo 2
 	if falling == false:
-		$AnimationPlayer.play("Fade_Out")
+		$AnimationPlayer.play("Fade_Out") #Hide no lugar
 		falling = true
 		$Timer.start(5)
 		$CollisionPolygon2D.set_deferred("disabled",true)
@@ -56,7 +56,7 @@ func _on_Timer_timeout():
 		falling = false
 		triggered = false
 		global_position = initial_pos
-		$AnimationPlayer.play("Fade_In")
+		$AnimationPlayer.play("Fade_In") #Show no lugar
 		$CollisionPolygon2D.set_deferred("disabled",false)
 
 func reset():

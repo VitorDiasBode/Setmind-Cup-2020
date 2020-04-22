@@ -27,7 +27,7 @@ func _on_HazardObject_body_entered(body: Node) -> void:
 		player._on_PoisonTimer_timeout()
 		get_tree().call_group("FallingWall","reset")
 
-func _on_ForestCrystal_body_entered(body: Node) -> void:
+func _on_ForestCrystal_body_entered(body: Node) -> void: #Precisa
 	if body.is_in_group("Player"):
 		Global.has_forest_crystal = true
 		$ForestCrystal.queue_free()

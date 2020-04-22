@@ -94,6 +94,7 @@ one_shot = true
 [node name="Player_UI" type="CanvasLayer" parent="."]
 
 [node name="Interface" parent="Player_UI" instance=ExtResource( 15 )]
+visible = false
 
 [node name="Player_Sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )

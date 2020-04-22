@@ -14,34 +14,34 @@
 [ext_resource path="res://Levels/TheGate/Cast.png" type="Texture" id=13]
 [ext_resource path="res://Levels/Fallshade_Level.tscn" type="PackedScene" id=14]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 96, 110 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 13 )
 region = Rect2( 96, 0, 96, 110 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 13 )
 region = Rect2( 192, 0, 96, 110 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 13 )
 region = Rect2( 288, 0, 96, 110 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 13 )
 region = Rect2( 384, 0, 96, 110 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 6 ), SubResource( 6 ), SubResource( 6 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ) ],
 "loop": false,
 "name": "Cast",
 "speed": 12.0
@@ -105,7 +105,7 @@ speech = "Mago: VOCÊ NÃO PASSARÁ!
 Hum, cof, cof... Olá Arcano. Eu vi o seu caminho que você está trilhando. Se quiser usar o meu portal para prosseguir em sua jornada, você deve me trazer o Cristal Verde da Floresta Plana."
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Mage"]
-frames = SubResource( 1 )
+frames = SubResource( 6 )
 animation = "Idle"
 frame = 1
 speed_scale = 0.7
